@@ -1,3 +1,9 @@
+ <br>
+
+# 🐒 🍌
+
+# Let's Begin!
+
 ## 1. Install the dependencies
 
 ```javascript
@@ -6,7 +12,14 @@ npm install @material-ui/core @material-ui/icons @chec/commerce.js @stripe/react
 //  @chec/commerce.js
 // This dependency is going to be the most important one,
 // as it s going to manage our ecommerce
+
 ```
+
+<br>
+
+##### DOCUMENTATION 1: [The React UI library](https://mui.com/)
+
+##### DOCUMENTATION 2: [Material-UI](https://www.npmjs.com/package/@material-ui/core)
 
  <br>
 
@@ -169,7 +182,7 @@ const products = [
 const Products = () => {
   <main>
     <Grid container justify="center" spacing="4">
-      {products.map((productItem) => (
+      {products.map((product) => (
         //
         <Grid item key={product.id}>
           {/* 
@@ -211,7 +224,7 @@ const Products = () => {
 - While there, create a **folder** and call it **Product**
 - Inside the new **Product** folder, create a new file and call it **Product.jsx**
 
-- INside the new **Product.jsx**, type: **rafce** to create a functional component
+- Inside the new **Product.jsx**, type: **rafce** to create a functional component
 
 ```javascript
 import React from "react";
@@ -228,3 +241,254 @@ const Product = () => {
 
 export default Product;
 ```
+
+<br>
+
+### 13. Lets create our card
+
+- Import styles from **@material-ui**
+
+```javascript
+import React from "react";
+// Import few things from material UI
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  IconBotton,
+} from "@material-ui/core";
+
+//
+import { AddShoppingCart } from "@material-ui/icons";
+//
+//
+
+const Product = () => {
+  return <div></div>;
+};
+
+export default Product;
+```
+
+<br>
+
+#### title={product.name} is being passed through PROPS from the Products.js
+
+```javascript
+//
+import { AddShoppingCart } from "@material-ui/icons";
+//
+import classes from "*.module.css";
+//1.
+
+const Product = () => {
+  return (
+    <div>
+      // below is linked to step 1.
+      <Card className={classes.root}>
+        // below is linked to step 1.
+        <CardMedia className={classes.media} image="" title={product.name} />
+        // title={product.name} is being passed through PROPS from the
+        Products.js
+      </Card>
+    </div>
+  );
+};
+
+export default Product;
+```
+
+<br>
+
+### 14. Go back to the Produc<u>ts</u>.jsx to initialize the PROPS and make the connection with Produ<u>ct</u>.jsx
+
+<br>
+
+#### Explanation:
+
+- The **product={product}** , is the argument inside the map function, that is grabbing the data from the **{products.map** ARRAY
+
+- So in the following line we are declaring the other Product.jsx component and passing the data from this Product.jsx there:
+
+<br>
+
+```javascript
+//  the component: <Product
+<Product product={product} />
+//  the data: product={product}
+```
+
+<br>
+
+```javascript
+import React from "react";
+import Grid from "@material-ui/core";
+
+//
+// ARRAY
+const products = [
+  { id: 1, name: "Shoes", description: "Running shoes" },
+  { id: 2, name: "Mac book", description: "Apple macbook" },
+];
+/*
+
+
+*/
+
+const Products = () => {
+  <main>
+    <Grid container justify="center" spacing="4">
+      {products.map((product) => (
+        //
+        <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+          <Product product={product} />
+        </Grid>
+      ))}
+    </Grid>
+  </main>;
+};
+
+export default Products;
+```
+
+<br>
+
+### 15. Go back to the Produ<u>ct</u>.jsx
+
+- Add the following:
+
+```javascript
+<CardContent>
+  <div className={classes.CardContent}>
+    <Typography variant="h5" gutterBottom>
+      // here we render the product name from the mapping on the other file
+      {product.name}
+    </Typography>
+  </div>
+</CardContent>
+// gutterBottom ...means it s going to have some space on the bottom
+```
+
+<br>
+
+### 16. Replicate the <Typography but remove some things
+
+```javascript
+<CardContent>
+  <div className={classes.CardContent}>
+    <Typography variant="h5" gutterBottom>
+      {product.name}
+    </Typography>
+    <Typography variant="h5">{product.price}</Typography>
+  </div>
+</CardContent>
+// gutterBottom ...means it s going to have some space on the bottom
+```
+
+<br>
+
+### 17. If you notice, in the second <Typography we added a price, but we dont have one in the array, so go there and add it.
+
+<br>
+
+### 18. Add price to the array in the Produc<u>ts</u>.jsx
+
+```javascript
+const products = [
+  { id: 1, name: "Shoes", description: "Running shoes", price: '$5' },
+  { id: 2, name: "Mac book", description: "Apple macbook", price: '$10' },
+];
+
+
+const Products = () => {
+```
+
+<br>
+
+### 18. Now go back to Produc<u>t</u>.jsx and add it there (we already did it so no need for that)
+
+<br>
+
+# 🚀
+
+### To conclude the link between the two files and finally make use of the props
+
+- **ADD THE PROPS** to the function
+
+- we have to make it official by adding the element we are exporting from there to this file Produc<u>ts</u>.jsx
+
+- And you do it like so:
+
+```javascript
+// This is the clean way
+const Product = ({product}) => {
+  return (
+    <div>
+
+```
+
+##### This is another way, but in this way we are repeating ourselves, which isnt good
+
+```javascript
+// With this way you will have to put props everywhere
+// like so: props.product.name and so on...
+const Product = (props) => {
+  return (
+    <div>
+//
+//
+     <Typography variant="h5" gutterBottom>
+              {props.product.name}
+            </Typography>
+```
+
+<br>
+
+### 19. Add another typography box, this time for the description
+
+```javascript
+<Typography variant="h5" gutterBottom>
+              {product.name}
+</Typography>
+            //
+<Typography variant="h5">{product.price}</Typography>
+            //
+<Typography variant="h2" color="textSecondary">
+              {product.description}
+ </Typography>
+```
+
+##### color="textSecondary" is going to be a bit greyish
+
+<br>
+
+### 20. Add card Actions: <CardActions...
+
+- is going to have a **PROP** of <u>disableSpacing</u>
+
+[disableSpacing](https://mui.com/api/accordion-actions/)
+
+```javascript
+disableSpacing | bool |	false | If true, the actions do not have additional margin.
+```
+
+<br>
+
+```javascript
+<div className={classes.CardContent}>
+  <Typography variant="h5" gutterBottom>
+    {product.name}
+  </Typography>
+  <Typography variant="h5">{product.price}</Typography>
+  <Typography variant="h2" color="textSecondary">
+    {product.description}
+  </Typography>
+  // // CARD ACTIONS
+  <CardActions disableSpacing className={classes.cardActions}></CardActions>
+</div>
+```
+
+<br>
+<br>

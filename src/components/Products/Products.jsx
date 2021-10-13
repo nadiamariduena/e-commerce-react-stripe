@@ -1,11 +1,12 @@
 import React from "react";
-import Grid from "@material-ui/core";
+import Grid from '@material-ui/core/Grid';
+
 
 //
 //
 const products = [
-  { id: 1, name: "Shoes", description: "Running shoes" },
-  { id: 2, name: "Mac book", description: "Apple macbook" },
+  { id: 1, name: "Shoes", description: "Running shoes", price: '$5' },
+  { id: 2, name: "Mac book", description: "Apple macbook", price: '$10' },
 ];
 /*
 
@@ -15,21 +16,11 @@ const products = [
 const Products = () => {
   <main>
     <Grid container justify="center" spacing="4">
-      {products.map((productItem) => (
-        //   
+      {products.map((product) => (
+        //
         <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-        
-        {/* 
-        
-        Every time you are looping through something in jsx
-        you need to have the id
-
-        */}
-        
-        
-        
+          <Product product={product} />
         </Grid>
-
       ))}
     </Grid>
   </main>;
