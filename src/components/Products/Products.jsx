@@ -15,10 +15,22 @@ const products = [
 const Products = () => {
   <main>
     <Grid container justify="center" spacing="4">
-      {/* 
-                
-      Where the products will be shown          
-                */}
+      {products.map((productItem) => (
+        //   
+        <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+        
+        {/* 
+        
+        Every time you are looping through something in jsx
+        you need to have the id
+
+        */}
+        
+        
+        
+        </Grid>
+
+      ))}
     </Grid>
   </main>;
 };
