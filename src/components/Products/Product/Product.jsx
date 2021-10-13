@@ -6,7 +6,7 @@ import {
   CardContent,
   CardActions,
   Typography,
-  IconBotton,
+  IconButton,
 } from "@material-ui/core";
 
 //
@@ -36,7 +36,9 @@ const Product = ({ product }) => {
               {product.description}
             </Typography>
             <CardActions disableSpacing className={classes.cardActions}>
-            
+              <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
+                <AddShoppingCart />
+              </IconButton>
             </CardActions>
           </div>
 

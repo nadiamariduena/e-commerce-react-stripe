@@ -476,6 +476,23 @@ disableSpacing | bool |	false | If true, the actions do not have additional marg
 
 <br>
 
+- ALSO ADD THE: **IconButton** and correct it here:
+
+<br>
+
+```javascript
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
+```
+
+<br>
+
 ```javascript
 <div className={classes.CardContent}>
   <Typography variant="h5" gutterBottom>
@@ -486,9 +503,144 @@ disableSpacing | bool |	false | If true, the actions do not have additional marg
     {product.description}
   </Typography>
   // // CARD ACTIONS
-  <CardActions disableSpacing className={classes.cardActions}></CardActions>
+  <CardActions disableSpacing className={classes.cardActions}>
+    <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
+      <AddShoppingCart />
+    </IconButton>
+  </CardActions>
 </div>
 ```
 
 <br>
+
+#### This is what we have until now:
+
+```javascript
+import React from "react";
+// Import few things from material UI
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
+
+//
+//icon
+import { AddShoppingCart } from "@material-ui/icons";
+
+//
+
+const Product = ({ product }) => {
+  return (
+    <div>
+      {/* self closing tag /> */}
+      <Card className={classes.root}>
+        <CardMedia className={classes.media} image="" title={product.name} />
+
+        <CardContent>
+          {/* 
+          
+          
+          */}
+          <div className={classes.CardContent}>
+            <Typography variant="h5" gutterBottom>
+              {product.name}
+            </Typography>
+            <Typography variant="h5">{product.price}</Typography>
+            <Typography variant="h2" color="textSecondary">
+              {product.description}
+            </Typography>
+            <CardActions disableSpacing className={classes.cardActions}>
+              <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
+                <AddShoppingCart />
+              </IconButton>
+            </CardActions>
+          </div>
+
+          {/* 
+          
+          
+          */}
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default Product;
+```
+
 <br>
+<br>
+
+### 21. Import the classes related to the following:
+
+> className={classes.CardContent} and all the others that look similar
+
+<br>
+
+### 22. Inside of the <u>Product Folder</u> create a file called: styles.js
+
+- This will work like the scss individual files
+
+<br>
+<br>
+
+# 🔴
+
+### 23. Once you are inside the styles.js
+
+- import the following:
+
+```javascript
+import { makeStyles } from "@material-ui/core/styles";
+```
+
+#### The only goal of this file is to say <u>Export default</u> which means that we will be exporting something and that something is <u>the call to the function</u>:
+
+<br>
+
+```javascript
+export default makeStyles(() => ({
+  // Inside of this object we are going to write our styles
+  // The styles are going to be written in css in a JS  kind of way
+}));
+```
+
+- The styles are going to be written in css in a JS kind of way
+
+<br>
+
+#### function make styles take one parameter (()) and that is yet another callback function inside of there with an instant return, so what you do with an instant return? <u>you wrap it in parenthesis (() => ({}))</u> and then you return an object
+
+```javascript
+import { makeStyles } from "@material-ui/core/styles";
+//
+//
+export default makeStyles(() => ({
+  // the root: makes alusion to this inside the Product.jsx:
+  //       <Card className={classes.root}>
+  root: {
+    // maxWidth: 345, original width style
+    maxWidth: "100%",
+  },
+  //  <CardMedia className={classes.media} image="" title={product.name} />
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+  // <CardActions disableSpacing className={classes.cardActions}>
+  cardActions: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  //           <div className={classes.CardContent}>
+  cardContent: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+}));
+```
