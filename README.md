@@ -13,11 +13,11 @@
 
 Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing this **Great tutorial** on how to set up an E-commerce store using: React | Commerce.js and Stripe. -->
 
-# This is the second part of the tutorial (after the default setup)
+### This is the first part of the tutorial (after the default setup)👈
 
-# 👈
+- Few things to correct before we start with the Navigation Bar:
 
-#### Few things to correct before we start with the Navigation Bar:
+<br>
 
 ### 1. Add the return()
 
@@ -68,34 +68,6 @@ const products = [
 ```
 
 <br>
-
-### 3. Add the logo image
-
-- Create a folder and called it assets
-
-- Inside of it add the image
-
-- Then import it:
-
-```javascript
-import logo from "../../assets/commerce.png";
-//
-//
-//
-  return (
-    <>
-      <AppBar position="fixed" className={classes.appBar} color="inherit">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title} color="inherit">
-            <img
-              src={logo}
-              alt="Commerce.js"
-              height="25px"
-              className={classes.image}
-            />
-            Commerce.js
-          </Typography>
-```
 
 <br>
 <hr>
@@ -186,6 +158,36 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+```
+
+<br>
+
+### 3. Add the logo image
+
+- Create a folder and called it assets
+
+- Inside of it add the image
+
+- Then import it:
+
+```javascript
+import logo from "../../assets/commerce.png";
+//
+//
+//
+  return (
+    <>
+      <AppBar position="fixed" className={classes.appBar} color="inherit">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title} color="inherit">
+            <img
+              src={logo}
+              alt="Commerce.js"
+              height="25px"
+              className={classes.image}
+            />
+            Commerce.js
+          </Typography>
 ```
 
 <br>
@@ -431,7 +433,9 @@ export { default as Products } from "./Products/Products";
 <br>
 <br>
 
-# Issues
+# 🐻 🍯
+
+# <u>Issues</u>
 
 1. **fade is deprecated** so copy and paste the link of the error
 
@@ -444,3 +448,65 @@ Grab the alpha link, then replace all the fades in the styles code fro alpha
 [<img src="/src/img/deprecated1.gif"/>]()
 
 3.  The Navbar is hiding the products
+
+<br>
+<hr>
+<br>
+
+### Create a new styles.js, this time inside <u> the Products folder</u>
+
+- Add the following:
+
+```javascript
+import { makeStyles } from "@material-ui/core/styles";
+
+export default makeStyles((theme) => ({
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
+  },
+  root: {
+    flexGrow: 1,
+  },
+}));
+```
+
+<br>
+
+### Go to Products.jsx and import the styles
+
+- also add the following
+
+```javascript
+import Product from "./Product/Product";
+// NEW **
+import useStyles from "./styles";
+//
+//
+
+/*
+
+
+              ARRAY DATA GOES HERE
+
+ */
+
+const Products = () => {
+  //
+  // NEW **
+  const classes = useStyles();
+  //
+  return (
+     // NEW ** this 2 lines
+    <main className={classes.content}>
+    // this line below will add the space between the NAVBAR and the products
+      <div className={classes.toolbar} />
+```
+
+<br>
+
+#### As you can see, its working!
+
+[<img src="/src/img/navbar_related2.jpg"/>]()
