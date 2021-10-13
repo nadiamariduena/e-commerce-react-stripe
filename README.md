@@ -374,8 +374,43 @@ import Products from "./components/Products/Products";
 import Navbar from "./components/Navbar/Navbar";
 ```
 
+<br>
+
+# 🐒
+
 ### A better approach
 
 ```javascript
-import { Navbar, Products } from './components';
+import { Navbar, Products } from "./components";
 ```
+
+### But for this to work, we have to do a last thing:
+
+- inside the **components folder**, we need to create a **index.js** file
+
+<br>
+
+- From that **index.js** we are going to export all the other components, like so:
+
+```javascript
+// index.js inside the components folder
+export { default as Navbar } from "./Navbar/Navbar";
+export { default as Products } from "./Products/Products";
+```
+
+<br>
+<br>
+
+# Issues
+
+1. **fade is deprecated** so copy and paste the link of the error
+
+Grab the alpha link, then replace all the fades in the styles code fro alpha
+
+ <br>
+
+2.  **replace Justify** and copy the **justifyContent**, then put it inside the Products.jsx
+
+[<img src="/src/img/deprecated1.gif"/>]()
+
+3.  The Navbar is hiding the products
