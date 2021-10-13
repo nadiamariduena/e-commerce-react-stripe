@@ -68,6 +68,36 @@ const products = [
 ```
 
 <br>
+
+### 3. Add the logo image
+
+- Create a folder and called it assets
+
+- Inside of it add the image
+
+- Then import it:
+
+```javascript
+import logo from "../../assets/commerce.png";
+//
+//
+//
+  return (
+    <>
+      <AppBar position="fixed" className={classes.appBar} color="inherit">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title} color="inherit">
+            <img
+              src={logo}
+              alt="Commerce.js"
+              height="25px"
+              className={classes.image}
+            />
+            Commerce.js
+          </Typography>
+```
+
+<br>
 <hr>
 <br>
 <br>
