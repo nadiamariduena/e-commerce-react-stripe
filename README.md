@@ -504,7 +504,7 @@ import {
   </Typography>
   // // CARD ACTIONS
   <CardActions disableSpacing className={classes.cardActions}>
-    <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
+    <IconButton aria-label="Add to Cart">
       <AddShoppingCart />
     </IconButton>
   </CardActions>
@@ -554,7 +554,7 @@ const Product = ({ product }) => {
               {product.description}
             </Typography>
             <CardActions disableSpacing className={classes.cardActions}>
-              <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
+              <IconButton aria-label="Add to Cart">
                 <AddShoppingCart />
               </IconButton>
             </CardActions>
@@ -599,7 +599,7 @@ export default Product;
 import { makeStyles } from "@material-ui/core/styles";
 ```
 
-#### The only goal of this file is to say <u>Export default</u> which means that we will be exporting something and that something is <u>the call to the function</u>:
+#### The only goal of this file is to say <u>Export default</u>, which means that we will be exporting something, and that something is <u>the call to the function</u>:
 
 <br>
 
@@ -644,3 +644,220 @@ export default makeStyles(() => ({
   },
 }));
 ```
+
+<br>
+
+### 24. Now import it in Product.jsx
+
+- Since its an <u>styles HOOK</u>, you will have to declare it in a variable
+
+```javascript
+import React from "react";
+// Import few things from material UI
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
+
+//
+//styles HOOK  ****
+import useStyles from "./styles";
+//icon
+import { AddShoppingCart } from "@material-ui/icons";
+//
+//
+const Product = ({ product }) => {
+  //
+  //
+  //  styles HOOK ****
+  const classes = useStyles();
+  //
+
+  //
+  //
+  return (
+    <div>
+      {/* self closing tag /> */}
+      <Card className={classes.root}>
+        {/* styles HOOK **** */}
+        <CardMedia className={classes.media} image="" title={product.name} />
+
+```
+
+<br>
+
+### 25. We are done with the Product.jsx (for now)
+
+<br>
+
+### 26. Now import it in inside the Products.jsx
+
+```javascript
+import React from "react";
+import Grid from '@material-ui/core/Grid';
+
+import Product from './Product/Product';  /// --- here ----
+//
+//
+const products = [
+  { id: 1, name: "Shoes", description: "Running shoes", price: '$5' },
+  { id: 2, name: "Mac book", description: "Apple macbook", price: '$10' },
+];
+
+
+const Products = () => {
+```
+
+<br>
+
+### 27. Now import the Products.jsx inside the <u>App.js</u>
+
+- but before, correct the following:
+
+```javascript
+// instead of this
+import Grid from "@material-ui/core/Grid";
+//  ADD THIS:
+import { Grid } from "@material-ui/core";
+```
+
+<br>
+
+### 28. Before launching the first preview check for possible mistakes:
+
+- This is what i have after i cleaned and checked the code (there were mistakes)
+
+<br>
+
+#### Products.jsx
+
+```javascript
+import React from "react";
+import { Grid } from "@material-ui/core";
+
+import Product from "./Product/Product";
+//
+//
+const products = [
+  { id: 1, name: "Shoes", description: "Running shoes", price: "$5" },
+  { id: 2, name: "Mac book", description: "Apple macbook", price: "$10" },
+];
+/*
+
+
+*/
+
+const Products = () => {
+  return (
+    <main>
+      <Grid container justify="center" spacing={4}>
+        {products.map((product) => (
+          <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+            <Product product={product} />
+          </Grid>
+        ))}
+      </Grid>
+    </main>
+  );
+};
+
+export default Products;
+```
+
+<br>
+<br>
+
+#### Product.jsx
+
+```javascript
+import React from "react";
+// Import few things from material UI
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
+//icon
+import { AddShoppingCart } from "@material-ui/icons";
+//styles HOOK
+
+import useStyles from "./styles";
+
+//
+//
+const Product = ({ product }) => {
+  //  styles HOOK
+  const classes = useStyles();
+  //
+
+  //
+  //
+  return (
+    <>
+      {/* self closing tag /> */}
+      <Card className={classes.root}>
+        {/* styles HOOK */}
+        <CardMedia className={classes.media} image="" title={product.name} />
+
+        <CardContent>
+          <div className={classes.cardContent}>
+            {/* name */}
+            <Typography gutterBottom variant="h5">
+              {product.name}
+            </Typography>
+            {/* price */}
+            <Typography gutterBottom variant="h5">
+              {product.price}
+            </Typography>
+          </div>
+          {/*
+          
+          
+          Description */}
+          <Typography variant="h2" color="textSecondary">
+            {product.description}
+          </Typography>
+        </CardContent>
+        {/* 
+        
+        CardActions  */}
+        <CardActions disableSpacing className={classes.cardActions}>
+          <IconButton aria-label="Add to Cart">
+            <AddShoppingCart />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </>
+  );
+};
+
+export default Product;
+```
+
+<br>
+
+#### App.js
+
+```javascript
+import React from "react";
+import Products from "./components/Products/Products";
+
+const App = () => {
+  return (
+    <div>
+      <Products />
+    </div>
+  );
+};
+
+export default App;
+```
+
+[<img src="/src/img/firstPreview_default.gif"/>]()
