@@ -16,7 +16,7 @@ npm install @material-ui/core @material-ui/icons @chec/commerce.js @stripe/react
 
 ### 4. Create the index.js
 
-- inside the new created <u>src folder</u> add an **index.js**
+- inside the new created <u>src folder</u>, once you have it, add an **index.js**
 
 ```javascript
 import React from "react";
@@ -53,4 +53,85 @@ import React from "react";
 export const App = () => {
   return <div>E-commerce</div>;
 };
+```
+
+### 6. Launch the app
+
+- If you get an error, its perhaps due to the scss folder
+
+- Create the scss folder and the:
+
+```scss
+_main.scss
+```
+
+<br>
+
+### 7. create the Components folder
+
+- Inside the components folder create:the **Products folder**
+- Inside of it, create the **Products.jsx** file
+
+<br>
+
+### 8. Product.js
+
+- Import the following:
+
+```javascript
+import React from "react";
+import Grid from "@material-ui/core";
+```
+
+##### I have never used @material-ui/core
+
+> So I dont Know if its going to be better than creating the grids with scss
+
+```javascript
+import React from "react";
+import Grid from "@material-ui/core";
+
+const Products = () => {
+  <main>
+    <Grid container justify="center" spacing="4">
+      {/* 
+                
+      Where the products will be shown          
+                */}
+    </Grid>
+  </main>;
+};
+
+export default Products;
+```
+
+### 9. For now we are not going to use the real products, instead we are going to mimic them.
+
+- Create an array an inside of it add 2 products
+
+<br>
+
+```javascript
+import React from "react";
+import Grid from "@material-ui/core";
+
+//
+// array products
+const products = [
+  { id: 1, name: "Shoes", description: "Running shoes" },
+  { id: 2, name: "Mac book", description: "Apple macbook" },
+];
+
+const Products = () => {
+  <main>
+    <Grid container justify="center" spacing="4">
+      {/* 
+                
+      Where the products will be shown          
+                */}
+    </Grid>
+  </main>;
+};
+
+export default Products;
 ```
