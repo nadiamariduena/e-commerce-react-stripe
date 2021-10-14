@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Products } from "./components";
 // KEY
 import { commerce } from "./lib/commerce";
+import { Navbar, Products } from "./components";
 
 //
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
   // - this is going to return a promise:  commerce.products.list(), so we have to await to see what is inside that promise
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-    // {data} is going to be our products
+
     setProducts(data);
   };
 
@@ -31,7 +31,7 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Products />
+      <Products products={products} />
     </div>
   );
 };

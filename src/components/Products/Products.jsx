@@ -6,26 +6,11 @@ import Product from "./Product/Product";
 import useStyles from "./styles";
 //
 //
-const products = [
-  {
-    id: 1,
-    name: "Beauty stuff 001",
-    description: "Cremes Random",
-    price: "$5",
-    image: "../img/photo-1580870069867-74c57ee1bb07.jpeg",
-  },
-  {
-    id: 2,
-    name: "Beauty stuff 002",
-    description: "Cremes Random",
-    price: "$10",
-    image: "../img/photo-1608142172654-318a624fe4ec.jpeg",
-  },
-];
+ 
 /*
  */
 
-const Products = () => {
+const Products = ({ products }) => {
   //
   // Here **
   const classes = useStyles();

@@ -20,17 +20,21 @@ const Product = ({ product }) => {
   //  styles HOOK
   const classes = useStyles();
   //
-
-  //
+  // console.log(product);
+  // //
+  // return <div>test</div>;
   //
   return (
     <>
       {/* self closing tag /> */}
       <Card className={classes.root}>
-        {/* styles HOOK */}
+        {/* styles HOOK 
+        
+        */}
+        {/* img */}
         <CardMedia
           className={classes.media}
-          image={product.image}
+          image={product.image.url}
           title={product.name}
         />
 
@@ -42,16 +46,18 @@ const Product = ({ product }) => {
             </Typography>
             {/* price */}
             <Typography gutterBottom variant="h5">
-              {product.price}
+              {product.price.formatted_with_symbol}
             </Typography>
           </div>
           {/*
           
           
           Description */}
-          <Typography variant="body2" color="textSecondary">
-            {product.description}
-          </Typography>
+          <Typography
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            variant="body2"
+            color="textSecondary"
+          />
         </CardContent>
         {/* 
         
