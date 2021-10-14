@@ -13,13 +13,19 @@
 
 Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing this **Great tutorial** on how to set up an E-commerce store using: React | Commerce.js and Stripe. -->
 
-### This is the first part of the tutorial (after the default setup)👈
-
-- Few things to correct before we start with the Navigation Bar:
+### In this Branche we will be setting up the <u>basic Navbar</u> and the basic <u>Commercejs API</u> related
 
 <br>
 
-### 1. Add the return()
+- **Note**: This is the first part of the tutorial (after the default setup)
+
+<br>
+
+# 🐻 🍯
+
+## Few things to correct before we start with the Navigation Bar:
+
+#### 1. Add the return()
 
 - One of the errors i got, was because the Products.jsx didn't have a return() wrapping the whole content of that file.(**like it should normally have**)
 
@@ -31,7 +37,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 <br>
 
-### 2. Add the images to the Products.jsx
+#### 2. Add the images to the Products.jsx
 
 - Check min: 24:29 [ECommerce Web Shop - Build & Deploy an Amazing App | React.js, Commerce.js, Stripe](https://youtu.be/377AQ0y6LPA)
 
@@ -162,7 +168,9 @@ export default Navbar;
 
 <br>
 
-### 3. Add the logo image
+# 🍌
+
+### Add the logo image
 
 - Create a folder and called it assets
 
@@ -352,6 +360,8 @@ export default Navbar;
 
 <br>
 
+# 🍌
+
 ### Lets visualize the component
 
 - Go to the App.js
@@ -384,11 +394,13 @@ export default App;
 <br>
 <br>
 
+# 🍌 🍌 🍌 
+
 - min: 31:10
 
 [ECommerce Web Shop - Build & Deploy an Amazing App | React.js, Commerce.js, Stripe](https://youtu.be/377AQ0y6LPA)
 
-## Dont repeat yourself 👈
+#### Dont repeat yourself 👈
 
 - Apparently there is a cleaner way of adding as much components as you can
 
@@ -433,7 +445,7 @@ export { default as Products } from "./Products/Products";
 <br>
 <br>
 
-# 🐻 🍯
+# ⚠️
 
 # <u>Issues</u>
 
@@ -546,7 +558,7 @@ export const commerce = new Commerce("");
 
 # 🔑
 
-### What is Commercejs
+### What is [Commercejs](https://commercejs.com/)
 
 > Its an API-first eCommerce platform for developer and business
 
