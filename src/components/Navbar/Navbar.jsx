@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   AppBar,
   Toolbar,
   IconButton,
   Badge,
-  MenuItem,
-  Menu,
   Typography,
 } from "@material-ui/core";
 // icons
@@ -31,7 +29,7 @@ const Navbar = () => {
               height="25px"
               className={classes.image}
             />
-            Commerce.js
+            Nadia Mariduena 
           </Typography>
           {/* 
           

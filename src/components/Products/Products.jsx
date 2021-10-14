@@ -9,19 +9,17 @@ import useStyles from "./styles";
 const products = [
   {
     id: 1,
-    name: "Ink Pen NM",
-    description: "Running shoes",
+    name: "Beauty stuff 001",
+    description: "Cremes Random",
     price: "$5",
-    image:
-      "https://images.unsplash.com/photo-1622901120958-ae569882629c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
+    image: "../img/photo-1580870069867-74c57ee1bb07.jpeg",
   },
   {
     id: 2,
-    name: "Graphic card NM",
-    description: "Apple macbook",
+    name: "Beauty stuff 002",
+    description: "Cremes Random",
     price: "$10",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
+    image: "../img/photo-1608142172654-318a624fe4ec.jpeg",
   },
 ];
 /*
@@ -48,6 +46,3 @@ const Products = () => {
 };
 
 export default Products;
-
-
- 
