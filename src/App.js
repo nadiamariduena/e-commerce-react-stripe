@@ -3,14 +3,15 @@ import React from "react";
 // import Navbar from "./components/Navbar/Navbar";
 import { Navbar, Products } from "./components";
 //
-//
+// KEY
+import { commerce } from "./lib/commerce";
+ 
 //
 const App = () => {
   return (
     <div>
-       <Navbar />
+      <Navbar />
       <Products />
-     
     </div>
   );
 };

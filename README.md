@@ -447,11 +447,13 @@ Grab the alpha link, then replace all the fades in the styles code fro alpha
 
 [<img src="/src/img/deprecated1.gif"/>]()
 
+<br>
+
+### 🔴 Hidden Navbar
+
 3.  The Navbar is hiding the products
 
-<br>
-<hr>
-<br>
+ <br>
 
 ### Create a new styles.js, this time inside <u> the Products folder</u>
 
@@ -474,6 +476,10 @@ export default makeStyles((theme) => ({
 ```
 
 <br>
+
+## classes.toolbar
+
+- This is linked to the step above
 
 ### Go to Products.jsx and import the styles
 
@@ -510,3 +516,117 @@ const Products = () => {
 #### As you can see, its working!
 
 [<img src="/src/img/navbar_related2.jpg"/>]()
+
+<br>
+<hr>
+<br>
+ 
+ # 🐒 🍍
+
+<br>
+
+### Create a new folder inside the src, call it <u>lib</u> as library.
+
+- In lib you will Create a new file called: Commerce.js
+
+- Inside the commerce.js file, you are going to import:
+
+```javascript
+import Commerce from "@chec/commerce.js";
+//
+// here below we are creating a new instance of that specific commerce,
+// and that is going to be our store
+export const commerce = new Commerce("");
+// (); as first parameter we are going to introduce our PUBLIC KEY
+```
+
+### (); as first parameter we are going to introduce our PUBLIC KEY, but right now we are going to store all data sensitive inside the .env file (read below)
+
+<br>
+
+# 🔑
+
+### What is Commercejs
+
+> Its an API-first eCommerce platform for developer and business
+
+<br>
+
+- **Commerce. js is a headless eCommerce platform, built specifically for developers and designers to build custom eCommerce solutions**. We're making it easier and faster for developers to integrate eCommerce into any web, mobile, or smart device project. ... As an API-first platform, Commerce.
+
+<br>
+
+## <ul>THE PUBLIC KEY</u>
+
+- Go to commercejs.com
+
+- **Open** an account
+
+- **Once you have your account**, click on the green button on the bottom, then go to the left side of the screen where all the icons are, an look for the **developers icon** (which is the the 4 icon), then look for settings(inside the developers tab).
+
+- Inside there you will find your public key, **copy** and paste it in the **.env** file that we will create now, **this file will store all our KEYS**.
+
+<br>
+
+# ⚠️ ⚠️ ⚠️
+
+### CREATE THE .ENV File outside the SRC
+
+- The **.env** stands for environmental variables.
+- This are variables that only you can see in your PC
+
+<br>
+
+🔴
+
+- <u>**This file will contain sensitive data so be sure to make it secret**</u> by adding it to the git ignore.
+
+<br>
+
+#### Type the following inside the .env file
+
+```javascript
+REACT_APP_CHEC_PUBLIC_KEY=
+```
+
+#### Then PASTE the key 'after the = '
+
+```javascript
+// This is the key of the youtuber, mine will look different
+pk_19840575a9facac44327ea0ec81e58986780ff33e1e3e;
+```
+
+### The way we access to the <u>.env</u> is Through the <u>commerce.js</u> file, like so:
+
+- There you will add the KEY NAME we created there
+
+- The last value which is **true** at the end of the link key, means that its going to create a new store
+
+```javascript
+import Commerce from "@chec/commerce.js";
+//
+// here below we are creating a new instance of that specific commerce,
+// and that is going to be our store
+export const commerce = new Commerce(
+  process.env.REACT_APP_CHEC_PUBLIC_KEY_TEST,
+  true
+);
+```
+
+#### Now we have this object below, that we can use all around the application
+
+- Normally to create a fully functional web shop application, you will need a full backend API
+
+- With all the Routes for fetching the products, creating the products deleting them, updating them, selling them.
+
+- You need AUTHENTICATION and a lot of stuff
+
+### But in our project all of the above, is stored in the following like of code:
+
+```javascript
+import { commerce } from "./lib/commerce";
+```
+
+# 🔺 ERROR
+
+### If you get an error, check if the data related to the commerce.js is well added, then turn off the server in VS then npm start again, it solved it for me.
