@@ -7,6 +7,12 @@ import { Navbar, Products } from "./components";
 const App = () => {
   const [products, setProducts] = useState([]);
   //
+  //
+  //
+  const [cart, setCart] = useState({});
+  //  // By default that cart is going to be **empty**, because in the beginning there s no products in our basket/cart
+  //
+  //
   // so what we want do here? we want to fetch something
   // - we want to fetch a response* from await*
   // - So we have to await something
@@ -20,13 +26,22 @@ const App = () => {
   };
 
   //
+  // The fetch related to the CART
+  const fetchCart = async () => {
+    const cart = await commerce.cart.retrieve();
+    // so what we want do here? we want to fetch something
+    // - we want to fetch a response* from await*
+    setCart(cart);
+  };
+  //
 
   useEffect(() => {
     fetchProducts();
+    fetchCart();
     //
   }, []);
   //
-  console.log(products);
+  console.log(cart);
   //
   return (
     <div>
