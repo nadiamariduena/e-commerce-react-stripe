@@ -740,11 +740,57 @@ min 58:38
 <br>
 <br>
 
+# 🌴
 
 ## THE ICON INSIDE THE NAVBAR
+
+min 59:50
 
 - Right now we have just an static icon telling us, that there s something inside the basket
 
 <br>
 
 - We are going to remove that and make the connection between the icon inside the navbar and the information inside the app.js, information that is related to the add the item to cart.
+
+<br>
+
+### Go to the App.js
+
+- Pass the following informations as PROPS
+
+```javascript
+// This is going to simply be a number of items in the cart
+<Navbar totalItems={cart.total_items} />
+```
+
+<br>
+
+## Now go to the NAVBAR and pass the Prop there
+
+##### 1.
+
+```javascript
+const Navbar = ({ totalItems }) => {
+```
+
+##### 2.
+
+```javascript
+// REPLACE THIS
+   <Badge badgeContent={2} color="secondary">
+  // FOR THIS
+     <Badge badgeContent={totalItems} color="secondary">
+```
+
+<br>
+
+- So one think to notice is that our cart is not going to be empty after we click add a product, its going to remain there
+
+<br>
+
+[<img src="/src/img/finally_adding_items_to_the_basket.gif"/>]()
+
+
+### Now we have to create the layout for the cart
+
+- It will be the page where the user will be redirected to see the products in the basket
