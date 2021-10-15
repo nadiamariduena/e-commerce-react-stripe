@@ -21,18 +21,51 @@ const App = () => {
   // - this is going to return a promise:  commerce.products.list(), so we have to await to see what is inside that promise
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-
+    //
+    //
+    // update our  data **
     setProducts(data);
   };
 
   //
   // The fetch related to the CART
   const fetchCart = async () => {
-    const cart = await commerce.cart.retrieve();
     // so what we want do here? we want to fetch something
+    setCart(await commerce.cart.retrieve());
     // - we want to fetch a response* from await*
-    setCart(cart);
+    //
+    // update our cart **
   };
+
+  /*
+  
+  
+  const fetchCart = async () => {
+  // because you can use the value of the API to do the short way
+  setCart(await commerce.cart.retrieve());
+};
+  
+  */
+  //
+  //
+  const handleAddToCart = async (productId, quantity) => {
+    // so what we want do here? we want to fetch something
+    const item = await commerce.cart.add(productId, quantity);
+    // - we want to fetch a response* from await: commercejs*
+    // so what are we going to add here in the parenthesis: cart.add();?
+    // we are going to add the productId!
+    // So we are going to use this 2 params:
+    // (productId, quantity) to require data to the API commercejs
+
+    //
+    // update our cart **
+    setCart(item.cart);
+    //
+    //
+  };
+
+  //
+  //
   //
 
   useEffect(() => {
@@ -46,7 +79,7 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Products products={products} />
+      <Products products={products} onAddToCart={handleAddToCart} />
     </div>
   );
 };

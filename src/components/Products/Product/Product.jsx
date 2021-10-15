@@ -16,7 +16,7 @@ import useStyles from "./styles";
 
 //
 //
-const Product = ({ product }) => {
+const Product = ({ product, onAddToCart }) => {
   //  styles HOOK
   const classes = useStyles();
   //
@@ -39,7 +39,7 @@ const Product = ({ product }) => {
         />
 
         <CardContent>
-          <div className={classes.cardContent}>
+        <div className={classes.cardContent}>
             {/* name */}
             <Typography gutterBottom variant="h5">
               {product.name}
@@ -63,7 +63,11 @@ const Product = ({ product }) => {
         
         CardActions  */}
         <CardActions disableSpacing className={classes.cardActions}>
-          <IconButton aria-label="Add to Cart">
+          {/* ICON BUTTON ON CLICK */}
+          <IconButton
+            aria-label="Add to Cart"
+            onClick={() => onAddToCart(product.id, 1)}
+          >
             <AddShoppingCart />
           </IconButton>
         </CardActions>

@@ -421,7 +421,6 @@ useEffect(() => {
 <br>
 <br>
 
-
 ### So what we have until now:
 
 ```javascript
@@ -480,3 +479,272 @@ const App = () => {
 
 export default App;
 ```
+
+<br>
+<br>
+
+# :shopping_cart: 🍍
+
+## Add the items (App.js)
+
+### To add the items to the cart, we have to create another function
+
+<br>
+
+- This is going to be **the function the add products to the cart**
+- Its going to be an **ASYNC** function, and its going to **accept 2 parameters**
+- the first üaram is the **productId** and the second is the **quantity**
+- So we are going to again get the **response** from the commerce.js
+
+```javascript
+const handleAddToCart = async (productId, quantity) => {
+  // so what we want do here? we want to fetch something
+  const response = await commerce.cart.add();
+  // - we want to fetch a response* from await: commercejs*
+  // so what are we going to add here in the parenthesis: cart.add();?
+  // we are going to add the productId!
+};
+```
+
+<br>
+
+### So what are we going to add here in the parenthesis: cart.add();?
+
+- we are going to add the **productId** !
+- and also how many products, hence: **quantity**
+
+```javascript
+const handleAddToCart = async (productId, quantity) => {
+  const response = await commerce.cart.add(productId, quantity);
+  // So we are going to use this 2 params: (productId, quantity) to require data to the API commercejs
+};
+```
+
+<br>
+
+### Now change the <u>response</u> for <u>item</u>
+
+```javascript
+// change this:
+const response = await
+//
+// for this:
+const item = await
+
+```
+
+<br>
+
+### update the cart
+
+- So this is the cart **after** the cart has been **added**
+
+```javascript
+//
+// update our cart **
+setCart(item.cart);
+//
+//
+```
+
+<br>
+<br>
+
+# 🖱️
+
+### But where do we click? where do we use this function handleAddToCart?
+
+- Inside the App.js we have no buttons, so we have to set it up inside the Products.jsx
+
+#### 🔴
+
+- **BUT BEFORE THAT**: we have to pass the handleAddToCart function to the products.jsx, and to do it we have to use **PROPS**
+
+<br>
+
+```javascript
+  return (
+    <div>
+      <Navbar />
+      <Products products={products} onAddToCart={handleAddToCart} />
+```
+
+<br>
+<br>
+
+# 🐒
+
+# Products.jsx
+
+### So now we know that our products is accepting an **onAddToCart** _prop_ inside the App.js
+
+<br>
+
+- **LETS PASS** it inside the **Products.jsx**
+
+<br>
+
+- **onAddToCart** is the function (from the App.js, **handleAddToCart**) that is going to add the item to our CART
+
+```javascript
+const Products = ({ products, onAddToCart }) => {
+  //
+```
+
+### So where do we use it?, because we dont have any buttons?
+
+- WE ARE GOING TO **PASS IT AGAIN**...**one level deeper**
+
+<br>
+
+- **AND TO DO SO:** we need to add it here(**remember we are still inside the Products.jsx**)
+
+```javascript
+// Now the onAddToCart that contains the handleAddToCart,  is ready to travel on level deeper to Product.jsx
+<Product product={product} onAddToCart={onAddToCart} />
+```
+
+<br>
+
+<br>
+
+# 🐿️
+
+# Product.jsx
+
+- Pass the data from the function here below:
+
+```javascript
+ const Product = ({ product, onAddToCart }) => {
+```
+
+<br>
+
+### So now what we have to do, is simply _CALL it_ in a button click
+
+- pass the info below inside the icon button: {onAddToCart}
+
+```javascript
+
+        <CardActions disableSpacing className={classes.cardActions}>
+          {/* ICON BUTTON ON CLICK */}
+          <IconButton aria-label="Add to Cart" onClick={onAddToCart}>
+            <AddShoppingCart />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </>
+  );
+};
+```
+
+## 🔴
+
+#### we forgot something, we dont want to call it like this:
+
+- because its not going to know which product are we adding
+
+```javascript
+<IconButton aria-label="Add to Cart" onClick={onAddToCart}>
+
+```
+
+#### FOR THAT REASON, you will add the id, like in the code below:
+
+<br>
+
+# we have to make a callback function
+
+- so that it doesnt call itself immediately: **onClick={()=>}**
+
+- of course the function: onAddToCart()}
+
+- Then we have to pass **2 parameters** remember: productId, quantity
+
+- onClick={()=> onAddToCart(product.id, 1)}
+
+- 1 corresponds to quantity
+
+min 58:38
+
+```javascript
+<IconButton aria-label="Add to Cart" onClick={()=> onAddToCart(product.id, 1)}
+
+```
+
+<br>
+
+#### As the product.id is the content below, so its the only thing that is going to differenciate it from all other products, it works just like the key when mapping images.
+
+- the below content is a single product
+
+```javascript
+       <CardMedia
+          className={classes.media}
+          image={product.image.url}
+          title={product.name}
+        />
+
+        <CardContent>
+          <div className={classes.cardContent}>
+            {/* name */}
+            <Typography gutterBottom variant="h5">
+              {product.name}
+            </Typography>
+            {/* price */}
+            <Typography gutterBottom variant="h5">
+              {product.price.formatted_with_symbol}
+            </Typography>
+          </div>
+          {/*
+
+
+          Description */}
+          <Typography
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            variant="body2"
+            color="textSecondary"
+          />
+        </CardContent>
+        {/*
+
+        CardActions  */}
+        <CardActions disableSpacing className={classes.cardActions}>
+          {/* ICON BUTTON ON CLICK */}
+          <IconButton
+            aria-label="Add to Cart"
+            onClick={() => onAddToCart(product.id, 1)}
+          >
+            <AddShoppingCart />
+          </IconButton>
+        </CardActions>
+```
+
+## THE QUANTITY
+
+- Its always going to be **1)}**, as we add items 1 by 1
+
+<br>
+<br>
+
+### So lets test it in the console (ignore the red basket as its still static)
+
+- The reason why i have more than 1 item inside the line_items:3, is because i ve clicked few times before. I am more than sure that we are going to create a button to remove items from the car and so this section will be cleaned.
+
+[<img src="/src/img/basket_cart_adding_items-to.cart.gif"/>]()
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## THE ICON INSIDE THE NAVBAR
+
+- Right now we have just an static icon telling us, that there s something inside the basket
+
+<br>
+
+- We are going to remove that and make the connection between the icon inside the navbar and the information inside the app.js, information that is related to the add the item to cart.
