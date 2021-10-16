@@ -154,7 +154,7 @@ import { Link } from "react-router-dom";
 
 <br>
 
-### But since we are working with material UI wecan do it in the following way:
+### But since we are working with material UI we can do it in the following way:
 
 ```javascript
 <IconButton
@@ -185,8 +185,148 @@ import { Link } from "react-router-dom";
 </Typography>
 ```
 
-
-
 ### Result
 
 [<img src="/src/img/routes2.gif"/>]()
+
+1:25:54
+
+<br>
+<br>
+
+#### What we are going to do next, Is to remove the icon cart if we are already in the cart page:
+
+- For that we will need something called **useLocation**
+
+```javascript
+import { Link, useLocation } from "react-router-dom";
+```
+
+##### pass the hook inside the navbar component
+
+```javascript
+const Navbar = ({ totalItems }) => {
+  //
+  const classes = useStyles();
+  const location = useLocation();
+```
+
+- That location has an specific property that we need, and that property is called pathName
+
+> We want to check **if** location pathname is equal to **'/'** which is our welcome page, **only then** you will show the icon image but if we are already inside the **cart page dont show it**
+
+```javascript
+if (location.pathname === '/')
+```
+
+#### This is how we will implement in the button
+
+```javascript
+{
+  location.pathname === "/" ? (
+    <div className={classes.button}>
+      <IconButton
+        component={Link}
+        to="/cart"
+        aria-label="Show cart items"
+        color="inherit"
+      >
+        <Badge badgeContent={totalItems} color="secondary">
+          {/* ShoppingCart  is the icon */}
+          <ShoppingCart />
+        </Badge>
+      </IconButton>
+    </div>
+  );
+}
+```
+
+<br>
+
+```javascript
+{ //here we are saing: if this exist:
+  location.pathname === "/" ? ( //then do this(show the button content), because / is the welcome page!!
+```
+
+<br>
+
+### but in react there is a better way: use this && instead of ?
+
+- The **&& and and operator** is saying: this is only going to appear if the first part is true
+
+```javascript
+{ //here we are saing: if this exist:
+  location.pathname === "/" && ( //then do this(show the button content), because / is the welcome page!!
+```
+
+<br>
+<br>
+
+```javascript
+{
+  location.pathname === "/" ? (
+    <div className={classes.button}>
+      <IconButton
+        component={Link}
+        to="/cart"
+        aria-label="Show cart items"
+        color="inherit"
+      >
+        <Badge badgeContent={totalItems} color="secondary">
+          {/* ShoppingCart  is the icon */}
+          <ShoppingCart />
+        </Badge>
+      </IconButton>
+    </div>
+  );
+}
+```
+
+[<img src="/src/img/routes3_location_pathname.gif"/>]()
+
+<br>
+<br>
+
+### An option (in case there s no items from a certain product )
+
+- GO TO Cart.jsx
+
+> **Right now we have a text**: You have not items...
+
+```javascript
+const EmptyCart = () => {
+  <Typography variant="subtitle1">
+    You have no items in your shopping cart, start adding some!
+  </Typography>;
+};
+```
+
+### import the Link
+
+```javascript
+import { Link } from "react-router-dom";
+```
+
+#### Implement it like so:
+
+```javascript
+// the following two functions are called sub components
+//So if the cart is EMPTY show the following:
+const EmptyCart = () => {
+  <Typography variant="subtitle1">
+    You have no items in your shopping cart,
+    <Link to="/" className={classes.link}>
+      {" "}
+      start adding some
+    </Link>!
+  </Typography>;
+};
+```
+#### Right now we cannot see the result because we still need to finish the following buttons: increase +, decrease -, remove.
+
+1:29:00
+
+<br>
+<br>
+<hr>
+<br>

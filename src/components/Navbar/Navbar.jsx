@@ -8,7 +8,8 @@ import {
 } from "@material-ui/core";
 // icons
 import { ShoppingCart } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 //
 import useStyles from "./styles";
 import logo from "../../assets/commerce.png";
@@ -16,6 +17,7 @@ import logo from "../../assets/commerce.png";
 const Navbar = ({ totalItems }) => {
   //
   const classes = useStyles();
+  const location = useLocation();
   //
   //
   return (
@@ -41,19 +43,23 @@ const Navbar = ({ totalItems }) => {
           
           */}
           <div className={classes.grow} />
-          <div className={classes.button}>
-            <IconButton
-              component={Link}
-              to="/cart"
-              aria-label="Show cart items"
-              color="inherit"
-            >
-              <Badge badgeContent={totalItems} color="secondary">
-                {/* ShoppingCart  is the icon */}
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </div>
+
+          {location.pathname === "/" && (
+            <div className={classes.button}>
+              <IconButton
+                component={Link}
+                to="/cart"
+                aria-label="Show cart items"
+                color="inherit"
+              >
+                <Badge badgeContent={totalItems} color="secondary">
+                  {/* ShoppingCart  is the icon */}
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </div>
+          )}
+
           {/* 
         
           */}

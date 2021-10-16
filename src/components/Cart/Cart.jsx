@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Typography, Button, Grid } from "@material-ui/core";
 //
 import CartItem from "./CartItem/CartItem";
-
+import { Link } from "react-router-dom";
 //
 //
 import useStyles from "./styles";
@@ -11,16 +11,18 @@ import useStyles from "./styles";
 const Cart = ({ cart }) => {
   //
 
-  //   const isEmpty = !(cart.line_items && cart.line_items.length);
-  //   //
-
   const classes = useStyles();
   //
   // the following two functions are called sub components
   //So if the cart is EMPTY show the following:
   const EmptyCart = () => {
     <Typography variant="subtitle1">
-      You have no items in your shopping cart, start adding some!
+      You have no items in your shopping cart,
+      <Link to="/" className={classes.link}>
+        {" "}
+        start adding some
+      </Link>
+      !
     </Typography>;
   };
   //
