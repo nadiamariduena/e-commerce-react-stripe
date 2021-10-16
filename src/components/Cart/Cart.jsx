@@ -1,6 +1,10 @@
-import React  from "react";
+import React from "react";
 import { Container, Typography, Button, Grid } from "@material-ui/core";
+//
+import CartItem from "./CartItem/CartItem";
 
+//
+//
 import useStyles from "./styles";
 //
 //
@@ -26,15 +30,14 @@ const Cart = ({ cart }) => {
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
-          <Grid item xs={12} sm={4} key={item.id}>
-            {/* <CartItem /> */}
-            <div>{item.name}</div>
+          <Grid item xs={12} sm={5} key={item.id}>
+            <CartItem item={item} />
           </Grid>
         ))}
       </Grid>
       <div className={classes.cardDetails}>
         <Typography variant="h4">
-          {/* with symbol, is going to give us the amount with the dollar sign */}
+          {/* with symbol, is going to give us the amount with the dollar sign but if you set it up to euro in commercejs , it will show euro*/}
           Subtotal: {cart.subtotal?.formatted_with_symbol}
         </Typography>
         <div>
@@ -69,10 +72,12 @@ const Cart = ({ cart }) => {
 
   return (
     <Container>
+      {/* gutterBottom is going to give a top height to wherever you place it */}
       <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3">
+      <Typography className={classes.title} variant="h4" gutterBottom>
         Your shopping Cart
       </Typography>
+
       {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   );

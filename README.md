@@ -640,6 +640,8 @@ export default Cart;
 
 #### LETS CREATE THE: CartItem.jsx
 
+min: 1:14:57
+
 - import the following:
 
 ```javascript
@@ -674,3 +676,175 @@ const CartItem = () => {
 
 export default CartItem;
 ```
+
+<br>
+
+### Add the image
+
+```javascript
+return (
+  <>
+    <Card>
+      {/* This is the image of a specific product */}
+      <CardMedia image={CartItem.media.source} />
+    </Card>
+  </>
+);
+```
+
+### Once you do that, go to the Cart.jsx and replace the following:
+
+- But before, import the freshly created component:
+- import CartItem from './CartItem/CartItem'
+
+```javascript
+// Replace this:
+<Grid container spacing={3}>
+  {cart.line_items.map((item) => (
+    <Grid item xs={12} sm={4} key={item.id}>
+      <div>{item.name}</div> //***** REPLACE THIS *******
+    </Grid>
+  ))}
+</Grid>
+
+// For this:      {/* <CartItem /> */}
+<Grid container spacing={3}>
+  {cart.line_items.map((item) => (
+    <Grid item xs={12} sm={4} key={item.id}>
+          <CartItem />
+    </Grid>
+  ))}
+</Grid>
+```
+
+<br>
+
+#### Include the item={item} to the CardItem like so:
+
+```javascript
+<CartItem item={item} />
+```
+
+<br>
+<br>
+
+### Now make the connection through PROPS
+
+#### Go to the CartItem file and pass the props
+
+```javascript
+const CartItem = ({ item }) => {
+```
+
+- then add this in the same file:
+
+```javascript
+<>
+  <Card>
+    {/* This is the image of a specific product */}
+    <CardMedia image={item.media.source} />
+  </Card>
+</>
+```
+
+<br>
+<br>
+
+### You will get this error 🔴
+
+```javascript
+TypeError: Cannot read property 'source' of undefined
+CartItem
+src/components/Cart/CartItem/CartItem.jsx:28
+  25 |   <>
+  26 |     <Card>
+  27 |       {/* This is the image of a specific product */}
+> 28 |       <CardMedia image={item.media.source} />
+     | ^  29 |     </Card>
+  30 |   </>
+  31 | );
+```
+
+> **The reason:** is because **source** is deprecated
+
+### Since I already solved this "image" issue i only had to replace certain things:
+
+```javascript
+// Replace this:
+<>
+  <Card>
+    {/* This is the image of a specific product */}
+    <CardMedia image={item.media.source} />
+  </Card>
+</>
+
+
+// For this
+    <>
+      <Card>
+        {/* This is the image of a specific product */}
+        <CardMedia image={item.image.url} />
+      </Card>
+    </>
+```
+
+### image.url is the same i am using inside the Products.jsx
+
+- image={product.image.url}
+
+1:16:55
+
+#### Also dont forget to add the alt to the img
+
+```javascript
+ alt={item.name}
+      className={classes.media}
+```
+
+<br>
+<br>
+
+#### Now lets add the rest of the content
+
+- We will handle the name and the price of the products
+- We will also add how many items we have in the basket
+
+```javascript
+<>
+  <Card>
+    {/* This is the image of a specific product */}
+    <CardMedia
+      image={item.image.url}
+      alt={item.name}
+      className={classes.media}
+    />
+    {/*  Card Content*/}
+    <CardContent className={classes.CardContent}>
+      <Typography variant="h6">{item.name}</Typography>
+      <Typography variant="h5">
+        {item.line_total.formatted_with_symbol}
+      </Typography>
+    </CardContent>
+    {/* Car actions */}
+    <CardActions className={classes.CardActions}>
+      <div className={classes.buttons}>
+        <Button type="button" size="small">
+          -
+        </Button>
+        // so here we are going to see what is the current quantity of our item
+        <Typography>{item.quantity}</Typography>
+        <Button type="button" size="small">
+          +
+        </Button>
+      </div>
+      {/* This is going to be the item that is going to 
+          remove it completely from the card */}
+      <Button type="button" color="secondary">
+        Removes
+      </Button>
+    </CardActions>
+  </Card>
+</>
+```
+
+1:19:30
