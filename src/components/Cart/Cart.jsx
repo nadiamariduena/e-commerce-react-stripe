@@ -30,7 +30,8 @@ const Cart = ({ cart }) => {
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
-          <Grid item xs={12} sm={5} key={item.id}>
+          // 4 = to 3 products on the desktop
+          <Grid item xs={12} sm={4} key={item.id}>
             <CartItem item={item} />
           </Grid>
         ))}
