@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 // KEY
 import { commerce } from "./lib/commerce";
-import { Navbar, Products } from "./components";
+import { Products, Navbar, Cart } from "./components";
 
 //
 const App = () => {
+  //
+  //
+  //
   const [products, setProducts] = useState([]);
   //
   //
   //
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
   //  // By default that cart is going to be **empty**, because in the beginning there s no products in our basket/cart
   //
   //
@@ -21,8 +24,7 @@ const App = () => {
   // - this is going to return a promise:  commerce.products.list(), so we have to await to see what is inside that promise
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-    //
-    //
+
     // update our  data **
     setProducts(data);
   };
@@ -37,15 +39,6 @@ const App = () => {
     // update our cart **
   };
 
-  /*
-  
-  
-  const fetchCart = async () => {
-  // because you can use the value of the API to do the short way
-  setCart(await commerce.cart.retrieve());
-};
-  
-  */
   //
   //
   const handleAddToCart = async (productId, quantity) => {
@@ -74,12 +67,13 @@ const App = () => {
     //
   }, []);
   //
-  console.log(cart);
+  // console.log(cart);
   //
   return (
     <div>
       <Navbar totalItems={cart.total_items} />
-      <Products products={products} onAddToCart={handleAddToCart} />
+      {/* <Products products={products} onAddToCart={handleAddToCart} /> */}
+      <Cart cart={cart} />
     </div>
   );
 };
