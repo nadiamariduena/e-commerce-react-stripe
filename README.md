@@ -118,3 +118,75 @@ return (
 #### Result: we are back to our welcome page
 
 [<img src="/src/img/react_router1.jpg"/>]()
+
+<br>
+
+## Make the icon Cart redirect the user to that path
+
+- **Go to the NAVBAR**
+
+- **Import the following**
+
+```javascript
+import { Link } from "react-router-dom";
+```
+
+### then wrap the icon of the navbar with this:
+
+- Here we have the path **/** cart, this means that from the moment we will click, it will redirect us to **/cart**
+
+```javascript
+<Link to="/cart"></Link>
+```
+
+### basic way of wrapping a button
+
+```javascript
+<Link to="/cart">
+  <IconButton aria-label="Show cart items" color="inherit">
+    <Badge badgeContent={totalItems} color="secondary">
+      {/* ShoppingCart  is the icon */}
+      <ShoppingCart />
+    </Badge>
+  </IconButton>
+</Link>
+```
+
+<br>
+
+### But since we are working with material UI wecan do it in the following way:
+
+```javascript
+<IconButton
+  component={Link}
+  to="/cart"
+  aria-label="Show cart items"
+  color="inherit"
+>
+  <Badge badgeContent={totalItems} color="secondary">
+    {/* ShoppingCart  is the icon */}
+    <ShoppingCart />
+  </Badge>
+</IconButton>
+```
+
+### You have to add the same here too:
+
+```javascript
+<Typography
+  component={Link}
+  to="/cart"
+  variant="h6"
+  className={classes.title}
+  color="inherit"
+>
+  <img src={logo} alt="Commerce.js" height="25px" className={classes.image} />
+  Nadia Mariduena
+</Typography>
+```
+
+
+
+### Result
+
+[<img src="/src/img/routes2.gif"/>]()
