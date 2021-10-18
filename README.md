@@ -581,7 +581,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
 
 #### RESULT
 
-- **Its working**!!!!!
+- **Its working**!!!!!dd
 
 1:37:27
 
