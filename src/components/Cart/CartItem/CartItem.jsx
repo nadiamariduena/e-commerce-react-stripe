@@ -57,6 +57,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
           {/* This is going to be the item that is going to 
           remove it completely from the card */}
           <Button
+            variant="contained"
             type="button"
             color="secondary"
             onClick={() => onRemoveFromCart(item.id)}

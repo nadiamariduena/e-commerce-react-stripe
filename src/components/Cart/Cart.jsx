@@ -1,39 +1,34 @@
 import React from "react";
 import { Container, Typography, Button, Grid } from "@material-ui/core";
 //
-import CartItem from "./CartItem/CartItem";
+
 import { Link } from "react-router-dom";
 //
+import CartItem from "./CartItem/CartItem";
 //
 import useStyles from "./styles";
 //
 //
-const Cart = ({
-  cart,
-  handleUpdateCartQty,
-  handleRemoveFromCart,
-  handleEmptyCart,
-}) => {
+const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   //
 
   const classes = useStyles();
   //
   // the following two functions are called sub components
   //So if the cart is EMPTY show the following:
-  const EmptyCart = () => {
+  const renderEmptyCart = () => (
     <Typography variant="subtitle1">
       You have no items in your shopping cart,
       <Link to="/" className={classes.link}>
-        {" "}
         start adding some
       </Link>
       !
-    </Typography>;
-  };
+    </Typography>
+  );
   //
   //
   //So if the cart is FILLED show the following:
-  const FilledCart = () => (
+  const renderCart = () => (
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
@@ -41,8 +36,8 @@ const Cart = ({
           <Grid item xs={12} sm={4} key={item.id}>
             <CartItem
               item={item}
-              onUpdateCartQty={handleUpdateCartQty}
-              onRemoveFromCart={handleRemoveFromCart}
+              onUpdateCartQty={onUpdateCartQty}
+              onRemoveFromCart={onRemoveFromCart}
             />
           </Grid>
         ))}
@@ -59,7 +54,7 @@ const Cart = ({
             type="button"
             variant="contained"
             color="secondary"
-            onClick={handleEmptyCart}
+            onClick={onEmptyCart}
           >
             Empty cart
           </Button>
@@ -85,13 +80,12 @@ const Cart = ({
 
   return (
     <Container>
-      {/* gutterBottom is going to give a top height to wherever you place it */}
-      <div className={classes.toolbar} />
+ {/* gutterBottom is going to give something like a padding 60px ,wherever you place it   */}      <div className={classes.toolbar} />
       <Typography className={classes.title} variant="h4" gutterBottom>
         Your shopping Cart
       </Typography>
 
-      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
+      { !cart.line_items.length ? renderEmptyCart() : renderCart() }
     </Container>
   );
 };

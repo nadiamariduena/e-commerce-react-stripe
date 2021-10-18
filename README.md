@@ -28,8 +28,6 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <br>
 <br>
 
- 
-
 1:20:53
 
 # Implementing the React Router 🦉
@@ -581,7 +579,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
 
 #### RESULT
 
-- **Its working**!!!!!
+- **Its working**!!!!! (**all but the EMPTY CAR**, read more below)
 
 1:37:27
 
@@ -592,3 +590,391 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
 ### THE TEACHER tells that if we are using PROPS too much, the solution for it, is React Context
 
 - But he is not going to use it in this project because we dont have many functions.
+
+- I will create a recap react context soon (based in my school lessons)
+
+<br>
+<br>
+<br>
+<br>
+
+# 🔴 ERRORS
+
+1:37:33
+
+## - / + / remove buttons worked, The empty car not really (it gives me the following err)
+
+```javascript
+Error: EmptyCart(...): Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.
+▶ 19 stack frames were collapsed.
+fetchCart
+src/App.js:37
+  34 | // The fetch related to the CART
+  35 | const fetchCart = async () => {
+  36 |   // so what we want do here? we want to fetch something
+> 37 |   setCart(await commerce.cart.retrieve());
+     | ^  38 |   // - we want to fetch a response* from await*
+  39 |   //
+  40 |   // update our cart **
+
+```
+
+<br>
+<br>
+
+## After repeating the tutorial twice (_from the moment he created the handle functions in the app.js_), I found few mistakes in his code.
+
+<br>
+
+- I just found that he made some errors when adding the name functions and that one of them didn't match the props he gave, also that the names didnt match the ones he gave in the video, but even after correcting it, the error persisted, then i realized that he renamed the **EmptyCar content function** and called it inside the **if statement** on the bottom (that wasn't in the lesson)
+
+```javascript
+// Before
+const EmptyCart = () => {
+//
+{!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
+
+  //Changed the brackets for parenthesis
+  //
+  //**********   SOLUTION    *************
+  // After
+const renderEmptyCart = () => (
+  // Of course he had to called it there too:
+
+     {!cart.line_items.length ? renderEmptyCart() : <FilledCart />}
+```
+
+<br>
+<br>
+
+### This is the whole code before the changes:
+
+```javascript
+import React from "react";
+import { Container, Typography, Button, Grid } from "@material-ui/core";
+//
+
+import { Link } from "react-router-dom";
+//
+import CartItem from "./CartItem/CartItem";
+//
+import useStyles from "./styles";
+//
+//
+const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
+  //
+
+  const classes = useStyles();
+  //
+  // the following two functions are called sub components
+  //So if the cart is EMPTY show the following:
+  const EmptyCart = () => {
+    <Typography variant="subtitle1">
+      You have no items in your shopping cart,
+      <Link to="/" className={classes.link}>
+        start adding some
+      </Link>!
+    </Typography>;
+  };
+  //
+  //
+  //So if the cart is FILLED show the following:
+  const FilledCart = () => (
+    <>
+      <Grid container spacing={3}>
+        {cart.line_items.map((item) => (
+          // 4 = to 3 products on the desktop
+          <Grid item xs={12} sm={4} key={item.id}>
+            <CartItem
+              item={item}
+              onUpdateCartQty={onUpdateCartQty}
+              onRemoveFromCart={onRemoveFromCart}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <div className={classes.cardDetails}>
+        <Typography variant="h4">
+          {/* with symbol, is going to give us the amount with the dollar sign but if you set it up to euro in commercejs , it will show euro*/}
+          Subtotal: {cart.subtotal?.formatted_with_symbol}
+        </Typography>
+        <div>
+          <Button
+            className={classes.emptyButton}
+            size="large"
+            type="button"
+            variant="contained"
+            color="secondary"
+            onClick={onEmptyCart}
+          >
+            Empty cart
+          </Button>
+          <Button
+            className={classes.checkoutButton}
+            size="large"
+            type="button"
+            variant="contained"
+            color="primary"
+          >
+            Checkout
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+  //   useEffect(() => {
+  //     console.log(cart);
+  //   }, [cart]);
+
+  //
+  if (!cart.line_items) return "Loading";
+
+  return (
+    <Container>
+      {/* gutterBottom is going to give something like a padding 60px ,wherever you place it   */}
+      <div className={classes.toolbar} />
+      <Typography className={classes.title} variant="h4" gutterBottom>
+        Your shopping Cart
+      </Typography>
+
+      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
+    </Container>
+  );
+};
+
+export default Cart;
+```
+
+<br>
+<br>
+<br>
+
+# SOLUTION
+
+```javascript
+import React from "react";
+import { Container, Typography, Button, Grid } from "@material-ui/core";
+//
+
+import { Link } from "react-router-dom";
+//
+import CartItem from "./CartItem/CartItem";
+//
+import useStyles from "./styles";
+//
+//
+const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
+  //
+
+  const classes = useStyles();
+  //
+  // here ***
+
+  // the following two functions are called sub components
+  //So if the cart is EMPTY show the following:
+  const renderEmptyCart = () => (
+    <Typography variant="subtitle1">
+      You have no items in your shopping cart,
+      <Link className={classes.link} to="/">
+        start adding some
+      </Link>!
+    </Typography>
+  );
+  //
+  //
+  //So if the cart is FILLED show the following:
+  const FilledCart = () => (
+    <>
+      <Grid container spacing={3}>
+        {cart.line_items.map((item) => (
+          // 4 = to 3 products on the desktop
+          <Grid item xs={12} sm={4} key={item.id}>
+            <CartItem
+              item={item}
+              onUpdateCartQty={onUpdateCartQty}
+              onRemoveFromCart={onRemoveFromCart}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <div className={classes.cardDetails}>
+        <Typography variant="h4">
+          {/* with symbol, is going to give us the amount with the dollar sign but if you set it up to euro in commercejs , it will show euro*/}
+          Subtotal: {cart.subtotal?.formatted_with_symbol}
+        </Typography>
+        <div>
+          <Button
+            className={classes.emptyButton}
+            size="large"
+            type="button"
+            variant="contained"
+            color="secondary"
+            onClick={onEmptyCart}
+          >
+            Empty cart
+          </Button>
+          <Button
+            className={classes.checkoutButton}
+            size="large"
+            type="button"
+            variant="contained"
+            color="primary"
+          >
+            Checkout
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+  //   useEffect(() => {
+  //     console.log(cart);
+  //   }, [cart]);
+
+  //
+  if (!cart.line_items) return "Loading";
+
+  return (
+    <Container>
+      {/* gutterBottom is going to give a top height to wherever you place it */}
+      <div className={classes.toolbar} />
+      <Typography className={classes.title} variant="h4" gutterBottom>
+        Your shopping Cart
+      </Typography>
+      // here ***
+      {!cart.line_items.length ? renderEmptyCart() : <FilledCart />}
+    </Container>
+  );
+};
+
+export default Cart;
+```
+
+<br>
+
+[<img src="/src/img/result_buttons_success.gif"/>]()
+
+<br>
+<br>
+
+## Now everything is working!!!
+
+- BUt before starting with **stripe** and payments, lets add the last things the teacher changed in the code.
+
+<br>
+
+#### Change the following:
+
+```javascript
+// change this for this
+  const FilledCart = () => ();
+//
+   {!cart.line_items.length ? renderEmptyCart() : <FilledCart />}
+//
+//
+//  For this:
+const renderCart = () => (
+//
+//
+  { !cart.line_items.length ? renderEmptyCart() : renderCart() }
+
+```
+
+<br>
+<br>
+
+#### The code
+
+```javascript
+import React from "react";
+import { Container, Typography, Button, Grid } from "@material-ui/core";
+//
+
+import { Link } from "react-router-dom";
+//
+import CartItem from "./CartItem/CartItem";
+//
+import useStyles from "./styles";
+//
+//
+const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
+  //
+
+  const classes = useStyles();
+  //
+  // the following two functions are called sub components
+  //So if the cart is EMPTY show the following:
+  const renderEmptyCart = () => (
+    <Typography variant="subtitle1">
+      You have no items in your shopping cart,
+      <Link to="/" className={classes.link}>
+        start adding some
+      </Link>!
+    </Typography>
+  );
+  //
+  //
+  //So if the cart is FILLED show the following:
+  const renderCart = () => (
+    <>
+      <Grid container spacing={3}>
+        {cart.line_items.map((item) => (
+          // 4 = to 3 products on the desktop
+          <Grid item xs={12} sm={4} key={item.id}>
+            <CartItem
+              item={item}
+              onUpdateCartQty={onUpdateCartQty}
+              onRemoveFromCart={onRemoveFromCart}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <div className={classes.cardDetails}>
+        <Typography variant="h4">
+          {/* with symbol, is going to give us the amount with the dollar sign but if you set it up to euro in commercejs , it will show euro*/}
+          Subtotal: {cart.subtotal?.formatted_with_symbol}
+        </Typography>
+        <div>
+          <Button
+            className={classes.emptyButton}
+            size="large"
+            type="button"
+            variant="contained"
+            color="secondary"
+            onClick={onEmptyCart}
+          >
+            Empty cart
+          </Button>
+          <Button
+            className={classes.checkoutButton}
+            size="large"
+            type="button"
+            variant="contained"
+            color="primary"
+          >
+            Checkout
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+  //   useEffect(() => {
+  //     console.log(cart);
+  //   }, [cart]);
+
+  //
+  if (!cart.line_items) return "Loading";
+
+  return (
+    <Container>
+      {/* gutterBottom is going to give something like a padding 60px ,wherever you place it   */}{" "}
+      <div className={classes.toolbar} />
+      <Typography className={classes.title} variant="h4" gutterBottom>
+        Your shopping Cart
+      </Typography>
+      {!cart.line_items.length ? renderEmptyCart() : renderCart()}
+    </Container>
+  );
+};
+
+export default Cart;
+```

@@ -72,24 +72,20 @@ const App = () => {
   //
   //
   // HANDLE REMOVE CART
-  const handleRemoveFromCart = async (productId) => {
-    const { cart } = await commerce.cart.remove(productId);
+  const handleRemoveFromCart = async (lineItemId) => {
+    const response = await commerce.cart.remove(lineItemId);
 
-    // update our cart **
-    setCart(cart);
-    //
-    //
+    setCart(response.cart);
   };
+
   //
   //
   // HANDLE EMPTY CART
   // this function doesnt need any params, as it just removes the cart
   const handleEmptyCart = async () => {
-    const { cart } = await commerce.cart.empty();
-    // update our cart **
-    setCart(cart);
-    //
-    //
+    const response = await commerce.cart.empty();
+
+    setCart(response.cart);
   };
   //--------------------------------------
 
@@ -113,10 +109,9 @@ const App = () => {
           <Route exact path="/cart">
             <Cart
               cart={cart}
-              handleUpdateCartQty={handleUpdateCartQty}
-              handleRemoveFromCart={handleRemoveFromCart}
-              handleEmptyCart={handleEmptyCart}
-            />
+              onUpdateCartQty={handleUpdateCartQty}
+              onRemoveFromCart={handleRemoveFromCart}
+              onEmptyCart={handleEmptyCart} />
           </Route>
         </Switch>
       </div>
