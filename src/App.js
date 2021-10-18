@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 import { Products, Navbar, Cart } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
- 
 
 //
 const App = () => {
@@ -45,7 +44,7 @@ const App = () => {
   //
   const handleAddToCart = async (productId, quantity) => {
     // so what we want do here? we want to fetch something
-    const item = await commerce.cart.add(productId, quantity);
+    const { cart } = await commerce.cart.add(productId, quantity);
     // - we want to fetch a response* from await: commercejs*
     // so what are we going to add here in the parenthesis: cart.add();?
     // we are going to add the productId!
@@ -54,14 +53,45 @@ const App = () => {
 
     //
     // update our cart **
-    setCart(item.cart);
+    setCart(cart);
     //
     //
   };
 
+  //--------------------------------------
+  // Handle Update Cart Quantity
+  const handleUpdateCartQty = async (productId, quantity) => {
+    const { cart } = await commerce.cart.update(productId, { quantity });
+    // we put  {quantity} in an object because its just 'one of the things' we want to update
+
+    // update our cart **
+    setCart(cart);
+    //
+    //
+  };
   //
   //
+  // HANDLE REMOVE CART
+  const handleRemoveFromCart = async (productId) => {
+    const { cart } = await commerce.cart.remove(productId);
+
+    // update our cart **
+    setCart(cart);
+    //
+    //
+  };
   //
+  //
+  // HANDLE EMPTY CART
+  // this function doesnt need any params, as it just removes the cart
+  const handleEmptyCart = async () => {
+    const { cart } = await commerce.cart.empty();
+    // update our cart **
+    setCart(cart);
+    //
+    //
+  };
+  //--------------------------------------
 
   useEffect(() => {
     fetchProducts();
@@ -81,7 +111,12 @@ const App = () => {
           </Route>
           {/* ----- */}
           <Route exact path="/cart">
-            <Cart cart={cart} />
+            <Cart
+              cart={cart}
+              handleUpdateCartQty={handleUpdateCartQty}
+              handleRemoveFromCart={handleRemoveFromCart}
+              handleEmptyCart={handleEmptyCart}
+            />
           </Route>
         </Switch>
       </div>

@@ -10,6 +10,10 @@
 [<img src="/src/img/undefined_first_commerceTests_beforeAdding-Products.jpg"/>]()
 <br>
 
+#### [NOTES : interesting](./src/Interesting.md)
+
+<br>
+
 # CREDITS:
 
 Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing this **Great tutorial** on how to set up an E-commerce store using: React | Commerce.js and Stripe. -->
@@ -23,6 +27,8 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <br>
 <br>
 <br>
+
+ 
 
 1:20:53
 
@@ -322,6 +328,7 @@ const EmptyCart = () => {
   </Typography>;
 };
 ```
+
 #### Right now we cannot see the result because we still need to finish the following buttons: increase +, decrease -, remove.
 
 1:29:00
@@ -330,3 +337,258 @@ const EmptyCart = () => {
 <br>
 <hr>
 <br>
+
+# 🍌
+
+# Buttons
+
+- Lets start by updating the quantity of a specific product
+
+<br>
+
+#### APP.JS
+
+- If you notice, in the App.js we have:
+
+```javascript
+const [cart, setCart] = useState([]);
+```
+
+- This is going to help us to set up the function that will handle the quantity update
+
+<br>
+
+### Below the HandleToCart fetch function add the following:
+
+```javascript
+//
+// Handle Update Cart Quantity
+const handleUpdateCartQty = async (productId, quantity) => {
+  const response = await commerce.cart.update(productId, { quantity });
+  // we put  {quantity} in an object because its just 'one of the things' we want to update
+
+  // update our cart **
+  setCart(response.cart);
+  //
+  //
+};
+```
+
+<br>
+
+### Instead of <u>response</u> we can immediately restructure the cart
+
+- So that we dont need to use it twice
+
+<br>
+
+- **This is how we have it now**
+
+<br>
+
+```javascript
+const handleAddToCart = async (productId, quantity) => {
+  const item = await commerce.cart.add(productId, quantity);
+  setCart(item.cart);
+};
+
+//
+// Handle Update Cart Quantity
+const handleUpdateCartQty = async (productId, quantity) => {
+  const response = await commerce.cart.update(productId, { quantity });
+  setCart(response.cart);
+};
+```
+
+<br>
+
+- **After the changes**
+
+```javascript
+const handleAddToCart = async (productId, quantity) => {
+  const { cart } = await commerce.cart.add(productId, quantity);
+  setCart(cart);
+};
+
+//
+// Handle Update Cart Quantity , this will accept 2 args
+const handleUpdateCartQty = async (productId, quantity) => {
+  const { cart } = await commerce.cart.update(productId, { quantity });
+  setCart(cart);
+};
+```
+
+<br>
+<br>
+
+### Lets Continue with the next function: the HANDLE REMOVE CART
+
+```javascript
+// HANDLE REMOVE CART
+const handleRemoveFromCart = async (productId) => {
+  const { cart } = await commerce.cart.remove(productId);
+  // update our cart **
+  setCart(cart);
+  //
+  //
+};
+```
+
+<br>
+<br>
+
+### Let's Continue with the next function: the HANDLE EMPTY CART
+
+```javascript
+// this function doesn't need any params, as it just removes the cart
+const handleEmptyCart = async () => {
+  const { cart } = await commerce.cart.empty();
+  // update our cart **
+  setCart(cart);
+  //
+  //
+};
+```
+
+<br>
+<br>
+<br>
+
+### Now we need to pass these 3 new functions to where we can CALL them
+
+```javascript
+// App.js
+<Route exact path="/cart">
+  <Cart
+    cart={cart}
+    handleUpdateCartQty={handleUpdateCartQty}
+    handleRemoveFromCart={handleRemoveFromCart}
+    handleEmptyCart={handleEmptyCart}
+  />
+</Route>
+```
+
+### After that, we need to use them inside the Cart.jsx
+
+```javascript
+//
+//
+const Cart = ({
+  cart,
+  handleUpdateCartQty,
+  handleRemoveFromCart,
+  handleEmptyCart,
+}) => {
+  //
+```
+
+<br>
+
+### Where do we pass them now?
+
+- **1 of them can be called here inside the Cart.jsx**
+
+```javascript
+<Button
+  className={classes.emptyButton}
+  size="large"
+  type="button"
+  variant="contained"
+  color="secondary"
+  onClick={handleEmptyCart}
+>
+  Empty cart
+</Button>
+```
+
+<br>
+
+- **the other 2 can be called inside the CartItem.jsx** so you will pass it again one level under **as PROPS**, but before that you need to prepare them here inside the **Cart.jsx**
+
+```javascript
+// Carts.jsx
+<Grid item xs={12} sm={4} key={item.id}>
+  <CartItem
+    item={item}
+    onUpdateCartQty={handleUpdateCartQty}
+    onRemoveFromCart={handleRemoveFromCart}
+  />
+</Grid>
+```
+
+<br>
+<br>
+
+#### Now they are ready to be passed as PROPS to the CartItem.jsx
+
+```javascript
+//CartItem.jsx
+const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
+  const classes = useStyles();
+  //
+  //
+  //
+```
+
+<br>
+
+### And here is where you will add it
+
+```javascript
+       </CardContent>
+        {/* Car actions */}
+        <CardActions className={classes.CardActions}>
+          <div className={classes.buttons}>
+            //
+            //
+            //
+            <Button
+              type="button"
+              size="small"
+              // - 1 , because you only want to delete 1 at the same time, not in packs of 3 for example
+              onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}
+            >
+              -
+            </Button>
+            //
+            //
+            //
+            <Typography>{item.quantity}</Typography>
+            <Button
+              type="button"
+              size="small"
+              onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}
+            >
+              +
+            </Button>
+          </div>
+            //
+            //
+            //
+          {/* This is going to be the item that is going to
+          remove it completely from the card */}
+          <Button
+            type="button"
+            color="secondary"
+            onClick={() => onRemoveFromCart(item.id)}
+          >
+            Removes
+          </Button>
+        </CardActions>
+```
+
+<br>
+
+#### RESULT
+
+- **Its working**!!!
+
+1:37:27
+
+<br>
+<br>
+<br>
+
+### THE TEACHER tells that if we are using PROPS too much, the solution for it, is React Context
+
+- But he is not going to use it in this project because we dont have many functions.

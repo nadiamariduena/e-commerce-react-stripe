@@ -9,13 +9,10 @@ import {
 } from "@material-ui/core";
 
 //
-//
-//
 import useStyles from "./styles";
 //
 //
-
-const CartItem = ({ item }) => {
+const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   const classes = useStyles();
   //
   //
@@ -40,17 +37,32 @@ const CartItem = ({ item }) => {
         {/* Car actions */}
         <CardActions className={classes.CardActions}>
           <div className={classes.buttons}>
-            <Button type="button" size="small">
+            <Button
+              type="button"
+              size="small"
+              //    // - 1 , because you only want to delete 1 at the same time, not in packs of 3 for example
+              onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}
+            >
               -
             </Button>
             <Typography>{item.quantity}</Typography>
-            <Button type="button" size="small">
+            <Button
+              type="button"
+              size="small"
+              onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}
+            >
               +
             </Button>
           </div>
           {/* This is going to be the item that is going to 
           remove it completely from the card */}
-          <Button type="button" color="secondary">Removes</Button>
+          <Button
+            type="button"
+            color="secondary"
+            onClick={() => onRemoveFromCart(item.id)}
+          >
+            Removes
+          </Button>
         </CardActions>
       </Card>
     </>
