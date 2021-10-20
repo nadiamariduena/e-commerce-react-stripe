@@ -532,7 +532,369 @@ const [activeStep, setActiveStep] = useState(0);
 const [activeStep, setActiveStep] = useState(1);
 ```
 
-
 <br>
 
 [<img src="/src/img/checkout3-confirmation-default.gif"/>]()
+
+1:49:42
+
+<br>
+<br>
+<br>
+<br>
+
+# 🍌
+
+### Now we have to implement the forms one by one, We will start with the <u>AddressForm.jsx</u>
+
+- Our form is going to have a lot of different fields, such as: name, lastname, address. city, zip code, country etc...
+
+> Usually **we need to have many different states for every specific field** (as they need to be updated), that's why we will be using **[React Hook Forms](https://react-hook-form.com/)**
+
+- In the link : **[React Hook Forms](https://react-hook-form.com/)** , You can see the difference between the rerenders of each option.
+
+<br>
+<br>
+
+### What is a react hook form?
+
+> React-hook-form is a library that helps you validate forms in React. React-hook-form is a minimal library without any other dependencies. It is performant and straightforward to use, requiring developers to write fewer lines of code than other form libraries.
+
+<br>
+
+## Lets start by importing some things:
+
+```javascript
+import React from "react";
+import {
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  Grid,
+  Typography,
+} from "@material-ui/core";
+import { useForm, FormProvider } from "react-hook-form";
+
+//
+//
+const AddressForm = () => {
+  //
+  //
+  const methods = useForm();
+  //
+  return (
+    <>
+      <Typography variant="h6" gutterBottom>
+        Shipping Address
+      </Typography>
+    </>
+  );
+};
+
+export default AddressForm;
+```
+
+<br>
+
+#### Next: we will be using the FORM from the react-hook-form
+
+```javascript
+<Typography variant="h6" gutterBottom>
+  Shipping Address
+</Typography>;
+{
+  /* FORM */
+}
+<FormProvider></FormProvider>;
+```
+
+#### In the form we are going to spread all the methods from the hook : {...methods}
+
+```javascript
+<FormProvider {...methods}></FormProvider>
+```
+
+#### the form is going to have a 'on submit', that we will leave empty 'for now'.
+
+```javascript
+<form onSubmit={}></form>
+```
+
+#### The grid is going to be there to separate each our input fields
+
+- The Grid is going to be of 'type' **container**.
+
+- And its going to have a spacing of {3}
+
+```javascript
+<form onSubmit={}>
+  <Grid container spacing={3}></Grid>
+</form>
+```
+
+#### Inside of the Grids, we are going to have a special material UI field
+
+- We have to find a way to connect material ui with the form hook
+
+<br>
+<br>
+<br>
+
+## 🔴 we are going to have this error because we didnt set up a value here:
+
+> <form onSubmit={}> **but dont worry**, we will solve it later. if you dont want to see the error add something like 0
+
+```javascript
+27 |
+  {
+    /* FORM */
+  };
+28 |
+(
+  <FormProvider {...methods}>
+    > 29 |{" "}
+    <form onSubmit={}>
+      | ^ 30 | <Grid container spacing={3}></Grid>
+      31 |{" "}
+    </form>
+    32 |{" "}
+  </FormProvider>
+);
+```
+
+### Create 1 more component inside the Checkout Form
+
+- call it **CustomTextField.jsx**
+
+```javascript
+import React from "react";
+
+const CustomTextField = () => {
+  return <div></div>;
+};
+
+export default CustomTextField;
+```
+
+<br>
+
+- Inside of it import the following:
+
+```javascript
+import React from "react";
+import { useFormContext, Controller } from "react-hook-form";
+import { TextField, Grid } from "@material-ui/core";
+
+const CustomTextField = () => {
+  return <div></div>;
+};
+
+export default CustomTextField;
+```
+
+<br>
+
+### Then add the Grid items
+
+- The required={required} is going to grab things from props (we dont have them yet)
+
+- **READ THE COMMENTS**
+
+```javascript
+const CustomTextField = () => {
+  //
+  //
+  //this control comes from the useFormContext(); dependency
+  const { control } = useFormContext();
+  //
+  //
+  return (
+    //   xs means that it will only have one item in mobile devices
+    <Grid item xs={12} sm={6}>
+      <Controller
+        as={TextField}
+        name={name} //we are going to get that through PROPS as we dont have it yet
+        control={control}
+        label={label} //we are also going to get that through props
+        fullWidth //each of the articles will have a full grid
+        required={required} //then we have to know if the field is required(also coming from props)
+        error={isError}
+      />
+    </Grid>
+  );
+};
+```
+
+<br>
+
+#### 1:55:42
+
+#### Pass the following through PROPS (you have to still create them but pass it anyway)
+
+```javascript
+const CustomTextField = ({ name, label, required }) => {
+```
+
+## 🔴
+
+#### Change the name of the component
+
+- instead of CustomTextField
+
+- add: **FormInput**
+
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+
+### Now import all the data we just created to the AddressForm.jsx
+
+```javascript
+import FormInput from "./FormInput";
+```
+
+#### Now we are going to see how powerful this is, and how many lines of code we save by just using this method
+
+```javascript
+<FormProvider {...methods}>
+  <form onSubmit={0}>
+    <Grid container spacing={3}>
+      // //*** HERE *** //
+    </Grid>
+  </form>
+</FormProvider>
+```
+
+<br>
+<br>
+
+#### Inside of the Grid we will pass all the information we need for the form
+
+- We dont have to worry about value
+- We dont have to manage the State
+
+##### the only thing we need is this:
+
+```javascript
+<FormInput required name="firstName" label="First name" />
+```
+
+<br>
+<br>
+
+## 🔴 Errors
+
+1:57:00
+
+```javascript
+Failed to compile.
+
+src/components/CheckoutForm/FormInput.jsx
+  Line 9:23:   'useFormContext' is not defined  no-undef
+  Line 14:6:   'Grid' is not defined            react/jsx-no-undef
+  Line 22:16:  'isError' is not defined         no-undef
+
+Search for the keywords to learn more about each error.
+```
+
+### Most of the errors in that phase were related to:
+
+- Not naming correctly the functions or naming them differently to what is shown in the video tutorial.
+
+##### this is the [official repo of the project](https://github.com/adrianhajdin/project_e_commerce/blob/main/src/components/CheckoutForm/CustomTextField.jsx) , where you can spot the differences.
+
+<br>
+
+- Another reason for errors: changes or updates in the form dependency
+
+<br>
+
+#### So here is the code BEFORE AND AFTER the changes (check also the import)
+
+<br>
+
+## BEFORE
+
+```javascript
+// before
+import { TextField } from "@material-ui/core";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
+
+const FormInput = ({ name, label, required }) => {
+  //
+  //
+  //this control comes from the useFormContext(); dependency
+  const { control } = useFormContext();
+  //
+  //
+  return (
+    //   xs means that it will only have one item in mobile devices
+    <Grid item xs={12} sm={6}>
+      <Controller
+        as={TextField}
+        name={name}
+        control={control}
+        label={label}
+        fullWidth
+        required={required}
+        error={isError}
+      />
+    </Grid>
+  );
+};
+
+export default FormInput;
+```
+
+<br>
+
+### AFTER
+
+```javascript
+import React from "react";
+//
+import { TextField, Grid, InputLabel } from "@material-ui/core";
+import { useFormContext, Controller } from "react-hook-form";
+
+const FormInput = ({ name, label, required }) => {
+  //
+  //
+  //this control comes from the useFormContext(); dependency
+  const { control } = useFormContext();
+  const isError = false;
+  //
+  //
+  return (
+    //   xs means that it will only have one item in mobile devices
+    <Grid item xs={12} sm={6}>
+      <InputLabel>{label}</InputLabel>
+      <Controller
+        render={({ field }) => <TextField {...field} />}
+        name={name}
+        control={control}
+        label={label}
+        fullWidth
+        required={required}
+        error={isError}
+        variant="outlined"
+      />
+    </Grid>
+  );
+};
+
+export default FormInput;
+```
+<br>
+
+### Result after changes
+
+<br>
+
+[<img src="/src/img/checkout4_formInput.gif"/>]()
