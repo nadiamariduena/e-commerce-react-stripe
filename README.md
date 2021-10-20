@@ -367,10 +367,172 @@ const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
 
 <br>
 <br>
+<hr>
 <br>
+
+1:47:46
 
 ## Now lets create the Forms of the 3 components
 
 - < AddressForm />
 - < PaymentForm />
 - < Confirmation />
+
+<br>
+<br>
+
+# 💰
+
+# PaymentForm and AddressForm
+
+- This is the basic layout, you need it to visualize it inside the Checkout.jsx
+
+<br>
+
+```javascript
+// PaymentForm
+import React from "react";
+
+const PaymentForm = () => {
+  return (
+    <>
+      <div>Payment Form</div>
+    </>
+  );
+};
+
+export default PaymentFrom;
+
+//
+// AddressForm
+import React from "react";
+
+const AddressForm = () => {
+  return (
+    <>
+      <div>Address Form</div>
+    </>
+  );
+};
+
+export default AddressForm;
+```
+
+<br>
+
+## Import these 2 inside the Checkout.jsx
+
+```javascript
+import AddressForm from "../AddressForm";
+import PaymentForm from "../PaymentForm";
+```
+
+#### As for the confirmation component, for now its going to be inside the Checkout.jsx, later on we will create perhaps a formal component.
+
+<br>
+
+- Lets create the component
+
+```javascript
+const Confirmation = () => <div>Confirmation</div>;
+```
+
+<br>
+
+## Before testing: this is what we have until now:
+
+```javascript
+import React, { useState, useEffect } from "react";
+import {
+  CssBaseline,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
+  CircularProgress,
+  Divider,
+  Button,
+} from "@material-ui/core";
+//
+//
+import useStyles from "./styles";
+//
+import AddressForm from "../AddressForm";
+import PaymentForm from "../PaymentForm";
+//
+// Stepper 2.
+const steps = ["Shipping address", "Payment details"];
+
+//
+//
+
+const Checkout = () => {
+  //
+  const [activeStep, setActiveStep] = useState(0);
+  const classes = useStyles();
+  //
+  //
+  //
+  const Confirmation = () => <div>Confirmation</div>;
+  //
+  //
+  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  //
+  //
+  //
+  return (
+    <>
+      <div className={classes.toolbar} />
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography variant="h4" align="center">
+            Checkout
+          </Typography>
+
+          <Stepper activeStep={activeStep} className={classes.stepper}>
+            {/* stepper 3. */}
+            {steps.map((step) => (
+              <Step key={step}>
+                <StepLabel>{step}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {/*  */}
+
+          {activeStep === steps.length ? <Confirmation /> : <Form />}
+        </Paper>
+      </main>
+    </>
+  );
+};
+
+export default Checkout;
+```
+
+<br>
+
+[<img src="/src/img/checkout2_working.gif"/>]()
+
+1:49:11
+
+<br>
+<br>
+
+### At this point we cannot navigate through the steps because we still dont have the buttons for updating <u>setActiveStep</u>
+
+```javascript
+const [activeStep, setActiveStep] = useState(0);
+```
+
+#### But if you are really curious, you can do it manually:
+
+```javascript
+// If you change the 0 for 1, you will be able to see the paymente component
+const [activeStep, setActiveStep] = useState(1);
+```
+
+
+<br>
+
+[<img src="/src/img/checkout3-confirmation-default.gif"/>]()
