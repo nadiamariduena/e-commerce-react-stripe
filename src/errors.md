@@ -718,3 +718,122 @@ export default Cart;
 [<img src="/src/img/result_buttons_success.gif"/>]()
 
 ### Now everything is working
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# 🔴 Error 4.
+
+1:57:00
+
+```javascript
+Failed to compile.
+
+src/components/CheckoutForm/FormInput.jsx
+  Line 9:23:   'useFormContext' is not defined  no-undef
+  Line 14:6:   'Grid' is not defined            react/jsx-no-undef
+  Line 22:16:  'isError' is not defined         no-undef
+
+Search for the keywords to learn more about each error.
+```
+
+### Most of the errors in that phase were related to:
+
+- Not naming correctly the functions or naming them differently to what is shown in the video tutorial.
+
+##### this is the [official repo of the project](https://github.com/adrianhajdin/project_e_commerce/blob/main/src/components/CheckoutForm/CustomTextField.jsx) , where you can spot the differences.
+
+<br>
+
+- Another reason for errors: **changes or updates in the form dependency**
+
+<br>
+
+#### So here is the code BEFORE AND AFTER the changes (check also the import)
+
+<br>
+
+## BEFORE
+
+```javascript
+// before
+import { TextField } from "@material-ui/core";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
+
+const FormInput = ({ name, label, required }) => {
+  //
+  //
+  //this control comes from the useFormContext(); dependency
+  const { control } = useFormContext();
+  //
+  //
+  return (
+    //   xs means that it will only have one item in mobile devices
+    <Grid item xs={12} sm={6}>
+      <Controller
+        as={TextField}
+        name={name}
+        control={control}
+        label={label}
+        fullWidth
+        required={required}
+        error={isError}
+      />
+    </Grid>
+  );
+};
+
+export default FormInput;
+```
+
+<br>
+
+### AFTER
+
+```javascript
+import React from "react";
+//
+import { TextField, Grid, InputLabel } from "@material-ui/core";
+import { useFormContext, Controller } from "react-hook-form";
+
+const FormInput = ({ name, label, required }) => {
+  //
+  //
+  //this control comes from the useFormContext(); dependency
+  const { control } = useFormContext();
+  const isError = false;
+  //
+  //
+  return (
+    //   xs means that it will only have one item in mobile devices
+    <Grid item xs={12} sm={6}>
+      <InputLabel>{label}</InputLabel>
+      <Controller
+        render={({ field }) => <TextField {...field} />}
+        name={name}
+        control={control}
+        label={label}
+        fullWidth
+        required={required}
+        error={isError}
+        variant="outlined"
+      />
+    </Grid>
+  );
+};
+
+export default FormInput;
+```
+<br>
+
+### Result after changes
+
+<br>
+
+[<img src="/src/img/checkout4_formInput.gif"/>]()
