@@ -278,8 +278,32 @@ export default Checkout;
 
 <br>
 
+1:43:00
+
 ### Now lets import the { useState}, so that we can actually traverse through the steps
 
 ```javascript
+// 1
 import React, { useState } from "react";
+//
+//
+//
+const Checkout = () => {
+  //2
+  const [activeStep, setActiveStep] = useState(0);
+  //
+//
+// 3
+//  Now the the active step is ready to be used, so change the following:
+// instead of this:
+ <Stepper activeStep={0} className={classes.stepper}>
+ </Stepper>
+//  add this
+ <Stepper activeStep={activeStep} className={classes.stepper}>
+//  WE CHANGED THE 0for the actual step
+  </Stepper>
 ```
+
+### Its working!
+
+[<img src="/src/img/checkout1_working.gif"/>]()

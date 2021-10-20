@@ -23,6 +23,8 @@ const steps = ["Shipping address", "Payment details"];
 
 const Checkout = () => {
   //
+  const [activeStep, setActiveStep] = useState(0);
+  //
   const classes = useStyles();
   //
   return (
@@ -34,7 +36,7 @@ const Checkout = () => {
             Checkout
           </Typography>
 
-          <Stepper activeStep={0} className={classes.stepper}>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
             {/* stepper 3. */}
             {steps.map((step) => (
               <Step key={step}>
@@ -49,4 +51,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
