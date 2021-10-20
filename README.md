@@ -50,12 +50,9 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <br>
 <br>
 
-# <u>CHECKOUT </u>
+# 🥥 <u>CHECKOUT </u> set up
 
 <br>
-<br>
-
-# 🦆
 
 ### To start with the _Checkout_ button, we have to go back to the Cart.js
 
@@ -88,6 +85,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
   <Checkout /> //We still dont have it, and that is going to be the next step
 </Route>
 ```
+
 <br>
 
 #### Even if we don't have the <Checkout/> add it anyway, then export it inside the index.js
@@ -96,8 +94,8 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 // App.js
 import { Products, Navbar, Cart, Checkout } from "./components";
 //
-// index.js
-// export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
+// index.js *****
+export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
 ```
 
 <br>
@@ -108,10 +106,17 @@ import { Products, Navbar, Cart, Checkout } from "./components";
 
 - call it **CheckoutForm**, inside of this folder **create another folder**
 
-- call it **Checkout**, inside of this folder create a new file, call it **Checkout.jsx**
+- call it **Checkout**, inside of this folder create a new file, call it **Checkout.jsx** (dont forget to export it inside the index.js)
 
 <br>
 
 # 🥥
 
-## Now export it (so to be used inside the route)
+### Now export it (so to be used inside the route)
+
+```javascript
+export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
+```
+
+<br>
+<br>
