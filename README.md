@@ -52,6 +52,8 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 # 🥥 <u>CHECKOUT </u> set up
 
+> The CheckoutForm layout will serve as some walk through as we go through the purchasing process
+
 <br>
 
 ### To start with the _Checkout_ button, we have to go back to the Cart.js
@@ -88,7 +90,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 <br>
 
-#### Even if we don't have the <Checkout/> add it anyway, then export it inside the index.js
+#### Even if we don't have the < Checkout /> component add it anyway, then export it inside the index.js
 
 ```javascript
 // App.js
@@ -100,7 +102,7 @@ export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
 
 <br>
 
-### Create the <u>Checkout</u> component
+## Create the <u>Checkout</u> component
 
 - Go to the **components folder** and create a new folder
 
@@ -120,3 +122,164 @@ export { default as Checkout } from "./CheckoutForm/Checkout/Checkout";
 
 <br>
 <br>
+
+## <u>Checkout.jsx</u>
+
+- This is the basic set up, I also added the **styles.js**, which can create a lot of undesired errors when we just set this file up.
+
+<br>
+
+- The **styles.js** goes inside the **Checkout folder**
+
+<br>
+
+```javascript
+import React from "react";
+//
+import {
+  CssBaseline,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
+  CircularProgress,
+  Divider,
+  Button,
+} from "@material-ui/core";
+//
+//
+import useStyles from "./styles";
+
+//
+//
+const Checkout = () => {
+  //
+  const classes = useStyles();
+  //
+  return (
+    <>
+      <div></div>
+    </>
+  );
+};
+
+export default Checkout;
+```
+
+<br>
+<br>
+
+# STEPPER COMPONENT
+
+> **Steppers convey progress through numbered steps.**
+
+<br>
+
+**Steppers display progress through a sequence of logical and numbered steps.** They may also be used for navigation. Steppers may display a transient feedback message after a step is saved.
+
+<br>
+
+[<img src="/src/img/stepper1.png"/>]()
+
+<br>
+
+### Other type of steppers
+
+- **Definition: An input stepper is a two-segment UI control used to incrementally increase or decrease a numeric value.** Most input steppers are visual elements of a graphical user interface (i.e., they're GUI controls), voice and gestural interfaces can also have steppers.
+
+[<img src="/src/img/stepper2.png"/>]()
+
+<br>
+
+### Adding a stepper
+
+> The stepper is a component
+> that moves as you move through the steps.
+
+**stepper needs to have a couple of things:**
+
+- it needs an activeStep, we don't have it yet, so will set it
+  to 0 , **activeStep={0}**. Later on we will update this using state.
+
+```javascript
+<Stepper activeStep={0} className={classes.stepper}>
+```
+
+<br>
+
+- Inside the stepper we have to **.map** through all our steps,
+  and the steps to map on will be:
+
+- **shipping address** and **payment details**
+
+```javascript
+const steps = ["Shipping address", "Payment details"];
+```
+
+<br>
+<br>
+
+## What we have until now:
+
+<br>
+
+```javascript
+import useStyles from "./styles";
+//
+//
+// Stepper 2.
+const steps = ["Shipping address", "Payment details"];
+
+//
+//
+
+const Checkout = () => {
+  //
+  const classes = useStyles();
+  //
+  return (
+    <>
+      <div className={classes.toolbar} /> //this div is a padding for the navbar
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography variant="h4" align="center">
+            Checkout
+          </Typography>
+          {/*  1. */}
+          <Stepper activeStep={0} className={classes.stepper}>
+            {/*  3. */}
+            {steps.map((step) => (
+              <Step key={step}>
+                <StepLabel>{step}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </Paper>
+      </main>
+    </>
+  );
+};
+
+export default Checkout;
+```
+
+### So this is going to generate a nice looking stepper
+
+```javascript
+<Stepper activeStep={0} className={classes.stepper}>
+  {steps.map((step) => (
+    <Step key={step}>
+      <StepLabel>{step}</StepLabel>
+    </Step>
+  ))}
+</Stepper>
+```
+
+<br>
+
+### Now lets import the { useState}, so that we can actually traverse through the steps
+
+```javascript
+import React, { useState } from "react";
+```
