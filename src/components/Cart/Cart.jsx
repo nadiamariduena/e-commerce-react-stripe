@@ -59,6 +59,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
             Empty cart
           </Button>
           <Button
+            component={Link} to='/checkout'
             className={classes.checkoutButton}
             size="large"
             type="button"
@@ -80,12 +81,12 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   return (
     <Container>
- {/* gutterBottom is going to give something like a padding 60px ,wherever you place it   */}      <div className={classes.toolbar} />
+      {/* gutterBottom is going to give something like a padding 60px ,wherever you place it   */}{" "}
+      <div className={classes.toolbar} />
       <Typography className={classes.title} variant="h4" gutterBottom>
         Your shopping Cart
       </Typography>
-
-      { !cart.line_items.length ? renderEmptyCart() : renderCart() }
+      {!cart.line_items.length ? renderEmptyCart() : renderCart()}
     </Container>
   );
 };
