@@ -180,7 +180,7 @@ export default Checkout;
 
 <br>
 
-[<img src="/src/img/stepper1.png"/>]()
+[<img src="/src/img/stepper1.jpg"/>]()
 
 <br>
 
