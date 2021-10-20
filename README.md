@@ -583,15 +583,25 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
 
 1:37:27
 
+# ⚠️ Explanation
+
+- When you click in decrement, it s going to automatically send the updated product to the increment and vice versa, all grace to the **onUpdateCartQty** function that links both of the buttons **- +**
+
+```javascript
+// Decrement
+   onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}
+
+//
+// Increment
+        onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}
+            >
+              +
+```
+
 <br>
 <br>
+<hr>
 <br>
-
-### THE TEACHER tells that if we are using PROPS too much, the solution for it, is React Context
-
-- But he is not going to use it in this project because we dont have many functions.
-
-- I will create a recap react context soon (based in my school lessons)
 
 <br>
 <br>
