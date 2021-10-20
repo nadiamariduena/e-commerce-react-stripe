@@ -304,6 +304,73 @@ const Checkout = () => {
   </Stepper>
 ```
 
-### Its working!
+<br>
+
+## Its working!
+
+- So as you can see we have a nice < Paper > in the middle of the screen and inside of it we have the Stepper
 
 [<img src="/src/img/checkout1_working.gif"/>]()
+
+1:45:11
+
+<br>
+<br>
+<br>
+
+### Now we have to implement the different steps of the Form, as we said, we have the Address form, the payment form and finally the view of the order.
+
+# 🐒
+
+- **Lets start by rendering** 2 different component below the < Stepper >, **depending in which step we are**
+
+<br>
+
+### Best way to do that is by implementing IF STATEMENTS
+
+- We will use 2 for now to declare 3 components "we dont yet have"
+
+<br>
+
+### a. THE FORM function
+
+- this form will **nest the 2 components** steps
+
+```javascript
+// step 1
+// SO if we are currently in the step === 0
+// then we are going to show: <AddressForm />
+//  But if we are not in the 1. step,  : We are going to render the  <PaymentForm />
+const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+```
+
+<br>
+<br>
+
+### b.
+
+- This means
+
+```javascript
+{
+  // 2. if activeStep is === to steps.length(meaning the last step)
+  // 3. then we are going to show another (NEW component) which is <Confirmation />
+  // At this point we have 3 new components, we have the <AddressForm /> and the  <PaymentForm />
+  // 4. so if we are done with steps.length(last phase), we show confirmation, else : show  <Form />;
+  activeStep === steps.length ? <Confirmation /> : <Form />;
+  //
+  //
+  // this form from the above line <Form />, makes allusion to this:
+  // const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+}
+```
+
+<br>
+<br>
+<br>
+
+## Now lets create the Forms of the 3 components
+
+- < AddressForm />
+- < PaymentForm />
+- < Confirmation />
