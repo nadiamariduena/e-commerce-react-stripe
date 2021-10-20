@@ -891,6 +891,7 @@ const FormInput = ({ name, label, required }) => {
 
 export default FormInput;
 ```
+
 <br>
 
 ### Result after changes
@@ -898,3 +899,96 @@ export default FormInput;
 <br>
 
 [<img src="/src/img/checkout4_formInput.gif"/>]()
+
+<br>
+<br>
+<br>
+
+### Now that we obtained the field, lets continue to add more of them
+
+- Inside the **AddressForm.jsx** add the following :
+
+```javascript
+<Grid container spacing={3}>
+  <FormInput required name="firstName" label="First name" />
+  // *** new ***
+  <FormInput required name="lastName" label="Last name" />
+  <FormInput required name="address1" label="Address line 1" />
+  <FormInput required name="email" label="Email" />
+  <FormInput required name="city" label="City" />
+  <FormInput required name="zip" label="Zip / Postal code" />
+</Grid>
+```
+
+[<img src="/src/img/checkout5_formInput-morefields.gif"/>]()
+
+<br>
+<br>
+<br>
+
+# 🍌 :monkey:
+
+## The following step is going to be a bit complicated
+
+- We will be implementing **selectors**, like the ones you use when you are buying an article, to be more exact when you have a sort of dropdown with a lot of choices to **select 1**.
+
+<br>
+
+#### Here we will handle 3 phases and they are all connected to each other, so for one to work it needs the data from the other and the other as well.
+
+<br>
+
+##### This are the steps:
+
+- Shipping Country
+- Shipping Subdivision
+- Shipping Options
+
+<br>
+<br>
+
+#### The following will be the default template for the 3 phases
+
+```javascript
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Country</InputLabel>
+  <Select value={} fullWidth onChange={}>
+    <MenuItem key={} value={}>
+      Select me
+    </MenuItem>
+  </Select>
+</Grid>;
+{
+  /* 2 */
+}
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Subdivision</InputLabel>
+  <Select value={} fullWidth onChange={}>
+    <MenuItem key={} value={}>
+      Select me
+    </MenuItem>
+  </Select>
+</Grid>;
+{
+  /* 3 */
+}
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Options</InputLabel>
+  <Select value={} fullWidth onChange={}>
+    <MenuItem key={} value={}>
+      Select me
+    </MenuItem>
+  </Select>
+</Grid>;
+```
+
+<br>
+
+2:02:06
+
+### But why is this going to be difficult?
+
+- Lets start by the end of the above code:
+
+> You dont know which **Shipping Options** do you have, until you know in which **Shipping Subdivision** are you, but you dont know which **Shipping Subdivision** do you have, until you know in which **Shipping Country** you are.
+
