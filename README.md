@@ -992,3 +992,101 @@ export default FormInput;
 
 > You dont know which **Shipping Options** do you have, until you know in which **Shipping Subdivision** are you, but you dont know which **Shipping Subdivision** do you have, until you know in which **Shipping Country** you are.
 
+<br>
+
+- So for each change of the country (**Shipping Country**), you will gave to change these 2: **Shipping Subdivision** and **Shipping Options**. WHEN YOU LOOK AT IT it s logic because you dont have the same shipping options for international for example.
+
+<br>
+<br>
+
+#### 🔴
+
+### Right now we have this error, but its related to the empty values in the grid default we just duplicated
+
+```javascript
+  40 |             <Grid item xs={12} sm={6}>
+  41 |               <InputLabel>Shipping Country</InputLabel>
+> 42 |               <Select value={} fullWidth onChange={}>
+     |                             ^
+  43 |                 <MenuItem key={} value={}>
+  44 |                   Select me
+  45 |                 </MenuItem>
+```
+
+<br>
+<br>
+
+<br>
+
+# 🍌
+
+## Lets start by adding the states for each of the following:
+
+- Shipping Country
+- Shipping Subdivision
+- Shipping Options
+
+<br>
+
+### But before, import the UseState inside the AddressForm.jsx
+
+```javascript
+import React, { useState } from "react";
+```
+
+ <br>
+
+### There will be 6 states in total for the following:
+
+- Shipping Country
+- Shipping Subdivision
+- Shipping Options
+
+<br>
+
+> // 1 state
+> // by default our shipping countries,
+> // are going to be set to an **EMPTY array**: useState([]);
+> // but not all of them are going to be an empty array, **we will also have empty strings useState('')**
+
+<br>
+
+- **Notice** the plural for certain options:
+
+```javascript
+const [shippingCountries, setShippingCountries] = useState([]);
+const [shippingCountry, setShippingCountry] = useState("");
+//
+const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
+const [shippingSubdivision, setShippingSubdivision] = useState("");
+//
+const [shippingOptions, setShippingOptions] = useState([]);
+const [shippingOption, setShippingOption] = useState("");
+```
+
+<br>
+
+#### We now have access to all of the "state fields" we are going to use, now lets use the things from the API to "fetch" all the available countries, to fetch all the ShippingSubdivisions and and to fetch all ShippingOptions, for our costumers: methods = useForm();
+
+<br>
+
+- if you remember, the following 'below' are the things we set up when we created the **commercejs**
+
+```javascript
+const [shippingCountries, setShippingCountries] = useState([]);
+const [shippingCountry, setShippingCountry] = useState("");
+//
+const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
+const [shippingSubdivision, setShippingSubdivision] = useState("");
+//
+const [shippingOptions, setShippingOptions] = useState([]);
+const [shippingOption, setShippingOption] = useState("");
+```
+
+<br>
+
+#### Now to able to use all our API features, we are going to import:
+
+```javascript
+import { commerce } from '../../lib/commerce';
+```
