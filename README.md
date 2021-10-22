@@ -360,6 +360,10 @@ useEffect(() => {
       const token = await commerce.checkout.generateToken(cart.id, {
         type: "cart",
       }); /// here 👍
+      //
+      //
+
+      //
     } catch (error) {}
   };
 }, []);
@@ -372,3 +376,103 @@ useEffect(() => {
 
 <br>
 <br>
+
+### Now lets console.log it but before create a new state field
+
+- NOW BELOW the **console.log**, you can call the state
+
+<br>
+
+- Also call the function **generateToken**
+
+```javascript
+//
+//----------- new state related to the token ---
+const [checkoutToken, setCheckoutToken] = useState(null);
+//
+//
+//----------- Here we will create the TOKEN -----
+//
+useEffect(() => {
+  const generateToken = async () => {
+    try {
+      const token = await commerce.checkout.generateToken(cart.id, {
+        type: "cart",
+      }); /// here 👍
+      //
+      //
+      console.log(token);
+      //
+    } catch (error) {}
+  };
+  //
+  //
+  // calling the function immediately afterwards
+  generateToken();
+  //
+}, []);
+//
+//----------- Here we will create the TOKEN -----
+//
+```
+
+<br>
+
+### Why did we have to create a function in the first place? if we are calling the function immediately afterwards
+
+> **The reason**: in the useEffect, you cannot use **async**, unless it s a new function, you cannot simply add the async keyword here:
+
+```javascript
+  useEffect(async() => {
+```
+
+- **SO FOR THAT REASON:** you have to have a separated function
+
+<br>
+<br>
+
+### Now lets go back to the main page of the products in the browser
+
+- Add a couple of items (in more of what you already have)
+
+- Click on the icon cart, then click on <u>check out</u> (**dont worry about the errors** , they are related to the stuff we still need to fill)
+
+[<img src="/src/img/checkOut_TOKEN-visualization1.gif"/>]()
+
+<br>
+<br>
+
+## Now that we have the TOKEN, we need to set it to the state(we already did that), so now we have to pass it as a PROPS, grab the following:
+
+```javascript
+//----------- new state related to the token ---
+const [checkoutToken, setCheckoutToken] = useState(null);
+//
+//----------- Here we will create the TOKEN -----
+//
+```
+
+<br>
+
+## And pass it here:
+
+```javascript
+// Checkout.jsx
+//
+//
+const Form = () =>
+  activeStep === 0 ? (
+    <AddressForm checkoutToken={checkoutToken} />
+  ) : (
+    <PaymentForm />
+  );
+//
+```
+
+<br>
+
+### Then pass it inside the AddressForm.jsx
+
+```javascript
+const AddressForm = ({ checkoutToken }) => {
+```

@@ -32,16 +32,30 @@ const Checkout = ({ cart }) => {
   const [activeStep, setActiveStep] = useState(0);
   const classes = useStyles();
   //
-
+  //----------- new state related to the token ---
+  const [checkoutToken, setCheckoutToken] = useState(null);
   //
   //----------- Here we will create the TOKEN -----
   //
   useEffect(() => {
     const generateToken = async () => {
       try {
-        const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
+        const token = await commerce.checkout.generateToken(cart.id, {
+          type: "cart",
+        });
+
+        //
+        //
+        console.log(token);
+        setCheckoutToken(token);
+        //
       } catch (error) {}
     };
+    //
+    //
+    //
+    generateToken();
+    //
   }, []);
   //
   //----------- Here we will create the TOKEN -----
@@ -53,7 +67,12 @@ const Checkout = ({ cart }) => {
   const Confirmation = () => <div>Confirmation</div>;
   //
   //
-  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm checkoutToken={checkoutToken} />
+    ) : (
+      <PaymentForm />
+    );
   //
   //
   //

@@ -15,7 +15,7 @@ import { commerce } from "../../lib/commerce";
 import FormInput from "./FormInput";
 //
 //
-const AddressForm = () => {
+const AddressForm = ({ checkoutToken }) => {
   //
   // 1 state
   // by default our shipping countries,
