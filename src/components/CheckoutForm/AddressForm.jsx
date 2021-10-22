@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
-// import { Link } from 'react-router-dom';
+//
 import { commerce } from "../../lib/commerce";
 
 //
@@ -28,6 +28,17 @@ const AddressForm = () => {
   const [shippingOption, setShippingOption] = useState("");
 
   //
+
+  const fetchShippingCountries = async (checkoutTokenId) => {
+    const countries = await commerce.services.localeListShippingCountries(
+      checkoutTokenId
+    );
+    //
+    setShippingCountries(countries);
+
+    //
+    //
+  };
   //
   //
   //This is going to get all the methods that we need
@@ -51,7 +62,7 @@ const AddressForm = () => {
             <FormInput required name="zip" label="Zip / Postal code" />
             {/* ------------ */}
             {/* ------------ */}
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select value={} fullWidth onChange={}>
                 <MenuItem key={} value={}>
@@ -59,7 +70,7 @@ const AddressForm = () => {
                 </MenuItem>
               </Select>
             </Grid>
-            {/* 2 */}
+          
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
               <Select value={} fullWidth onChange={}>
@@ -68,7 +79,7 @@ const AddressForm = () => {
                 </MenuItem>
               </Select>
             </Grid>
-            {/* 3 */}
+           
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Options</InputLabel>
               <Select value={} fullWidth onChange={}>
@@ -76,7 +87,7 @@ const AddressForm = () => {
                   Select me
                 </MenuItem>
               </Select>
-            </Grid>
+            </Grid> */}
           </Grid>
         </form>
       </FormProvider>

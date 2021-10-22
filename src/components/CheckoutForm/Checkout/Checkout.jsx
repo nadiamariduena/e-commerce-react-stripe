@@ -28,6 +28,19 @@ const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
   const classes = useStyles();
   //
+
+  //
+  //----------- Here we will create the TOKEN -----
+  //
+  useEffect(() => {
+    
+   
+  }, [] )
+  //
+  //----------- Here we will create the TOKEN -----
+  //
+  //
+  //
   //
   //
   const Confirmation = () => <div>Confirmation</div>;

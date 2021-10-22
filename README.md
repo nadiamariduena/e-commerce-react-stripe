@@ -1088,5 +1088,197 @@ const [shippingOption, setShippingOption] = useState("");
 #### Now to able to use all our API features, we are going to import:
 
 ```javascript
-import { commerce } from '../../lib/commerce';
+import { commerce } from "../../lib/commerce";
+```
+
+<br>
+
+#### Once imported, we are going to implement the functionalities to fetch the ShippingCountries, ShippingSubdivisions and ShippingOptions using the commercejs API
+
+<br>
+<br>
+<br>
+
+#🍍
+
+## Lets start with Countries
+
+#### The first function is going to be the following:
+
+- **1.** this async ( ) is going to accept something known as: **checkoutTokenId**
+
+> Once we start with the order process, we are going to get our own checkoutTokenId, like when you come into the store and you get your own receipt, but instead we get checkoutTokenId(we dont have it yet).
+
+```javascript
+  const fetchShippingCountries = async (checkoutTokenId ) => {
+```
+
+<br>
+
+- **2.** So what is out fetch country is going to do?
+- **3.** we are going to make an API call
+
+```javascript
+const response = await commerce.services.localeListShippingCountries(
+  checkoutTokenId
+);
+```
+
+<br>
+
+- **4. so what we get back from?**: commerce.services.localeListShippingCountries(checkoutTokenId);
+
+<br>
+
+**5. we get back a response:** <u>const response </u> (step.3)
+**6.** Now destructure the response:
+
+<br>
+
+```javascript
+// before
+const response,
+
+// after
+const {countries}
+
+```
+
+<br>
+
+### like so:
+
+```javascript
+const response = await commerce.services.localeListShippingCountries(
+  checkoutTokenId
+);
+```
+
+<br>
+
+### Now the question is: what are we going to do with those countries?
+
+```javascript
+setShippingCountries(countries);
+```
+
+#### If you remember we still have to create the <u>checkoutTokenId</u> lets see how we are going to do it and from where its going to come from.
+
+<br>
+<br>
+
+# 🍊
+
+2:06:23
+
+#### Go to the Checkout.jsx
+
+> The **<u>checkoutTokenId</u>** is going to be created in the Checkout.jsx where we have all the steps for the checkout form
+
+[<img src="/src/img/stepper1.jpg"/>]()
+
+<br>
+<br>
+
+#### So inside of here, we can create a new useEffect:
+
+```javascript
+// Checkout.jsx
+//
+// **** Here **** below:
+import React, { useState, useEffect } from "react";
+//
+//
+import {
+  CssBaseline,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
+  CircularProgress,
+  Divider,
+  Button,
+} from "@material-ui/core";
+//
+//
+import useStyles from "./styles";
+//
+import AddressForm from "../AddressForm";
+import PaymentForm from "../PaymentForm";
+//
+// Stepper 2.
+const steps = ["Shipping address", "Payment details"];
+
+//
+//
+
+const Checkout = () => {
+  //
+  const [activeStep, setActiveStep] = useState(0);
+  const classes = useStyles();
+  //
+  //
+  //
+  //
+  //----------- Here we will create the TOKEN -----
+  //
+  //
+  //----------- Here we will create the TOKEN -----
+  //
+  //
+  //
+  //
+  const Confirmation = () => <div>Confirmation</div>;
+  //
+  //
+  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  //
+  //
+  //
+  return (
+    <>
+      <div className={classes.toolbar} />
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography variant="h4" align="center">
+            Checkout
+          </Typography>
+
+          <Stepper activeStep={activeStep} className={classes.stepper}>
+            {/* stepper 3. */}
+            {steps.map((step) => (
+              <Step key={step}>
+                <StepLabel>{step}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {/*  */}
+
+          {activeStep === steps.length ? <Confirmation /> : <Form />}
+        </Paper>
+      </main>
+    </>
+  );
+};
+
+export default Checkout;
+```
+
+<br>
+<br>
+
+## INITIALLY we are going to leave it as a component did mount, which means its only going to have an empty dependency array, so its only going to happen to the start <u>but later on we are going to change it when the cart changes</u>
+
+<br>
+
+```javascript
+//
+//----------- Here we will create the TOKEN -----
+//
+useEffect(() => {}, []);
+//
+//----------- Here we will create the TOKEN -----
+//
+//
 ```
