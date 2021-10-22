@@ -116,7 +116,7 @@ const App = () => {
           </Route>
           {/* CHECKOUT */}
           <Route exact path="/checkout">
-            <Checkout />
+            <Checkout cart={cart}/>
           </Route>
         </Switch>
       </div>

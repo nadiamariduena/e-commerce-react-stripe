@@ -37,7 +37,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 <br>
 
-- This is the continuation of **checkoutTokenId-part1**
+- This is the continuation of **checkoutTokenId-part1**, the checkoutToken is still related to the Checkout button
 
 <br>
 
@@ -212,7 +212,9 @@ export default Checkout;
 <br>
 <br>
 
-## INITIALLY we are going to leave it as a component did mount, which means its only going to have an empty dependency array, so its only going to happen to the start <u>but later on we are going to change it when the cart changes</u>
+##### 2:07:12
+
+#### INITIALLY we are going to leave it as a 'component did mount', which means its only going to have an empty dependency array []), so its only going to happen to the start <u>but later on, we are going to change it when the _cart changes_</u>
 
 <br>
 
@@ -226,3 +228,147 @@ useEffect(() => {}, []);
 //
 //
 ```
+
+<br>
+
+# 🐒
+
+### So here the question is, what do we want to do with it?
+
+- The answer is: inside the useEffect, **As soon as someone enters the checkout process**, we are going to generate a **checkout token**
+
+```javascript
+//
+//----------- Here we will create the TOKEN -----
+//
+useEffect(() => {
+  /*
+
+    **As soon as someone enters the checkout process**, we are going to generate a **checkout token**
+
+
+*/
+}, []);
+//
+//----------- Here we will create the TOKEN -----
+//
+//
+```
+
+<br>
+<br>
+
+#### 🔴
+
+#### So the next step will be to create an Asynchronous function, its going to be an ASYNC ERROR FUNCTION, inside of it we will have a "try and catch" block (to handle errors in case we dont get certain data from the user)
+
+<br>
+
+```javascript
+//
+//----------- Here we will create the TOKEN -----
+//
+useEffect(() => {
+  const generateToken = async () => {
+    try {
+      // if the TOKEN is successfully created, we will
+      // do something inside here
+    } catch (error) {
+      // if not, we will send an error
+    }
+  };
+}, []);
+//
+//----------- Here we will create the TOKEN -----
+//
+//
+```
+
+<br>
+<br>
+
+### So how we should actually create a token?
+
+- We first have to import the API here:
+
+<br>
+
+```javascript
+// Checkout.jsx
+import { commerce } from "../../../lib/commerce";
+```
+
+### After you imported it, add the following line:
+
+```javascript
+const token = await commerce.checkout.generateToken();
+```
+
+<br>
+
+### But what we have to pass in there: generateToken(); ?
+
+- We have to pass 2 things:
+  <br>
+
+- First of all we have to pass the **cartId**
+- Secondly we have to pass the **type of the token** we are generating.
+
+<br>
+
+# 🍍
+
+## ONLY PROBLEM
+
+- Right now **our cart is inside the App.js**, so we have to pass it from there **to the Checkout.jsx via PROPS**
+
+<br>
+
+- So go to App.js and pass it like so
+
+```javascript
+// cart={cart}
+//
+//
+{
+  /* CHECKOUT */
+}
+<Route exact path="/checkout">
+  <Checkout cart={cart} />
+</Route>;
+```
+
+### Then go back to the Checkout.jsx and do the following
+
+```javascript
+const Checkout = ({cart}) => {
+```
+
+#### Now its ready to be used inside the try{}
+
+- but as we said, we need 2 arguments: first is the cart and the second is the options: {
+  type: "cart",
+  }
+
+```javascript
+//
+//----------- Here we will create the TOKEN -----
+//
+useEffect(() => {
+  const generateToken = async () => {
+    try {
+      const token = await commerce.checkout.generateToken(cart.id, {
+        type: "cart",
+      }); /// here 👍
+    } catch (error) {}
+  };
+}, []);
+//
+//----------- Here we will create the TOKEN -----
+//
+```
+
+### And that is going to generate out token!!!!
+
+<br>
+<br>

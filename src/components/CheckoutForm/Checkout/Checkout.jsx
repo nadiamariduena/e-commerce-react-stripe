@@ -14,6 +14,10 @@ import {
 //
 import useStyles from "./styles";
 //
+
+//
+import { commerce } from "../../../lib/commerce";
+//
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 //
@@ -23,7 +27,7 @@ const steps = ["Shipping address", "Payment details"];
 //
 //
 
-const Checkout = () => {
+const Checkout = ({ cart }) => {
   //
   const [activeStep, setActiveStep] = useState(0);
   const classes = useStyles();
@@ -33,9 +37,12 @@ const Checkout = () => {
   //----------- Here we will create the TOKEN -----
   //
   useEffect(() => {
-    
-   
-  }, [] )
+    const generateToken = async () => {
+      try {
+        const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
+      } catch (error) {}
+    };
+  }, []);
   //
   //----------- Here we will create the TOKEN -----
   //
