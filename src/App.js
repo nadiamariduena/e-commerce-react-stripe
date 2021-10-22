@@ -34,6 +34,7 @@ const App = () => {
   // The fetch related to the CART
   const fetchCart = async () => {
     // so what we want do here? we want to fetch something
+    // setCart(await commerce.cart.retrieve());
     setCart(await commerce.cart.retrieve());
     // - we want to fetch a response* from await*
     //
@@ -116,7 +117,7 @@ const App = () => {
           </Route>
           {/* CHECKOUT */}
           <Route exact path="/checkout">
-            <Checkout cart={cart}/>
+            <Checkout cart={cart} />
           </Route>
         </Switch>
       </div>

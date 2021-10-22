@@ -17,10 +17,12 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   //
   //
   //
+  // console.log(item);
 
   return (
     <>
       <Card>
+        {/*  */}
         {/* This is the image of a specific product */}
         <CardMedia
           image={item.image.url}

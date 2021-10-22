@@ -20,9 +20,9 @@ const Product = ({ product, onAddToCart }) => {
   //  styles HOOK
   const classes = useStyles();
   //
-  // console.log(product);
+  console.log(product);
   // //
-  // return <div>test</div>;
+  //  return <div>test</div>;
   //
   return (
     <>
@@ -39,7 +39,7 @@ const Product = ({ product, onAddToCart }) => {
         />
 
         <CardContent>
-        <div className={classes.cardContent}>
+          <div className={classes.cardContent}>
             {/* name */}
             <Typography gutterBottom variant="h5">
               {product.name}

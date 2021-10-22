@@ -1,12 +1,6 @@
-import React, { useState } from "react";
-import {
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+//
+import { Grid, Typography } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 //
 import { commerce } from "../../lib/commerce";
@@ -28,23 +22,27 @@ const AddressForm = ({ checkoutToken }) => {
   const [shippingOption, setShippingOption] = useState("");
 
   //
-
-  const fetchShippingCountries = async (checkoutTokenId) => {
-    const countries = await commerce.services.localeListShippingCountries(
-      checkoutTokenId
-    );
-    //
-    setShippingCountries(countries);
-
-    //
-    //
-  };
-  //
-  //
   //This is going to get all the methods that we need
   // to run our form
   const methods = useForm();
   //
+  const fetchShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.services.localeListShippingCountries(
+      checkoutTokenId
+    );
+
+    console.log(countries);
+
+    setShippingCountries(countries);
+  };
+  //
+
+  useEffect(() => {
+    fetchShippingCountries(checkoutToken.id);
+  }, []);
+  //
+  //
+
   return (
     <>
       <Typography variant="h6" gutterBottom>

@@ -455,7 +455,6 @@ export default Cart;
 
 ## SUCCESS!!! ... for now!
 
-
 <br>
 <br>
 <hr>
@@ -719,7 +718,6 @@ export default Cart;
 
 ### Now everything is working
 
-
 <br>
 <br>
 <br>
@@ -830,6 +828,7 @@ const FormInput = ({ name, label, required }) => {
 
 export default FormInput;
 ```
+
 <br>
 
 ### Result after changes
@@ -837,3 +836,124 @@ export default FormInput;
 <br>
 
 [<img src="/src/img/checkout4_formInput.gif"/>]()
+
+<br>
+<br>
+<br>
+
+## 🔴 Error 5.
+
+#### This error appeared when i was trying to solve the _token_ error, in which i was trying to figure out why i couldnt see the country options.
+
+```javascript
+ 25 | {/*  */}
+  26 | {/* This is the image of a specific product */}
+  27 | <CardMedia
+> 28 |   image={item.media.url}
+     | ^  29 |   alt={item.name}
+  30 |   className={classes.media}
+  31 | />
+```
+
+<br>
+
+- After reading the solutions (apparently related to shipping options coming from the commercejs), i decided to delete the products and repeat the part of the tutorial **in the beginning**, when we just started adding the products to commercejs.
+
+<br>
+
+- **So after deleting and creating new products** to test the shipping issue, i got this new error, **i didnt understand why?** because it has been working really well with the following:
+
+```javascript
+// BEFORE
+<CardMedia image={item.media.url} alt={item.name} className={classes.media} />
+//
+```
+
+<br>
+
+### So i started to look for clues, first i thought it had to do with the image format
+
+<br>
+
+- Then after reading the code again, i decided to hide just the image box to see if I could at least see the product(even without the picture)...
+
+<br>
+
+- I did that so to focus only in the image and related elements, like the **Product.jsx** that had also connection with the **CartItem.jsx**
+
+<br>
+
+[<img src="/src/img/error-after-delete-products-commercejs-1.gif"/>]()
+
+<br>
+<br>
+
+#### After testing different things, i remembered that in the beginning i had to play with 3 words to see the image: media, src, and url, but importantly, i need that whatever i put it had to match the 2 files:
+
+> **Product.jsx** and **CartItem.jsx**
+
+<br>
+
+- The Whole issue was strange, because the whole project has been working very well since the beginning, and just when i deleted the products from the commercejs dashboard, it caused the mess, but i am glad it happened now i know something more :)
+
+[<img src="/src/img/error-after-delete-products-commercejs-2.gif"/>]()
+
+ <br>
+  <br>
+   <br>
+
+# SOLUTION
+
+```javascript
+// BEFORE
+<CardMedia image={item.media.url} alt={item.name} className={classes.media} />
+//
+// // AFTER
+// CartItem.jsx
+<CardMedia image={item.media.url} alt={item.name} className={classes.media} />
+```
+
+<br>
+
+#### and in _Product.jsx_
+
+<br>
+
+```javascript
+ return (
+   <>
+     {/* self closing tag /> */}
+     <Card className={classes.root}>
+       {/* styles HOOK
+
+       */}
+       {/* img */}
+       <CardMedia
+         className={classes.media}
+         image={product.image.url}
+         title={product.name}
+       />
+```
+
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+## 🔴 ERROR 6. 
+
+### Token issue
+
+```javascript
+TypeError: Cannot read property 'id' of null
+(anonymous function)
+src/components/CheckoutForm/AddressForm.jsx:41
+  38 | //
+  39 |
+  40 | useEffect(() => {
+> 41 |   fetchShippingCountries(checkoutToken.id);
+     | ^  42 | }, []);
+  43 | //
+  44 | //
+```

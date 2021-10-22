@@ -476,3 +476,69 @@ const Form = () =>
 ```javascript
 const AddressForm = ({ checkoutToken }) => {
 ```
+
+### Now we can use it, once we call this "fetchShippingCountries" function, and WHEN are we calling that function?
+
+- Well as soon as the **AddressForm** renders:
+
+```javascript
+const AddressForm = ({ checkoutToken }) => {
+```
+
+<br>
+
+- We immediately want to get the **fetchShippingCountries**
+
+<br>
+
+#### So we are going to use the **useEffect**
+
+- start by importing it:
+
+```javascript
+import React, { useState, useEffect } from "react";
+```
+
+- then use it:
+
+```javascript
+//
+useEffect(() => {}, []);
+//
+//
+```
+
+<br>
+<br>
+
+### What we want to do next, is call the fetchShippingCountries inside the useEffect
+
+<br>
+
+```javascript
+//
+useEffect(() => {
+  fetchShippingCountries(checkoutToken.Id);
+}, []);
+//
+//
+```
+
+<br>
+
+- Console.log it to see if it worked
+
+```javascript
+const fetchShippingCountries = async (checkoutTokenId) => {
+  const countries = await commerce.services.localeListShippingCountries(
+    checkoutTokenId
+  );
+  //
+  console.log(countries);
+  //
+  setShippingCountries(countries);
+  //
+};
+```
+
+2:15:59 to continue after the solution of the token issue

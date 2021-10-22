@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  CssBaseline,
-  Paper,
-  Stepper,
-  Step,
-  StepLabel,
-  Typography,
-  CircularProgress,
-  Divider,
-  Button,
-} from "@material-ui/core";
+import { Paper, Stepper, Step, StepLabel, Typography } from "@material-ui/core";
 //
 //
 import useStyles from "./styles";
@@ -29,13 +19,17 @@ const steps = ["Shipping address", "Payment details"];
 
 const Checkout = ({ cart }) => {
   //
-  const [activeStep, setActiveStep] = useState(0);
-  const classes = useStyles();
-  //
   //----------- new state related to the token ---
   const [checkoutToken, setCheckoutToken] = useState(null);
   //
   //----------- Here we will create the TOKEN -----
+  //
+  const [activeStep, setActiveStep] = useState(0);
+  const classes = useStyles();
+  //
+
+  //----------- Here we will create the TOKEN -----
+  //
   //
   useEffect(() => {
     const generateToken = async () => {
@@ -43,24 +37,16 @@ const Checkout = ({ cart }) => {
         const token = await commerce.checkout.generateToken(cart.id, {
           type: "cart",
         });
+        //
+        //
+        // console.log(token);
 
-        //
-        //
-        console.log(token);
         setCheckoutToken(token);
-        //
-      } catch (error) {}
+      } catch {}
     };
-    //
-    //
-    //
+    // calling the function, read the readme for this branch
     generateToken();
-    //
-  }, []);
-  //
-  //----------- Here we will create the TOKEN -----
-  //
-  //
+  }, [cart]);
   //
   //
   //
