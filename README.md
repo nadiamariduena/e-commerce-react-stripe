@@ -577,8 +577,6 @@ src/components/CheckoutForm/AddressForm.jsx:41
 <br>
 <br>
 
-# 🐒
-
 ### Now we have to add back the select field for the countries, then based on the country, we will be fecthing all the other regions
 
 <br>
@@ -636,7 +634,7 @@ setShippingCountry(Object.keys(countries));
 
 <br>
 
-#### [Object.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
+# [Object.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
 
 > The Object.keys() method returns an array of a given object's own enumerable property names, iterated in the same order that a normal loop would.
 
@@ -820,6 +818,20 @@ onChange={(e) => setShippingCountry(e.target.value)}>
 }
 ```
 
+<br>
+
+# [Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
+
+<br>
+
+**The Object.entries() method returns an array of a given object's own enumerable string-keyed property [key, value] pairs.** This is the **same as iterating with a for...in** loop, **except** that a for...in loop enumerates properties in the prototype chain as well.
+
+The order of the array returned by Object.entries() is the same as that provided by a for...in loop. If there is a need for different ordering, then the array should be sorted first, like Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));.
+
+<br>
+<br>
+<br>
+
 ### Now we have an array of an array, lets console.log it
 
 ```javascript
@@ -832,3 +844,145 @@ onChange={(e) => setShippingCountry(e.target.value)}>
 
 <br>
 <br>
+
+# 🐒
+
+### Here you can see that we already have a dropdown with options, but we still dont _see_ the countries options
+
+[<img src="/src/img/token_array-of-array_key_countries2.gif"/>]()
+
+<br>
+
+### SO now that we have an array, we can officially LOOP over it:
+
+```javascript
+// before loop
+{
+  console.log(Object.entries(shippingCountries));
+}
+//
+//
+// after loop 1. option
+{
+  Object.entries(shippingCountries).map(keyValuePair);
+}
+```
+
+### But the teacher prefers destructuring the array
+
+- By the way the **keyValuePair** gave me an error
+
+### So while destructuring, the first element is going to be 'code' , and the second element is going to be the name of that country
+
+```javascript
+{
+  Object.entries(shippingCountries).map([code, name]);
+}
+```
+
+<br>
+
+## 🔴
+
+### After that i get this error
+
+```javascript
+Failed to compile.
+
+src/components/CheckoutForm/AddressForm.jsx
+  Line 77:57:  'code' is not defined     no-undef
+  Line 77:63:  Unexpected use of 'name'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+```
+
+<br>
+
+#### Since we are getting lost with the parenthesis, lets move this line on top of the AddressForm, to make it cleaner.
+
+```javascript
+// Move this messy line out of the jsx
+   {Object.entries(shippingCountries).map([code, name]=>())}
+  //
+  //
+  // move it under the const methods
+
+  const countries  =  Object.entries(shippingCountries).map(([code, name]) => ({id: code, label: name}))
+  //
+  //
+
+```
+
+<br>
+<br>
+<br>
+
+# Explanation of this line
+
+```javascript
+const countries = Object.entries(shippingCountries).map(([code, name]) => ({
+  id: code,
+  label: name,
+}));
+//
+```
+
+### ... IN OTHER WORDS 👍
+
+this Object.entries , will convert this:shippingCountries into a 2d array **so from object to array**, then we have to .map it one more time: .map(([code, name]), **to turn it into a normal array**, from that procedure we get the code and the name , and what we are returning **=>**? , we return an **array** that has **objects** that contains: the **id** and the **label**
+
+<br>
+
+### Now lets console log it to see how the array looks like
+
+```javascript
+// ARRAY CONVERTER
+const countries = Object.entries(shippingCountries).map(([code, name]) => ({
+  id: code,
+  label: name,
+}));
+
+console.log(countries);
+```
+
+<br>
+
+- As you can see in the image: we got the id and the label
+
+[<img src="/src/img/token_object-array-convertor-id-and-label.gif"/>]()
+
+<br>
+<br>
+
+### Now lets finally use it and map the countries, go to the commented section again:
+
+- Add the menu inside the .map **(dont bother about the error, its because the .map is empty)**, also because of the key, but we will work on that soon
+
+```javascript
+{
+  countries.map((country) => (
+    <MenuItem key={} value={}>
+      Select me
+    </MenuItem>
+  ));
+}
+```
+<br>
+
+[<img src="/src/img/token_object-array-convertor-id-and-label3.gif"/>]()
+
+<br>
+
+### This is going to show the country options inside the dropdown in the form
+
+```javascript
+{
+  countries.map((country) => (
+    <MenuItem key={country.id} value={country.id}>
+      {country.label}
+    </MenuItem>
+  ));
+}
+```
+
+[<img src="/src/img/token_object-array-convertor-id-and-label2.gif"/>]()

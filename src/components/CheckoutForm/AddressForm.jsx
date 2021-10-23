@@ -33,12 +33,21 @@ const AddressForm = ({ checkoutToken }) => {
   // to run our form
   const methods = useForm();
   //
+  // ARRAY CONVERTER
+  const countries = Object.entries(shippingCountries).map(([code, name]) => ({
+    id: code,
+    label: name,
+  }));
+
+  console.log(countries);
+
+  //
+  //
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(
       checkoutTokenId
     );
 
-    console.log(countries);
     setShippingCountries(countries);
     setShippingCountry(Object.keys(countries)[0]);
   };
@@ -74,11 +83,11 @@ const AddressForm = ({ checkoutToken }) => {
                 fullWidth
                 onChange={(e) => setShippingCountry(e.target.value)}
               >
-                {console.log(Object.entries(shippingCountries))}
-
-                {/* <MenuItem key={} value={}>
-                  Select me
-                </MenuItem> */}
+                {countries.map((country) => (
+                  <MenuItem key={country.id} value={country.id}>
+                    {country.label}
+                  </MenuItem>
+                ))}  
               </Select>
             </Grid>
             {/*
