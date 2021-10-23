@@ -527,7 +527,7 @@ useEffect(() => {
 
 <br>
 
-##### Console.log it to see if it worked
+### Console.log it to see if it worked
 
 ```javascript
 const fetchShippingCountries = async (checkoutTokenId) => {
@@ -542,16 +542,14 @@ const fetchShippingCountries = async (checkoutTokenId) => {
 };
 ```
 
-2:15:59 to continue after the solution of the token issue
-
 <br>
 <br>
 
-# 🔴
+#### 🔴
 
 #### ERROR related to the Token issue(read more inside the errors file)
 
-[ALL THE ERRORS](./src/errors.md)
+[Checj the solution](./src/errors.md)
 
 ```javascript
 TypeError: Cannot read property 'id' of null
@@ -565,3 +563,13 @@ src/components/CheckoutForm/AddressForm.jsx:41
   43 | //
   44 | //
 ```
+
+<br>
+<br>
+<br>
+
+**2:15:59** to continue after the solution of the token issue
+
+<br>
+<br>
+
