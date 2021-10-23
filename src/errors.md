@@ -902,6 +902,8 @@ export default FormInput;
   <br>
    <br>
 
+# 🍌   
+
 # SOLUTION
 
 ```javascript
@@ -936,12 +938,12 @@ export default FormInput;
 ```
 
 <br>
-<br>
-<br>
-<hr>
+<br><hr>
 <br>
 
-## 🔴 ERROR 6. 
+<br>
+
+# 🔴 ERROR 6. 
 
 ### Token issue
 
