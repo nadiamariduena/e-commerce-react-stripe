@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 //
-import { Grid, Typography } from "@material-ui/core";
+import {
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 //
 import { commerce } from "../../lib/commerce";
@@ -32,8 +39,8 @@ const AddressForm = ({ checkoutToken }) => {
     );
 
     console.log(countries);
-
     setShippingCountries(countries);
+    setShippingCountry(Object.keys(countries)[0]);
   };
   //
 
@@ -60,15 +67,21 @@ const AddressForm = ({ checkoutToken }) => {
             <FormInput required name="zip" label="Zip / Postal code" />
             {/* ------------ */}
             {/* ------------ */}
-            {/* <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
-              <Select value={} fullWidth onChange={}>
-                <MenuItem key={} value={}>
+              <Select
+                value={shippingCountry}
+                fullWidth
+                onChange={(e) => setShippingCountry(e.target.value)}
+              >
+                {console.log(Object.entries(shippingCountries))}
+
+                {/* <MenuItem key={} value={}>
                   Select me
-                </MenuItem>
+                </MenuItem> */}
               </Select>
             </Grid>
-          
+            {/*
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Subdivision</InputLabel>
               <Select value={} fullWidth onChange={}>

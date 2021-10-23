@@ -20,7 +20,7 @@ const Product = ({ product, onAddToCart }) => {
   //  styles HOOK
   const classes = useStyles();
   //
-  console.log(product);
+  //console.log(product);
   // //
   //  return <div>test</div>;
   //

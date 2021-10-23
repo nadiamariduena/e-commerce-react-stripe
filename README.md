@@ -549,8 +549,6 @@ const fetchShippingCountries = async (checkoutTokenId) => {
 
 #### ERROR related to the Token issue(read more inside the errors file)
 
-[Checj the solution](./src/errors.md)
-
 ```javascript
 TypeError: Cannot read property 'id' of null
 (anonymous function)
@@ -564,6 +562,12 @@ src/components/CheckoutForm/AddressForm.jsx:41
   44 | //
 ```
 
+[<img src="/src/img/error_checkOut_TOKEN_countries4__SOLVED.gif"/>]()
+
+<br>
+
+### [Check the solution 🖐️ here ](./src/errors.md)
+
 <br>
 <br>
 <br>
@@ -573,3 +577,258 @@ src/components/CheckoutForm/AddressForm.jsx:41
 <br>
 <br>
 
+# 🐒
+
+### Now we have to add back the select field for the countries, then based on the country, we will be fecthing all the other regions
+
+<br>
+
+#### Go back to the AddressForm.jsx 🍍
+
+- Now we are getting the countries but this is not exactly what we want, **if you notice**, all the countries are inside an <u>Object</u>, but we need them in an <u>Array</u> to **loop** over them:
+
+```javascript
+{AT: "Austria", CY: "Cyprus", FR: "France", US: "United States"}
+```
+
+<br>
+
+- Setting countries in an object like here below, is fine **but how do we actually get the first element in that object?**:
+
+````javascript
+const fetchShippingCountries = async (checkoutTokenId) => {
+  const { countries } = await commerce.services.localeListShippingCountries(
+    checkoutTokenId
+  );
+
+  console.log(countries);
+
+  setShippingCountries(countries);
+};
+//```
+````
+
+<br>
+
+#### With arrays it would be easy, we just do array[0] to grab the first element.
+
+<br>
+
+- We will proceed like so, this time we will use the individual country, which is: **setShippingCountry**.
+
+- But as we said, we cannot use it like so: **countries[0]);**, or like so: countries.AU (au, for austria) because we are not sure we will always have austria in the options.
+
+```javascript
+setShippingCountry(countries[0]);
+```
+
+<br>
+
+#### What we will have to do, is to use: (Object.keys())
+
+- **why keys**, because i only want the **keys of the countries**
+  <br>
+
+```javascript
+// give me just the key of the countries
+setShippingCountry(Object.keys(countries));
+```
+
+<br>
+
+#### [Object.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
+
+> The Object.keys() method returns an array of a given object's own enumerable property names, iterated in the same order that a normal loop would.
+
+<br>
+
+#### And the keys of the countries are going to be:
+
+- AT:
+- CY:
+- FR:
+- US:
+
+> So we are going to get an array of: [AT, CY etc]
+
+#### From those countries:
+
+```javascript
+{AT: "Austria", CY: "Cyprus", FR: "France", US: "United States"}
+```
+
+<br>
+
+#### And then we are going to say, give me the first one [0]
+
+```javascript
+// AddressForm.jsx
+// give me just the key of the countries
+setShippingCountry(Object.keys(countries)[0]);
+```
+
+<br>
+
+### So now we have this set up:
+
+```javascript
+const fetchShippingCountries = async (checkoutTokenId) => {
+  const { countries } = await commerce.services.localeListShippingCountries(
+    checkoutTokenId
+  );
+
+  console.log(countries);
+  setShippingCountries(countries);
+  setShippingCountry(Object.keys(countries)[0]);
+};
+//
+```
+
+<br>
+<br>
+
+#### Now go down, and if we try to **UNcomment** the first block:
+
+- Focus on the **commented/Hidden** section
+
+```javascript
+// AddressForm.jsx
+<>
+  <Typography variant="h6" gutterBottom>
+    Shipping Address
+  </Typography>
+  {/* FORM */}
+  <FormProvider {...methods}>
+    <form onSubmit={0}>
+      <Grid container spacing={3}>
+        <FormInput required name="firstName" label="First name" />
+        <FormInput required name="lastName" label="Last name" />
+        <FormInput required name="address1" label="Address line 1" />
+        <FormInput required name="email" label="Email" />
+        <FormInput required name="city" label="City" />
+        <FormInput required name="zip" label="Zip / Postal code" />
+        {/* ------------ */}
+        {/* ------------ */}
+        // 1 block
+        {/* <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Country</InputLabel>
+              <Select value={} fullWidth onChange={}>
+                <MenuItem key={} value={}>
+                  Select me
+                </MenuItem>
+              </Select>
+            </Grid>
+           // 2 block
+            <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Subdivision</InputLabel>
+              <Select value={} fullWidth onChange={}>
+                <MenuItem key={} value={}>
+                  Select me
+                </MenuItem>
+              </Select>
+            </Grid>
+           
+            <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Options</InputLabel>
+              <Select value={} fullWidth onChange={}>
+                <MenuItem key={} value={}>
+                  Select me
+                </MenuItem>
+              </Select>
+            </Grid> */}
+      </Grid>
+    </form>
+  </FormProvider>
+</>
+```
+
+### We need to set up a similar procedure with the Object. to use the values in the blocks here below
+
+```javascript
+// Before
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Country</InputLabel>
+  // set value here
+  <Select value={} fullWidth onChange={}>
+    <MenuItem key={} value={}>
+      Select me
+    </MenuItem>
+  </Select>
+</Grid>
+//
+//
+// AFTER
+  <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Country</InputLabel>
+             <Select
+                value={shippingCountry}
+                fullWidth
+                onChange={(e) => setShippingCountry(e.target.value)}
+              >
+                  Select me
+                </MenuItem>
+              </Select>
+            </Grid>
+```
+
+<br>
+
+- **onChange={(e)** => setShippingCountry
+
+> So want to say that **on change** we want the event(e
+
+- (e.target.value)}
+
+> Whatever is selected, we set it to the shipping country
+
+<br>
+
+- **(e.target.value)}** makes allusion to this: **value={shippingCountry}**
+
+<br>
+<br>
+
+### Now in here, we want to map over something:
+
+```javascript
+onChange={(e) => setShippingCountry(e.target.value)}>
+
+/*
+  IN here we want to map over something!!!!!! 👍
+
+
+*/
+ Select me
+</MenuItem>
+ </Select>
+
+```
+
+#### And the question is, what do we want to map over?
+
+- Remember **countries** are not an array, so we cannot do **{countries.map()}**
+
+<br>
+
+- But what we can do is **{Object.entries()}**, Object.entries is going to give us **keys** and **values** of this Objects
+
+> So **from where do we want to get the entries from?** **ShippingCountries**
+
+```javascript
+{
+  Object.entries(shippingCountries);
+}
+```
+
+### Now we have an array of an array, lets console.log it
+
+```javascript
+{
+  console.log(Object.entries(shippingCountries));
+}
+```
+
+[<img src="/src/img/token_array-of-array_key_countries1.gif"/>]()
+
+<br>
+<br>
