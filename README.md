@@ -967,6 +967,7 @@ console.log(countries);
   ));
 }
 ```
+
 <br>
 
 [<img src="/src/img/token_object-array-convertor-id-and-label3.gif"/>]()
@@ -975,8 +976,16 @@ console.log(countries);
 
 ### This is going to show the country options inside the dropdown in the form
 
+- For **each country**, what we wanna do? we want to return,
+
+- a block of JSX, in this case it will be:**<MenuItem** and its content
+
+<br>
+
 ```javascript
 {
+  // For each country, what we wanna do? we want to return,
+  // a block of JSX, in this case it will be:<MenuItem and its content
   countries.map((country) => (
     <MenuItem key={country.id} value={country.id}>
       {country.label}
