@@ -148,7 +148,9 @@ const [shippingOption, setShippingOption] = useState("");
 
 <br>
 
-#### The situation is going to be completely similar to what we did with the countries (when converting to a 2d array and then to an array), so we can copy the line below:
+### The situation is going to be completely similar to what we did with the countries (when converting to a 2d array and then to an array), so we can copy the line below:
+
+<br>
 
 ```javascript
 // ARRAY CONVERTER
@@ -158,7 +160,11 @@ const countries = Object.entries(shippingCountries).map(([code, name]) => ({
 }));
 ```
 
+<br>
+
 ### And adapt it to the subdivisions
+
+- As you can notice only 2 things changed, **the code , name, id and label didnt**
 
 ```javascript
 // ARRAY CONVERTER Subdivisions
@@ -169,3 +175,64 @@ const subdivisions = Object.entries(shippingSubdivisions).map(
   })
 );
 ```
+
+<br>
+
+# 🍌
+
+## Now scroll down in the <u>AddressForm.jsx</u> and uncomment the 2 block
+
+```javascript
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Subdivision</InputLabel>
+  <Select value={} fullWidth onChange={}>
+    <MenuItem key={} value={}>
+      Select me
+    </MenuItem>
+  </Select>
+</Grid>
+```
+
+<br>
+
+#### Replace the following, actually copy the 'select' from the block 1. and paste it inside the 2. block
+
+```javascript
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Subdivision</InputLabel>
+  <Select
+    value={shippingCountry}
+    fullWidth
+    onChange={(e) => setShippingCountry(e.target.value)}
+  >
+    {countries.map((country) => (
+      <MenuItem key={country.id} value={country.id}>
+        {country.label}
+      </MenuItem>
+    ))}
+  </Select>
+</Grid>
+```
+
+<br>
+
+### Of course the values are not the same
+
+```javascript
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Subdivision</InputLabel>
+  <Select
+    value={shippingSubdivision}
+    fullWidth
+    onChange={(e) => setShippingSubdivisions(e.target.value)}
+  >
+    {subdivisions.map((subdivision) => (
+      <MenuItem key={subdivision.id} value={subdivision.id}>
+        {subdivision.label}
+      </MenuItem>
+    ))}
+  </Select>
+</Grid>
+```
+
+[<img src="/src/img/token_subdivisions1-success.gif"/>]()
