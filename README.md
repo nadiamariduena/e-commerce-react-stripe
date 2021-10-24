@@ -35,6 +35,10 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 - 7. checkoutTokenId-part1
 - 8. token-countries-dropdown-1
 
+
+
+  // For each country, what we wanna do? we want to return,
+  // a block of JSX, in this case it will be:<MenuItem and its content
 -->
 
 <br>
@@ -49,6 +53,8 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 <br>
 <br>
+<br>
+
 <br>
 
 # Countries Subdivisions
