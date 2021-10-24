@@ -33,7 +33,7 @@ const AddressForm = ({ checkoutToken }) => {
   // to run our form
   const methods = useForm();
   //
-  // ARRAY CONVERTER
+  // ARRAY CONVERTER countries
   const countries = Object.entries(shippingCountries).map(([code, name]) => ({
     id: code,
     label: name,
@@ -41,6 +41,16 @@ const AddressForm = ({ checkoutToken }) => {
 
   console.log(countries);
 
+  //
+  //
+  // ARRAY CONVERTER Subdivisions
+  const subdivisions = Object.entries(shippingSubdivisions).map(([code, name]) => ({
+    id: code,
+    label: name,
+  }));
+
+  //
+  //
   //
   //FETCH COUNTRIES
   const fetchShippingCountries = async (checkoutTokenId) => {
@@ -69,15 +79,14 @@ const AddressForm = ({ checkoutToken }) => {
   //
   //
   //
-
+  // Countries
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
   }, []);
   //
-  //
+  //Subdivisions
   useEffect(() => {
-    fetchSubdivisions(shippingCountry); //here
-    // whenever the [shippingCountry]); changes, we are going to recall the useEffect
+    if (shippingCountry) fetchSubdivisions(shippingCountry);
   }, [shippingCountry]);
 
   return (

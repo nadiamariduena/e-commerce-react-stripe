@@ -96,19 +96,76 @@ useEffect(() => {
 }, []);
 ```
 
-### Because at that time we dont yet have the countries, So what we have to do is create another <u>useEffect</u>
+#### Because at that time we dont yet have the countries, So what we have to do is create another <u>useEffect</u>
 
 <br>
+
+## Maybe it s the first time you are seeing 2 different use effects in the same functions
+
+- Apparently **there isn't a single rule that forbids you from having multiple useEffects**, and its a good practice of course if you really need it.
+
 <br>
-
-#### Maybe it s the first time you are seeing 2 different use effects in the same functions
-
-- Apparently there isnt a single rule that forbids you from having multiple useEffects, and its a good practice of course if you really need it.
 
 ```javascript
 useEffect(() => {
-  //   and of course we have to provide the: shippingCountry, which is in the state, like 25
+  //  2 and of course we have to provide the: shippingCountry, which is in the state, check all the states here below
   fetchSubdivisions(shippingCountry); //here
-  // whenever the [shippingCountry]); changes, we are going to recall the useEffect
+  // 1 whenever the [shippingCountry]); changes, we are going to recall the useEffect block
 }, [shippingCountry]);
+```
+
+<br>
+
+##### all the states
+
+```javascript
+const [shippingCountries, setShippingCountries] = useState([]);
+const [shippingCountry, setShippingCountry] = useState("");
+const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
+const [shippingSubdivision, setShippingSubdivision] = useState("");
+const [shippingOptions, setShippingOptions] = useState([]);
+const [shippingOption, setShippingOption] = useState("");
+```
+
+<br>
+
+### But Sometimes this is going to be empty [shippingCountry]); and because of that we can provide an 'if' statement
+
+<br>
+
+- If (shippingCountry), if shippingCountry exists, only then call the **fetchSubdivisions(shippingCountry);**
+
+> ###### So if we have a shippingCountry, only then show the option
+
+<br>
+<br>
+
+# 🐒
+
+### And that was all for the Subdivisions !!
+
+- Now we have to do the same as we did with the countries, **loop** over them and then display them based on them.
+
+<br>
+
+#### The situation is going to be completely similar to what we did with the countries (when converting to a 2d array and then to an array), so we can copy the line below:
+
+```javascript
+// ARRAY CONVERTER
+const countries = Object.entries(shippingCountries).map(([code, name]) => ({
+  id: code,
+  label: name,
+}));
+```
+
+### And adapt it to the subdivisions
+
+```javascript
+// ARRAY CONVERTER Subdivisions
+const subdivisions = Object.entries(shippingSubdivisions).map(
+  ([code, name]) => ({
+    id: code,
+    label: name,
+  })
+);
 ```
