@@ -841,7 +841,9 @@ export default FormInput;
 <br>
 <br>
 
-## 🔴 Error 5.
+## 🔴 Error 5. "Image issue after deleting product in commercejs"
+
+- Problem solved in chrome but persist in firefox
 
 #### This error appeared when i was trying to solve the _token_ error, in which i was trying to figure out why i couldnt see the country options.
 

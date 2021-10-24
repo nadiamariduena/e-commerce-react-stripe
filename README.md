@@ -33,6 +33,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 - 5. Cart.CartItem-buttons-increase-decrease-remove
 - 6. buttons-increase-decrease-remove-emptyCart-allready
 - 7. checkoutTokenId-part1
+- 8. token-countries-dropdown-1
 
 -->
 
@@ -45,3 +46,11 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 # 🍍
 
 [<img src="/src/img/token_object-array-convertor-id-and-label2.gif"/>]()
+
+<br>
+<br>
+<br>
+
+# Countries Subdivisions
+
+2:23:02
