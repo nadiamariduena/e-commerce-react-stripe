@@ -42,15 +42,32 @@ const AddressForm = ({ checkoutToken }) => {
   console.log(countries);
 
   //
-  //
+  //FETCH COUNTRIES
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(
       checkoutTokenId
     );
 
     setShippingCountries(countries);
+    // we get the keys out of the countries with the help of the: Object.keys
     setShippingCountry(Object.keys(countries)[0]);
   };
+  //
+  //
+  // FETCH SUBDIVISIONS
+  const fetchSubdivisions = async (countryCode) => {
+    const { subdivisions } = await commerce.services.localeListSubdivisions(
+      countryCode
+    );
+    // plural
+    setShippingSubdivisions(subdivisions);
+    //1 we get the keys out of the subdivisions with the help of the: Object.keys
+    // individual subdivision
+    setShippingSubdivision(Object.keys(subdivisions)[0]); //2 and then we get the first element [0])
+  };
+
+  //
+  //
   //
 
   useEffect(() => {
@@ -87,7 +104,7 @@ const AddressForm = ({ checkoutToken }) => {
                   <MenuItem key={country.id} value={country.id}>
                     {country.label}
                   </MenuItem>
-                ))}  
+                ))}
               </Select>
             </Grid>
             {/*

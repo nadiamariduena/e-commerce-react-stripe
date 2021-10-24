@@ -60,3 +60,27 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 # Countries Subdivisions
 
 2:23:02
+
+#### What we will do in this phase, is to repeat what we did when creating the countries
+
+- First step will be to **FETCH** the subdivisions, (_now you understand why we needed to have the countries first before having the subdivisions_)
+
+<br>
+
+```javascript
+//
+// FETCH SUBDIVISIONS
+// SO THIS async function is going to accept 1 param, and that param is
+// is going to be a : countryCode
+// (_now you understand why we needed to have the countries first before having the subdivisions_)
+const fetchSubdivisions = async (countryCode) => {
+  // So we are going to be fecthing subdivisions for 1 specific country:
+  const { subdivisions } = await commerce.services.loca;
+  leListSubdivisions(countryCode);
+  // make sure to put it as plural 👍
+  setShippingSubdivisions(subdivisions);
+  //1 we get the keys out of the subdivisions with the help of the: Object.keys
+  //   singular subdivision 👍
+  setShippingSubdivision(Object.keys(subdivisions)[0]); //2 and then we get the first element [0])
+};
+```
