@@ -84,3 +84,31 @@ const fetchSubdivisions = async (countryCode) => {
   setShippingSubdivision(Object.keys(subdivisions)[0]); //2 and then we get the first element [0])
 };
 ```
+
+### So When are we actually going to call this fetchSubdivisions function?
+
+- **we cannot call** it after the fetchShippingCountries, like so:
+
+```javascript
+useEffect(() => {
+  fetchShippingCountries(checkoutToken.id);
+  fetchSubdivisions(); //here
+}, []);
+```
+
+### Because at that time we dont yet have the countries, So what we have to do is create another <u>useEffect</u>
+
+<br>
+<br>
+
+#### Maybe it s the first time you are seeing 2 different use effects in the same functions
+
+- Apparently there isnt a single rule that forbids you from having multiple useEffects, and its a good practice of course if you really need it.
+
+```javascript
+useEffect(() => {
+  //   and of course we have to provide the: shippingCountry, which is in the state, like 25
+  fetchSubdivisions(shippingCountry); //here
+  // whenever the [shippingCountry]); changes, we are going to recall the useEffect
+}, [shippingCountry]);
+```

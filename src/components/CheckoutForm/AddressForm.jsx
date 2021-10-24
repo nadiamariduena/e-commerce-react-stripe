@@ -75,6 +75,10 @@ const AddressForm = ({ checkoutToken }) => {
   }, []);
   //
   //
+  useEffect(() => {
+    fetchSubdivisions(shippingCountry); //here
+    // whenever the [shippingCountry]); changes, we are going to recall the useEffect
+  }, [shippingCountry]);
 
   return (
     <>
