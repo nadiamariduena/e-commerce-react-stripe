@@ -341,3 +341,290 @@ const Navbar = ({ totalItems }) => {
 ```
 
 [<img src="/src/img/finally_adding_items_to_the_basket.gif"/>]()
+
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+## Array conversion
+
+> READ THE CODE
+
+```javascript
+import React, { useState, useEffect } from "react";
+//
+import {
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  Grid,
+  Typography,
+} from "@material-ui/core";
+import { useForm, FormProvider } from "react-hook-form";
+//
+import { commerce } from "../../lib/commerce";
+
+//
+import FormInput from "./FormInput";
+//
+//
+const AddressForm = ({ checkoutToken }) => {
+  //
+
+  const [shippingCountries, setShippingCountries] = useState([]);
+  const [shippingCountry, setShippingCountry] = useState("");
+  const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
+  const [shippingSubdivision, setShippingSubdivision] = useState("");
+  const [shippingOptions, setShippingOptions] = useState([]);
+  const [shippingOption, setShippingOption] = useState("");
+  const methods = useForm();
+  //
+  /*
+
+                ARRAY CONVERTER countries
+
+*/
+  const countries = Object.entries(shippingCountries).map(([code, name]) => ({
+    id: code,
+    label: name,
+  }));
+  // console.log(countries);
+  //
+  /*
+
+                ARRAY CONVERTER Subdivisions
+
+*/
+  const subdivisions = Object.entries(shippingSubdivisions).map(
+    ([code, name]) => ({
+      id: code,
+      label: name,
+    })
+  );
+  /*                  OPTIONS
+
+                This is an array by default
+                so no need for conversion
+
+*/
+  const options = shippingOptions.map((sO) => ({
+    id: sO.id,
+    label: `${sO.description} ~ (${sO.price.formatted_with_symbol}) `,
+  }));
+  //
+  console.log(options);
+  //
+  //-------------
+  //
+  //
+  //
+  //FETCH COUNTRIES
+  const fetchShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.services.localeListShippingCountries(
+      checkoutTokenId
+    );
+
+    setShippingCountries(countries);
+    // we get the keys out of the countries with the help of the: Object.keys
+    setShippingCountry(Object.keys(countries)[0]);
+  };
+  //
+  //-------------
+  //
+  //
+  //
+  // FETCH SUBDIVISIONS
+  const fetchSubdivisions = async (countryCode) => {
+    const { subdivisions } = await commerce.services.localeListSubdivisions(
+      countryCode
+    );
+    // plural
+    setShippingSubdivisions(subdivisions);
+    //1 we get the keys out of the subdivisions with the help of the: Object.keys
+    // individual subdivision
+    setShippingSubdivision(Object.keys(subdivisions)[0]); //2 and then we get the first element [0])
+  };
+
+  //-------------
+  //
+  //
+  // FETCH OPTIONS
+  const fetchShippingOptions = async (
+    checkoutTokenId,
+    country,
+    region = null
+  ) => {
+    const options = await commerce.checkout.getShippingOptions(
+      checkoutTokenId,
+      { country, region }
+    );
+
+    setShippingOptions(options);
+    setShippingOption(options[0].id);
+  };
+  //
+  //
+  //
+  //
+  //
+  // Countries
+  useEffect(() => {
+    fetchShippingCountries(checkoutToken.id);
+  }, []);
+
+  //
+  //
+  //Subdivisions
+  useEffect(() => {
+    if (shippingCountry) fetchSubdivisions(shippingCountry);
+  }, [shippingCountry]);
+
+  //
+  // Options
+  useEffect(() => {
+    if (shippingSubdivision)
+      fetchShippingOptions(
+        checkoutToken.id,
+        shippingCountry,
+        shippingSubdivision
+      );
+  }, [shippingSubdivision]);
+
+  //
+  //
+  //
+  //
+  return (
+    <>
+      <Typography variant="h6" gutterBottom>
+        Shipping Address
+      </Typography>
+      {/* FORM */}
+      <FormProvider {...methods}>
+        <form onSubmit="">
+          <Grid container spacing={3}>
+            <FormInput name="firstName" label="First name" />
+            <FormInput name="lastName" label="Last name" />
+            <FormInput name="address1" label="Address line 1" />
+            <FormInput name="email" label="Email" />
+            <FormInput name="city" label="City" />
+            <FormInput name="zip" label="Zip / Postal code" />
+            {/* ------------ */}
+            {/* ------------ */}
+            <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Country</InputLabel>
+              <Select
+                value={shippingCountry}
+                fullWidth
+                onChange={(e) => setShippingCountry(e.target.value)}
+              >
+                {countries.map((country) => (
+                  <MenuItem key={country.id} value={country.id}>
+                    {country.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Subdivision</InputLabel>
+              <Select
+                value={shippingSubdivision}
+                fullWidth
+                onChange={(e) => setShippingSubdivision(e.target.value)}
+              >
+                {subdivisions.map((subdivision) => (
+                  <MenuItem key={subdivision.id} value={subdivision.id}>
+                    {subdivision.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Options</InputLabel>
+              <Select
+                value={shippingOption}
+                fullWidth
+                onChange={(e) => setShippingOption(e.target.value)}
+              >
+                {options.map((option) => (
+                  <MenuItem key={option.id} value={option.id}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
+          </Grid>
+        </form>
+      </FormProvider>
+    </>
+  );
+};
+
+export default AddressForm;
+```
+
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+# 🍍
+
+## This line
+
+```javascript
+// sO: shipping Options
+const options = shippingOptions.map((sO) => ({
+  id: sO.id,
+  label: `${sO.description} ~ (${sO.price.formatted_with_symbol}) `,
+}));
+```
+
+### I was curious about the use of the "tilde ~" and the reason for that is that we didnt really use it at school so, i made a research about it
+
+- So lets refresh the memory
+
+<br>
+
+### [JavaScript Tilde ~ (Bitwise Not operator)](https://wsvincent.com/javascript-tilde/)
+
+> In JavaScript, the tilde **~ Bitwise NOT operator** is commonly **used right before an [indexOf()](https://www.w3schools.com/jsref/jsref_indexof.asp) to do a boolean check (truthy/falsy)** on a string.
+
+> On its own, **indexOf()** returns the index number of a String object passed in.
+
+<br>
+
+## ALSO: [What is the "double tilde" (~~) operator in JavaScript?](https://stackoverflow.com/questions/5971645/what-is-the-double-tilde-operator-in-javascript)
+
+> **That ~~ is a double NOT bitwise operator.**
+
+**It is used as a faster substitute for Math.floor() for positive numbers.** It does not return the same result as Math.floor() for negative numbers, as it just chops off the part after the decimal (see other answers for examples of this).
+
+<br>
+<br>
+<hr>
+<br>
+
+### [Introduction to Template Literals](https://flaviocopes.com/javascript-template-literals/)
+
+Template Literals are a new ES2015 / ES6 feature that allows you to work with strings in a novel way compared to ES5 and below.
+
+The syntax at a first glance is very simple, **just use backticks instead of single or double quotes**:
+
+```javascript
+const a_string = `something`;
+```
+
+> - They are unique because **they provide a lot of features that normal strings built with quotes do not**, in particular:
+
+- they offer a great syntax to define multiline strings
+- they provide an easy way to interpolate variables and expressions in strings
+- they allow you to create DSLs with template tags (DSL means domain specific language, and it’s for example **used in React by Styled Components, to define CSS for a component)**
+
+### Read more: [Introduction to Template Literals](https://flaviocopes.com/javascript-template-literals/)

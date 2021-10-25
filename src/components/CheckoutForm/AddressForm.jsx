@@ -27,21 +27,34 @@ const AddressForm = ({ checkoutToken }) => {
   const [shippingOption, setShippingOption] = useState("");
   const methods = useForm();
   //
+  /*
 
+                ARRAY CONVERTER countries
+
+*/
   const countries = Object.entries(shippingCountries).map(([code, name]) => ({
     id: code,
     label: name,
   }));
   // console.log(countries);
   //
+  /*
 
+                ARRAY CONVERTER Subdivisions
+
+*/
   const subdivisions = Object.entries(shippingSubdivisions).map(
     ([code, name]) => ({
       id: code,
       label: name,
     })
   );
+  /*                  OPTIONS
 
+                This is an array by default
+                so no need for conversion
+
+*/
   const options = shippingOptions.map((sO) => ({
     id: sO.id,
     label: `${sO.description} ~ (${sO.price.formatted_with_symbol}) `,
@@ -50,7 +63,10 @@ const AddressForm = ({ checkoutToken }) => {
   console.log(options);
   //
   //-------------
-
+  //
+  //
+  //
+  //FETCH COUNTRIES
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(
       checkoutTokenId
@@ -62,7 +78,10 @@ const AddressForm = ({ checkoutToken }) => {
   };
   //
   //-------------
-
+  //
+  //
+  //
+  // FETCH SUBDIVISIONS
   const fetchSubdivisions = async (countryCode) => {
     const { subdivisions } = await commerce.services.localeListSubdivisions(
       countryCode
@@ -75,7 +94,9 @@ const AddressForm = ({ checkoutToken }) => {
   };
 
   //-------------
-
+  //
+  //
+  // FETCH OPTIONS
   const fetchShippingOptions = async (
     checkoutTokenId,
     country,
@@ -91,9 +112,10 @@ const AddressForm = ({ checkoutToken }) => {
   };
   //
   //
-  // Countries
-
   //
+  //
+  //
+  // Countries
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
   }, []);
@@ -101,13 +123,10 @@ const AddressForm = ({ checkoutToken }) => {
   //
   //
   //Subdivisions
-
   useEffect(() => {
     if (shippingCountry) fetchSubdivisions(shippingCountry);
   }, [shippingCountry]);
 
-  //
-  //
   //
   // Options
   useEffect(() => {

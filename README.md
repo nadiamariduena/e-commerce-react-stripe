@@ -683,15 +683,3 @@ export default AddressForm;
 
 [<img src="/src/img/shippingOptions_finallyShowing.gif"/>]()
 
-<br>
-<br>
-<br>
-
-#### This line
-
-```javascript
-const options = shippingOptions.map((sO) => ({
-  id: sO.id,
-  label: `${sO.description} ~ (${sO.price.formatted_with_symbol}) `,
-}));
-```
