@@ -44,13 +44,16 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 # 🍍
 
-## Lets start with Countries
+# Countries/ Shipping Countries
 
-### AddressForm.jsx
+> Go to AddressForm.jsx
 
-#### The first function is going to be the following:
+<br>
 
-- **1.** this async ( ) is going to accept something known as: **checkoutTokenId**
+### Start by extracting/requiring some data from commercejs, through a fetch function:
+
+ 
+- **1.** this async function ( ) is going to accept something known as: **checkoutTokenId**
 
 > Once we start with the order process, we are going to get our own checkoutTokenId, like when you come into the store and you get your own receipt, but instead we get checkoutTokenId(we dont have it yet).
 
