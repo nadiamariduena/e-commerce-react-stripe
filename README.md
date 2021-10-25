@@ -33,7 +33,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 - 5. Cart.CartItem-buttons-increase-decrease-remove
 - 6. buttons-increase-decrease-remove-emptyCart-allready
 - 7. checkoutTokenId-part1
-- 8. token-countries-dropdown-1
+- 8. token-shipping-Countries
 - 9. token-shipping-Subdivisions
 
 
