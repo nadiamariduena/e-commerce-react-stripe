@@ -52,7 +52,7 @@ https://commercejs.com/blog/adding-assets-via-the-chec-api/
 
 # 🍍
 
-[<img src="/src/img/token_subdivisions1-success.gif"/>]()
+[<img src="/src/img/shippingOptions_finallyShowing.gif"/>]()
 
 <br>
 <br>
