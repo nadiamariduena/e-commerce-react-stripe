@@ -34,6 +34,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 - 6. buttons-increase-decrease-remove-emptyCart-allready
 - 7. checkoutTokenId-part1
 - 8. token-countries-dropdown-1
+- 9. token-shipping-Subdivisions
 
 
 https://commercejs.com/blog/adding-assets-via-the-chec-api/
