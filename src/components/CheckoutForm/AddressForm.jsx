@@ -33,17 +33,14 @@ const AddressForm = ({ checkoutToken }) => {
   // to run our form
   const methods = useForm();
   //
-  // ARRAY CONVERTER countries
+  // ARRAY CONVERTER countries ***
   const countries = Object.entries(shippingCountries).map(([code, name]) => ({
     id: code,
     label: name,
   }));
-
   // console.log(countries);
-
   //
-  //
-  // ARRAY CONVERTER Subdivisions
+  // ARRAY CONVERTER Subdivisions ***
   const subdivisions = Object.entries(shippingSubdivisions).map(
     ([code, name]) => ({
       id: code,
@@ -51,9 +48,12 @@ const AddressForm = ({ checkoutToken }) => {
     })
   );
 
+  // OPTIONS ***
+  const options = shippingOptions.map(() => {});
   //
+  // console.log(shippingOptions);
   //
-  //
+  //-------------
   //FETCH COUNTRIES 1
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(
@@ -65,7 +65,7 @@ const AddressForm = ({ checkoutToken }) => {
     setShippingCountry(Object.keys(countries)[0]);
   };
   //
-  //
+  //-------------
   // FETCH SUBDIVISIONS 2
   const fetchSubdivisions = async (countryCode) => {
     const { subdivisions } = await commerce.services.localeListSubdivisions(
@@ -78,7 +78,7 @@ const AddressForm = ({ checkoutToken }) => {
     setShippingSubdivision(Object.keys(subdivisions)[0]); //2 and then we get the first element [0])
   };
 
-  //
+  //-------------
   // FETCH OPTIONS 3
   const fetchShippingOptions = async (
     checkoutTokenId,
@@ -139,7 +139,7 @@ const AddressForm = ({ checkoutToken }) => {
       </Typography>
       {/* FORM */}
       <FormProvider {...methods}>
-        <form onSubmit={0}>
+        <form onSubmit="">
           <Grid container spacing={3}>
             <FormInput required name="firstName" label="First name" />
             <FormInput required name="lastName" label="Last name" />

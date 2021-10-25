@@ -166,7 +166,11 @@ useEffect(() => {
 // Options
 useEffect(() => {
   if (shippingSubdivision)
-    fetchShippingOptions(checkoutToken.Id, shippingCountry, shippingSubdivision);
+    fetchShippingOptions(
+      checkoutToken.Id,
+      shippingCountry,
+      shippingSubdivision
+    );
 }, [shippingSubdivision]);
 //
 //
@@ -195,4 +199,50 @@ useEffect(() => {
 }, [shippingSubdivision]);
 //
 //
+```
+
+<br>
+
+### Now that the UseEffect is ready, we have to move to the top and Loop over it. BUT WHY arent we converting it with Object.entries, like we did for the countries and subdivisions?
+
+<br>
+
+##### THE REASON: its because 'ShippingOptions' are an array by default.
+
+```javascript
+// OPTIONS ***
+const options = shippingOptions.map(() => {
+  //
+  //      HERE  **
+  //
+});
+```
+
+<br>
+
+- To see it more clearly, you can console.log the **options**
+
+<br>
+
+##### Hide the options
+
+```javascript
+//
+// OPTIONS ***
+// const options = shippingOptions.map(() => {
+
+// });
+//
+console.log(shippingOptions);
+//
+```
+
+> Result: You will have a couple of arrays, with lots of options and of course the fields related to the shipping options depending on the country
+
+[<img src="/src/img/token_array_shipping_pricesOptions.gif"/>]()
+
+<br>
+
+```javascript
+
 ```
