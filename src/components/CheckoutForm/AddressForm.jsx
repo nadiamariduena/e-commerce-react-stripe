@@ -54,7 +54,7 @@ const AddressForm = ({ checkoutToken }) => {
   //
   //
   //
-  //FETCH COUNTRIES
+  //FETCH COUNTRIES 1
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(
       checkoutTokenId
@@ -66,7 +66,7 @@ const AddressForm = ({ checkoutToken }) => {
   };
   //
   //
-  // FETCH SUBDIVISIONS
+  // FETCH SUBDIVISIONS 2
   const fetchSubdivisions = async (countryCode) => {
     const { subdivisions } = await commerce.services.localeListSubdivisions(
       countryCode
@@ -79,6 +79,28 @@ const AddressForm = ({ checkoutToken }) => {
   };
 
   //
+  // FETCH OPTIONS 3
+  const fetchShippingOptions = async (
+    checkoutTokenId,
+    country,
+    region = null
+  ) => {
+    const options = await commerce.checkout.getShippingOptions(
+      checkoutTokenId,
+      { country, region }
+    );
+    //
+    //
+    setShippingOptions(options);
+    setShippingOption(options[0].id);
+
+    //
+  };
+  //
+  //
+  //
+  //
+  //
   //
   //
   // Countries
@@ -86,11 +108,30 @@ const AddressForm = ({ checkoutToken }) => {
     fetchShippingCountries(checkoutToken.id);
   }, []);
   //
+  //
+  //
   //Subdivisions
   useEffect(() => {
     if (shippingCountry) fetchSubdivisions(shippingCountry);
   }, [shippingCountry]);
-
+  //
+  //
+  //
+  //
+  // Options
+  useEffect(() => {
+    if (shippingSubdivision)
+      fetchShippingOptions(
+        checkoutToken.Id,
+        shippingCountry,
+        shippingSubdivision
+      );
+  }, [shippingSubdivision]);
+  //
+  //
+  //
+  //
+  //
   return (
     <>
       <Typography variant="h6" gutterBottom>
