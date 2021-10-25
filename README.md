@@ -79,6 +79,9 @@ https://commercejs.com/blog/adding-assets-via-the-chec-api/
 <br>
 
 ```javascript
+import { Link } from "react-router-dom";
+//
+//
 <div
   style={{
     display: "flex",
@@ -93,5 +96,96 @@ https://commercejs.com/blog/adding-assets-via-the-chec-api/
   <Button type="submit" variant="contained" color="primary">
     Next
   </Button>
-</div>
+</div>;
+```
+
+<br>
+<br>
+
+### Right now the only button that is going to work is: Back to Cart
+
+<br>
+
+## So lets work in the functionality of the 'next' button
+
+<br>
+
+- If you notice, in our Form, the <u>On submit </u>is empty
+
+<br>
+
+```javascript
+// AddressForm.jsx
+//
+
+        <form onSubmit="">
+```
+
+<br>
+
+### To use this onSubmit, we need to create a new function but inside the Checkout.jsx
+
+- we are going to pass this function as **PROPS** to our AddressForm.jsx
+
+<br>
+
+- Of course the function is **going to accept the '(data)'**
+
+<br>
+
+```javascript
+// we are going to pass this function
+//  as PROPS to our AddressForm.jsx
+// Of course the function is going to accept the 'data'
+// So what are we going to do with that 'data
+const next = (data) => {};
+```
+
+#### So what are we going to do with that 'data ?
+
+<br>
+
+##### We are going to **set** it to the shipping data right here:
+
+- Create a new state
+
+```javascript
+// Checkout.jsx
+//
+// All the shipping data(countries,subDivs,options) will pass through this below
+const [shippingData, setShippingData] = useState({});
+// the useState in the beginning is going to be an empty object
+//
+```
+
+<br>
+
+### So once we have the shipping 'data' what we have to do to get that data 'populated'?
+
+- Simply say: **setShippingData(data)**, and then we use that data that we passed here: **const next = (data) => {};**
+
+<br>
+
+```javascript
+const next = (data) => {
+  setShippingData(data);
+};
+```
+
+<br>
+
+## Of course after we 'set the shipping data', we want to move the 'setActiveStep' by one further, so just about the next function, we are going to create 2 new functions:
+
+```javascript
+// what we have right now
+const [activeStep, setActiveStep] = useState(0);
+```
+
+<br>
+
+- One function is going to be call: const **nextStep** and that function is going to  <u>setActiveStep</u> to step + 1
+
+```javascript
+// what we have right now
+const [activeStep, setActiveStep] = useState(0);
 ```

@@ -212,7 +212,10 @@ const AddressForm = ({ checkoutToken }) => {
           <div
             style={{
               display: "flex",
+
               justifyContent: "space-between",
+              flexDirection: "row",
+              alignItems: "center",
               marginTop: "20px",
             }}
           >

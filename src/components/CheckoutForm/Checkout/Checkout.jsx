@@ -21,13 +21,13 @@ const Checkout = ({ cart }) => {
   const [checkoutToken, setCheckoutToken] = useState(null);
   //
   //----------- Here we will create the TOKEN -----
-  //
   const [activeStep, setActiveStep] = useState(0);
   const classes = useStyles();
-  //
-
   //----------- Here we will create the TOKEN -----
   //
+  //
+  // All the shipping data(countries,subDivs,options) will pass through this below
+  const [shippingData, setShippingData] = useState({});
   //
   useEffect(() => {
     if (cart.id) {
@@ -36,7 +36,6 @@ const Checkout = ({ cart }) => {
           const token = await commerce.checkout.generateToken(cart.id, {
             type: "cart",
           });
-
           setCheckoutToken(token);
         } catch {}
       };
@@ -46,6 +45,24 @@ const Checkout = ({ cart }) => {
   }, [cart]);
   //
   //
+  /*
+  
+  
+  
+  */
+  // we are going to pass this function
+  //  as PROPS to our AddressForm.jsx
+  // Of course the function is going to accept the 'data'
+  // So what are we going to do with that 'data
+  const next = (data) => {
+    setShippingData(data);
+  };
+
+  /*
+  
+  
+  
+  */
   //
   let Confirmation = () => <div>Confirmation</div>;
   //
@@ -76,7 +93,11 @@ const Checkout = ({ cart }) => {
           </Stepper>
           {/*  */}
 
-          {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
+          {activeStep === steps.length ? (
+            <Confirmation />
+          ) : (
+            checkoutToken && <Form />
+          )}
         </Paper>
       </main>
     </>
