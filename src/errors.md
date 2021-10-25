@@ -951,6 +951,10 @@ export default FormInput;
 
 ### Today i realized that the mistake also appears when I dont empty the basket with the product i deleted (Obvious) , after that the images worked again, but i then i decided to test it in firefox and the problems is still there
 
+## OPERA ✅
+
+## CHROME ✅
+
 <br>
 <br>
 <br>
