@@ -59,7 +59,7 @@ https://commercejs.com/blog/adding-assets-via-the-chec-api/
 
 <br>
 
-# Countries Subdivisions
+# Countries / Shipping Subdivisions
 
 2:23:02
 
