@@ -4,8 +4,6 @@ import { Paper, Stepper, Step, StepLabel, Typography } from "@material-ui/core";
 //
 import useStyles from "./styles";
 //
-
-//
 import { commerce } from "../../../lib/commerce";
 //
 import AddressForm from "../AddressForm";
@@ -32,25 +30,24 @@ const Checkout = ({ cart }) => {
   //
   //
   useEffect(() => {
-    const generateToken = async () => {
-      try {
-        const token = await commerce.checkout.generateToken(cart.id, {
-          type: "cart",
-        });
-        //
-        //
-        console.log(token);
+    if (cart.id) {
+      const generateToken = async () => {
+        try {
+          const token = await commerce.checkout.generateToken(cart.id, {
+            type: "cart",
+          });
 
-        setCheckoutToken(token);
-      } catch {}
-    };
-    // calling the function, read the readme for this branch
-    generateToken();
+          setCheckoutToken(token);
+        } catch {}
+      };
+
+      generateToken();
+    }
   }, [cart]);
   //
   //
   //
-  const Confirmation = () => <div>Confirmation</div>;
+  let Confirmation = () => <div>Confirmation</div>;
   //
   //
   const Form = () =>
@@ -70,22 +67,16 @@ const Checkout = ({ cart }) => {
           <Typography variant="h4" align="center">
             Checkout
           </Typography>
-
           <Stepper activeStep={activeStep} className={classes.stepper}>
-            {/* stepper 3. */}
-            {steps.map((step) => (
-              <Step key={step}>
-                <StepLabel>{step}</StepLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
           {/*  */}
 
-          {activeStep === steps.length ? (
-            <Confirmation />
-          ) : (
-            checkoutToken && <Form />
-          )}
+          {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
         </Paper>
       </main>
     </>
