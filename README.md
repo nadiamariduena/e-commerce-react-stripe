@@ -50,7 +50,7 @@ https://commercejs.com/blog/adding-assets-via-the-chec-api/
 
 <br>
 
-# 🍍
+# 🍊
 
 [<img src="/src/img/shippingOptions_finallyShowing.gif"/>]()
 
@@ -60,8 +60,38 @@ https://commercejs.com/blog/adding-assets-via-the-chec-api/
 
 <br>
 
-# Countries/ Shipping Options
+# FORM / THE NEXT BUTTON
 
 2:35:23
 
-- At this point the first part of the checkout is fully functional, the next step will be to add the next button and after that we will finally check the **payments details**.
+- At this point the first part of the checkout is fully functional, the next step will be to add the **next button** and after that we will finally check the **payments details**.
+
+<br>
+
+#### Inside the AddressForm.jsx
+
+- This are the only styles we will add in this way, as the teacher didnt want to create another **styles.js** file.
+
+<br>
+
+- I added a margin of 20px, inside the div that is nesting the 2 buttons.
+
+<br>
+
+```javascript
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "20px",
+  }}
+>
+  <Button component={Link} to="/cart" variant="outlined">
+    Back to Cart
+  </Button>
+  {/* blue button */}
+  <Button type="submit" variant="contained" color="primary">
+    Next
+  </Button>
+</div>
+```
