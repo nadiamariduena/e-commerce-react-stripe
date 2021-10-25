@@ -914,7 +914,7 @@ export default FormInput;
 //
 // // AFTER
 // CartItem.jsx
-<CardMedia image={item.media.url} alt={item.name} className={classes.media} />
+<CardMedia  image={item.image.url} alt={item.name} className={classes.media} />
 ```
 
 <br>
@@ -940,7 +940,22 @@ export default FormInput;
 ```
 
 <br>
-<br><hr>
+
+## FIREFOX ISSUE 🔴
+
+##### 3 days after i apparently solved the issue i decided to delete a product again to see if the problem persisted and once again i had the same issue
+
+<br>
+
+- I am still not 100% sure of what causes it because even if i have the correct data in those 2 files I am always encountering this issue when i delete a product
+
+### Today i realized that the mistake also appears when I dont empty the basket with the product i deleted (Obvious) , after that the images worked again, but i then i decided to test it in firefox and the problems is still there
+
+<br>
+<br>
+<br>
+<br>
+<hr>
 <br>
 
 <br>

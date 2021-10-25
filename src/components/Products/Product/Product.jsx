@@ -34,6 +34,7 @@ const Product = ({ product, onAddToCart }) => {
         {/* img */}
         <CardMedia
           className={classes.media}
+          //    image={product.image.url}
           image={product.image.url}
           title={product.name}
         />

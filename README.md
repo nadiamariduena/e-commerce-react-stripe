@@ -236,3 +236,43 @@ const subdivisions = Object.entries(shippingSubdivisions).map(
 ```
 
 [<img src="/src/img/token_subdivisions1-success.gif"/>]()
+
+<br>
+
+### So at this point we have 2 .maps, first we FETCH this:
+
+```javascript
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Country</InputLabel>
+  <Select
+    value={shippingCountry}
+    fullWidth
+    onChange={(e) => setShippingCountry(e.target.value)}
+  >
+    {countries.map((country) => (
+      <MenuItem key={country.id} value={country.id}>
+        {country.label}
+      </MenuItem>
+    ))}
+  </Select>
+</Grid>
+```
+
+### AND ONLY after the 'Shipping Country' (as you see above) changes, only then are we getting the Shipping Subdivision (as you see below):
+
+```javascript
+<Grid item xs={12} sm={6}>
+  <InputLabel>Shipping Subdivision</InputLabel>
+  <Select
+    value={shippingSubdivision}
+    fullWidth
+    onChange={(e) => setShippingSubdivisions(e.target.value)}
+  >
+    {subdivisions.map((subdivision) => (
+      <MenuItem key={subdivision.id} value={subdivision.id}>
+        {subdivision.label}
+      </MenuItem>
+    ))}
+  </Select>
+</Grid>
+```
