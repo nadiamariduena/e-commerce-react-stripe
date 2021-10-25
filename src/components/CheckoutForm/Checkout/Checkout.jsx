@@ -50,12 +50,16 @@ const Checkout = ({ cart }) => {
   
   
   */
+  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
   // we are going to pass this function
   //  as PROPS to our AddressForm.jsx
   // Of course the function is going to accept the 'data'
   // So what are we going to do with that 'data
   const next = (data) => {
     setShippingData(data);
+    //
+    nextStep();
   };
 
   /*
@@ -69,9 +73,9 @@ const Checkout = ({ cart }) => {
   //
   const Form = () =>
     activeStep === 0 ? (
-      <AddressForm checkoutToken={checkoutToken} />
+      <AddressForm checkoutToken={checkoutToken} next={next} />
     ) : (
-      <PaymentForm />
+      <PaymentForm shippingData={shippingData} />
     );
   //
   //
