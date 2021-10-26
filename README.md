@@ -117,9 +117,29 @@ import { Link } from "react-router-dom";
 ```javascript
 // AddressForm.jsx
 //
-
-        <form onSubmit="">
+ <form onSubmit="">
 ```
+
+### So add the following: 🍍
+
+```javascript
+ <form onSubmit={methods.handleSubmit((data) => )}>
+```
+
+<br>
+
+- This **methods.handleSubmit** is going to accept one specific function, more specifically a callback function, that callback function is going to have the **data** for all the **fields populated** right below:
+
+```javascript
+<FormInput name="firstName" label="First name" />
+            <FormInput name="lastName" label="Last name" />
+            <FormInput name="address1" label="Address line 1" />
+            <FormInput name="email" label="Email" />
+            <FormInput name="city" label="City" />
+            <FormInput name="zip" label="Zip / Postal code" />
+```
+
+#### So this special <u>handleSubmit</u> belonging to 'methods' of react-hook-form , is going to have this 'data' object, that is going to contain the info for all this fields above ⬆️
 
 <br>
 
@@ -426,4 +446,15 @@ const [shippingData, setShippingData] = useState({});
 <PaymentForm shippingData={shippingData} />
 ```
 
-## 5. Based on this shippingData={shippingData} , our payment form will be able to finalize the order.
+<br>
+<br>
+
+## 5. Based on this shippingData={shippingData} , our payment <u>Form</u> will be able to finalize the order.
+
+<br>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<br>
