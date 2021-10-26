@@ -92,19 +92,33 @@ https://commercejs.com/docs/api/#versioning
 
 [<img src="/src/img/developers-stripe_api.jpg"/>]()
 
-
 ## 4. grab the API key that says: Publishable key (the code)
 
-#### ⚠️ You should never ever Publish this type of sensitive data (keys) or the data that is inside the .env folder, thats why i decided to make this repository private until  the project was ready, so that i could replace the sensitive data that i already "commited to git".
+#### ⚠️ You should never ever Publish this type of sensitive data (keys) or the data that is inside the .env folder, thats why i decided to make this repository private until the project was ready, so that i could replace the sensitive data that i already "commited to git".
 
-- You can either hide the repo and publish just the code **(without the keys of course)** but by doing that you will lose all the commitments. 
+- You can either hide the repo and publish just the code **(without the keys of course)** but by doing that you will lose all the commitments.
 
 <br>
 
 #### [Should I add .env to .gitignore?](https://salferrarello.com/add-env-to-gitignore/)
 
-- Yes there is a **way to replace it but it s hard**, it s easier to just create a new shop in commercejs and stripe to obtain **new keys** to use in a new repo (**of course you will have to delete the old shop so to make the old keys obsolete**)
+- Yes there is a **way to replace it but it s hard, in case you already pushed in several branches**, it s easier to just create a new shop in commercejs and stripe to obtain **new keys** to use in a new repo (**of course you will have to delete the old shop so to make the old keys obsolete**)
 
 <br>
 <br>
 
+<br>
+
+### Now that we have the key, we are not going to add it here below:
+
+- Because as we said, **its sensitive data**
+
+```javascript
+// PaymentForm.jsx
+//
+//STRIPE 2
+const stripePromise = loadStripe("...");
+```
+<br>
+
+### We are going to add the key inside the .env
