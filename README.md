@@ -76,9 +76,9 @@ https://commercejs.com/docs/api/#versioning
 
 ### Start by importing a couple of things
 
-- 1. Import **react stripe**
-- 2. Import **stripe**
-- 3. import the **styles**
+  1. Import **react stripe**
+  2. Import **stripe**
+  3. import the **styles**
 
 <br>
 
