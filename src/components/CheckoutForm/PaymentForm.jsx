@@ -15,10 +15,10 @@ import Review from "./Review";
 
 //
 //STRIPE 2
-const stripePromise = loadStripe('...');
+const stripePromise = loadStripe("...");
 //
 //
-const PaymentForm = ({ checkoutToken }) => {
+const PaymentForm = ({ checkoutToken, backStep }) => {
   return (
     <>
       <Review checkoutToken={checkoutToken} />
@@ -29,7 +29,36 @@ const PaymentForm = ({ checkoutToken }) => {
         Payment methods
       </Typography>
       {/* STRIPE 3 */}
-      <Elements stripe={stripePromise}> </Elements>
+      <Elements stripe={stripePromise}>
+        <ElementsConsumer>
+          {({ elements, stripe }) => (
+            <form>
+              <CardElement />
+              <br />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginTop: "30px",
+                }}
+              >
+                <Button variant="outlined" onClick={backStep}>
+                  Back
+                </Button>
+                {/*  */}
+                <Button
+                  type="submit"
+                  variant="contained"
+                  disabled={!stripe}
+                  color="primary"
+                >
+                  PAY {checkoutToken.live.subtotal.formatted_with_symbol}
+                </Button>
+              </div>
+            </form>
+          )}
+        </ElementsConsumer>
+      </Elements>
     </>
   );
 };
