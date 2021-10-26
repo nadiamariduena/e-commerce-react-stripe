@@ -35,6 +35,8 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 - 7. checkoutTokenId-part1
 - 8. token-shipping-Countries
 - 9. token-shipping-Subdivisions
+- 10. token-shipping-Options
+- 11. the-next-button-before-payment-form
 
 
 https://commercejs.com/blog/adding-assets-via-the-chec-api/
@@ -46,7 +48,7 @@ https://commercejs.com/blog/adding-assets-via-the-chec-api/
 
 <br>
 
-- This is the continuation of **token-shipping-Options**, is still related to the Checkout button
+- This is the continuation of **the-next-button-before-payment-form**, is still related to the Checkout button
 
 <br>
 
