@@ -76,9 +76,9 @@ https://commercejs.com/docs/api/#versioning
 
 ### Start by importing a couple of things
 
-  1. Import **react stripe**
-  2. Import **stripe**
-  3. import the **styles**
+1. Import **react stripe**
+2. Import **stripe**
+3. import the **styles**
 
 <br>
 
@@ -337,4 +337,123 @@ const Review = ({ checkoutToken }) => {
 };
 
 export default Review;
+```
+
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+# 🍌 🐒
+
+2:49:37
+
+## ADDING the 'back step' button
+
+<br>
+
+[<img src="/src/img/checkout_TOTAL--amount_products.gif"/>]()
+
+### Just below the products quantity,total, shipping info etc block, we will be adding the <u>STRIPE</u> elements for the payment
+
+<br>
+
+#### Lets continue: go to the <u>PaymentForm.jsx</u> and add the following:
+
+- The **< Divider />** is going to divide the **Review component** data and the **Payment details** that we will be adding now.
+
+<br>
+
+```javascript
+const PaymentForm = ({ checkoutToken }) => {
+  return (
+    <>
+      <Review checkoutToken={checkoutToken} />
+      // ----------------- DIVIDER
+      <Divider />
+      // ----------------- DIVIDER
+      <Typography variant="h6" gutterBottom style={{ margin: "20px 0" }}>
+        Payment methods
+      </Typography>
+    </>
+  );
+};
+
+export default PaymentForm;
+```
+
+<br>
+<br>
+<br>
+
+# STRIPE 🍨
+
+**< Elements >** come from **Stripe**, these are pre done elements that stripe
+does for us.
+
+<br>
+
+- Inside the < Element we are going to pass the STRIPE property: **stripe={stripePromise}** (we havent created it yet)
+
+```javascript
+const PaymentForm = ({ checkoutToken }) => {
+  return (
+    <>
+      <Review checkoutToken={checkoutToken} />
+      {/*     Divider between products and payment details           */}
+      <Divider />
+      {/*     Divider between products and payment details           */}
+      <Typography variant="h6" gutterBottom style={{ margin: "20px 0" }}>
+        Payment methods
+      </Typography>
+      {/*  */}
+      <Elements>{/*         STRIPE  */}</Elements>
+    </>
+  );
+};
+
+export default PaymentForm;
+```
+
+<br>
+
+- Inside the < Element we are going to pass the STRIPE property: **stripe={stripePromise}** (we havent created it yet)
+
+```javascript
+<Elements stripe={stripePromise}> </Elements>
+```
+
+<br>
+
+- SO lets create the **stripePromise**, just above the **const PaymentFrom**
+
+<br>
+
+- the **loadStripe('...');** is going to contain the public key from the **stripe store**
+
+- We will need to **create an stripe account** in order to get the key, but lets concentrate in the things we still have to do inside the **PaymentForm.jsx**
+
+<br>
+
+```javascript
+//STRIPE 1
+import { loadStripe } from "@stripe/stripe-js";
+//
+//
+//STRIPE 2
+const stripePromise = loadStripe('...');
+//
+//
+const PaymentForm = ({ checkoutToken }) => {
+  return (
+          {/* STRIPE 3 */}
+      <Elements stripe={stripePromise}> </Elements>
+    </>
+```
+
+### NEXT: Inside the PaymentForm.jsx add the following:
+
+```javascript
+
 ```
