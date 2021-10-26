@@ -119,6 +119,172 @@ https://commercejs.com/docs/api/#versioning
 //STRIPE 2
 const stripePromise = loadStripe("...");
 ```
+
 <br>
 
 ### We are going to add the key inside the .env
+
+```javascript
+// what we already have / related to commercejs
+REACT_APP_CHEC_PUBLIC_KEY = pk_veryLongcodeeeee;
+// related to stripe
+REACT_APP_STRIPE_PUBLIC_KEY = pk_verylongcodeee;
+```
+
+### After you do that
+
+- CLOSE THE TERMINAL /strg+c
+- and relaunch it /npm start
+
+### Now copy the variable related to stripes
+
+> REACT_APP_STRIPE_PUBLIC_KEY
+
+### And paste it here:
+
+```javascript
+// replace this
+//
+//STRIPE 2
+const stripePromise = loadStripe("...");
+//
+// for this
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+```
+
+<br>
+
+### Now that we connected stripe to our project, we can finally create that handleSubmit function
+
+<br>
+
+## 🌞
+
+#### This is going to be the finally function that finalizes the ORDER
+
+```javascript
+//
+const PaymentForm = ({ checkoutToken, backStep }) => {
+  //
+  //
+  const handleSubmit = () => {
+
+
+  };
+
+  return (
+```
+
+<br>
+
+#### But where are we calling this function?
+
+- We are calling it **inside the form**
+- inside the form function handleSubmit={e, 1, 2}, we need to **pass 3 parameters**
+
+```javascript
+<form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
+```
+
+<br>
+
+### Pass them also inside the matrix function handleSubmit
+
+- He added event instead of e, lets see if this causes issues :)
+
+```javascript
+const PaymentForm = ({ checkoutToken, backStep }) => {
+  //
+  //
+  const handleSubmit = (event, elements, stripe) => {
+
+
+  };
+
+  return (
+```
+
+<br>
+
+### add the event.preventDefault();
+
+- This is going to make sure our website **dont refresh after we click the button**
+
+<br>
+
+#### NEXT: lets add some error handling
+
+```javascript
+const PaymentForm = ({ checkoutToken, backStep }) => {
+  //
+  //
+  const handleSubmit = (event, elements, stripe) => {
+    event.preventDefault();
+    //
+    //
+    // If no stripe or no elements, then return, we are going outside and not doing anything
+    // Stripe cannot do anything if we dont have this 2 things
+    if (!stripe || !elements) return; //ERROR HANDLING
+    //
+    // the cardElement is coming from @stripe/react-stripe-js on top in the imports
+    const cardElement = elements.getElement(CardElement);
+    //
+  };
+```
+
+<br>
+<br>
+
+## Now we are going to use 'stripes' API to create a payment method
+
+- the **card: cardElement** variable makes reference to the card we just created: const cardElement = elements.getElement(CardElement);
+
+```javascript
+const PaymentForm = ({ checkoutToken, backStep }) => {
+  //
+  //
+  const handleSubmit = async (event, elements, stripe) => {
+    event.preventDefault();
+    //
+    //
+    // If no stripe or no elements, then return, we are going outside and not doing anything
+    // Stripe cannot do anything if we dont have this 2 things
+    if (!stripe || !elements) return;
+    //
+    // the cardElement is coming from @stripe/react-stripe-js on top in the imports
+    const cardElement = elements.getElement(CardElement);
+    //
+    //
+// Now we are going to use 'stripes' API to create a payment method
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement,
+    });
+    //
+    //
+  };
+```
+
+### At this point you will have an error, and it s due to the async that we forgot to add here:
+
+> const handleSubmit = async (event, elements, stripe) => {
+
+<br>
+<br>
+
+## Now that we have the error and the payment method:
+
+```javascript
+// error
+if (!stripe || !elements) return;
+//
+// payment method
+const { error, paymentMethod } = await stripe.createPaymentMethod({
+  type: "card",
+  card: cardElement, //this is linked to the line above
+});
+```
+
+<br>
+
+### We can do an 'if else 'check
