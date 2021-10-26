@@ -617,6 +617,7 @@ const Form = () =>
 
 <br>
 
+# All set up is ready to require the stripe key for payment
 
 [<img src="/src/img/button-PAY-create-account-stripe-for-this-to-work.gif"/>]()
 
@@ -692,4 +693,22 @@ const PaymentForm = ({ checkoutToken, backStep }) => {
 };
 
 export default PaymentForm;
+```
+
+### Checkout.jsx
+
+```javascript
+//
+const Form = () =>
+  activeStep === 0 ? (
+    <AddressForm checkoutToken={checkoutToken} next={next} />
+  ) : (
+    <PaymentForm
+      shippingData={shippingData}
+      checkoutToken={checkoutToken}
+      backStep={backStep}
+    />
+  );
+//
+//
 ```
