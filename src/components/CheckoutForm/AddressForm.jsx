@@ -62,7 +62,7 @@ const AddressForm = ({ checkoutToken, next }) => {
     label: `${sO.description} ~ (${sO.price.formatted_with_symbol}) `,
   }));
   //
-  console.log(options);
+  // console.log(options);
   //
   //-------------
   //

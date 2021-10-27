@@ -95,31 +95,19 @@ const App = () => {
 
     setCart(newCart);
   };
-  //
 
-  //                  THE ORDER
-  //    this function is related to the stripes inside
-  //            the PaymentForm.jsx
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
-    // This function is going to have a try and catch block (if something goes wrong)
     try {
-      // This is the order, so once we have the order, we want to set this up to the sate
-      const incomingOrder = await commerce.checkout.capture(
-        checkoutTokenId,
-        newOrder
-      );
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
 
-      //
       setOrder(incomingOrder);
-      // Calling the refresh order
+
       refreshCart();
-      //
     } catch (error) {
       setErrorMessage(error.data.error.message);
     }
   };
-  //
-  //
+
   //
   //
   //--------------------Stripe--------------------
@@ -138,7 +126,7 @@ const App = () => {
         <Navbar totalItems={cart.total_items} />
         <Switch>
           <Route exact path="/">
-            <Products products={products} onAddToCart={handleAddToCart} />
+            <Products products={products} onAddToCart={handleAddToCart}  />
           </Route>
           {/* ----- */}
           <Route exact path="/cart">

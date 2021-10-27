@@ -21,15 +21,14 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 //
 const PaymentForm = ({
   checkoutToken,
-  backStep,
   nextStep,
+  backStep,
   shippingData,
   onCaptureCheckout,
 }) => {
-  //
-  //
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
+
     //
     //
     // If no stripe or no elements, then return, we are going outside and not doing anything
