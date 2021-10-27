@@ -15,7 +15,7 @@ const steps = ["Shipping address", "Payment details"];
 //
 //
 
-const Checkout = ({ cart }) => {
+const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   //
   //----------- new state related to the token ---
   const [checkoutToken, setCheckoutToken] = useState(null);
@@ -78,7 +78,9 @@ const Checkout = ({ cart }) => {
       <PaymentForm
         shippingData={shippingData}
         checkoutToken={checkoutToken}
+        nextStep={nextStep}
         backStep={backStep}
+        onCaptureCheckout={onCaptureCheckout}
       />
     );
   //

@@ -11,11 +11,16 @@ const App = () => {
   //
   const [products, setProducts] = useState([]);
   //
-  //
-  //
   const [cart, setCart] = useState([]);
   //  // By default that cart is going to be **empty**, because in the beginning there s no products in our basket/cart
   //
+  //
+  // -------------- stripes -----------------
+  // related to the final phase of the project/
+  // it related to the stripes and the conclusion of the order
+  const [order, setOrder] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+  // -------------- stripes -----------------
   //
   // so what we want do here? we want to fetch something
   // - we want to fetch a response* from await*
@@ -52,14 +57,11 @@ const App = () => {
     // So we are going to use this 2 params:
     // (productId, quantity) to require data to the API commercejs
 
-    //
     // update our cart **
     setCart(cart);
-    //
-    //
   };
 
-  //--------------------------------------
+  //
   // Handle Update Cart Quantity
   const handleUpdateCartQty = async (productId, quantity) => {
     const { cart } = await commerce.cart.update(productId, { quantity });
@@ -71,16 +73,12 @@ const App = () => {
     //
   };
   //
-  //
   // HANDLE REMOVE CART
   const handleRemoveFromCart = async (lineItemId) => {
     const response = await commerce.cart.remove(lineItemId);
 
     setCart(response.cart);
   };
-
-  //
-  //
   // HANDLE EMPTY CART
   // this function doesnt need any params, as it just removes the cart
   const handleEmptyCart = async () => {
@@ -88,7 +86,43 @@ const App = () => {
 
     setCart(response.cart);
   };
-  //--------------------------------------
+  //--------------------Stripe--------------------
+  //
+  //Once the order is concluded we want to refresh the cart and remove the items
+  //
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+
+    setCart(newCart);
+  };
+  //
+
+  //                  THE ORDER
+  //    this function is related to the stripes inside
+  //            the PaymentForm.jsx
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    // This function is going to have a try and catch block (if something goes wrong)
+    try {
+      // This is the order, so once we have the order, we want to set this up to the sate
+      const incomingOrder = await commerce.checkout.capture(
+        checkoutTokenId,
+        newOrder
+      );
+
+      //
+      setOrder(incomingOrder);
+      // Calling the refresh order
+      refreshCart();
+      //
+    } catch (error) {
+      setErrorMessage(error.data.error.message);
+    }
+  };
+  //
+  //
+  //
+  //
+  //--------------------Stripe--------------------
 
   useEffect(() => {
     fetchProducts();
@@ -117,7 +151,12 @@ const App = () => {
           </Route>
           {/* CHECKOUT */}
           <Route exact path="/checkout">
-            <Checkout cart={cart} />
+            <Checkout
+              cart={cart}
+              order={order}
+              onCaptureCheckout={handleCaptureCheckout}
+              error={errorMessage}
+            />
           </Route>
         </Switch>
       </div>
