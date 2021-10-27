@@ -786,7 +786,63 @@ const Form = () =>
 
 - But you can also mimic a credit card **in order** to get the confirmation, you can see it in the image below 
 
+
+>Payment Intents API
+
+When using the Payment Intents API with Stripe’s client libraries and SDKs, ensure that:
+
+Authentication flows are triggered when required (use the regulatory test card numbers and PaymentMethods.)
+No authentication (default U.S. card): **4242 4242 4242 4242.**
+
+<br>
+
+**Authentication required: 4000 0027 6000 3184.**
+
+##### [READ MORE ](https://stripe.com/docs/testing)
+
+<br>
+
+## TEST your integration / all types of cards
+
+### [Learn about the different methods to test your integration before going live.](https://stripe.com/docs/testing#regulatory-cards)
+
+
 <br>
 <br>
 
 [<img src="/src/img/stripe2ready.gif"/>]()
+
+<br>
+<br>
+<br>
+<br>
+
+ ### YES we got a confirmation but it didnt actually work :)
+
+
+[<img src="/src/img/oneLastThing.gif"/>]()
+
+<br>
+<br>
+
+#### - I notice that **the cart did not refresh/empty**, after I concluded the order and received the confirmation in the browser
+
+#### So to be sure, I inspected the console and I saw this:
+
+## Error '422' 🔴
+
+```javascript
+{code: 'incomplete_number', type: 'validation_error', message: 'Your card number is incomplete.'}code: "incomplete_number"message: "Your card number is incomplete."type: "validation_error"[[Prototype]]: Object
+//
+//
+xhr.js:187 POST 422
+//
+ 🚫 Validation/missing fields
+index.js:1 payment.gateway: The selected payment.gateway is invalid.
+```
+<br>
+
+## The solution: :cake: 
+**Check the file errors in this repository**
+
+The errors file of the **master** branch (not in this branch **stripe-2-order-confirmation-done**)
