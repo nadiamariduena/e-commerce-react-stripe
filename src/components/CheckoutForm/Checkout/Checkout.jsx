@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Paper, Stepper, Step, StepLabel, Typography } from "@material-ui/core";
+import {
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
+  CircularProgress,
+  CssBaseline,
+  Divider,
+  Button,
+} from "@material-ui/core";
 //
+import { Link } from "react-router-dom";
+
 //
 import useStyles from "./styles";
 //
@@ -68,7 +80,49 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   
   */
   //
-  let Confirmation = () => <div>Confirmation</div>;
+  let Confirmation = () =>
+    order.customer ? (
+      <>
+        <div>
+          <Typography variant="h5">
+            Thank you for your purchase, {order.customer.firstname}{" "}
+            {order.customer.lastname}!
+          </Typography>
+
+          <Divider className={classes.divider} />
+          <Typography variant="subtitle2">
+            Order ref: {order.customer_reference}
+          </Typography>
+        </div>
+        <br />
+        <Button component={Link} variant="outlined" type="button" to="/">
+          Back to home
+        </Button>
+      </>
+    ) : (
+      <div className={classes.spinner}>
+
+        <CircularProgress />
+      </div>
+    );
+  //
+  //
+
+  // Related to the errors, in case something
+  // goes wrong with the order confirmation
+  //
+  //
+  if (error) {
+    <>
+      <Typography variant="h5">Error: {error}</Typography>
+      <br />
+      <Button component={Link} variant="outlined" type="button" to="/">
+        Back to home
+      </Button>
+    </>;
+  }
+
+  //
   //
   //
   const Form = () =>

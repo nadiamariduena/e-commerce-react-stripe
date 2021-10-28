@@ -79,7 +79,7 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
-# CHECKOUT / STRIPE 2: Confirmation styling
+# CHECKOUT / STRIPE 2: Confirmation styling and spinner
 
 3:11:23
 
@@ -89,8 +89,180 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 ### In this section we will be handling the styling of the "Confirmation" Card
 
 <br>
+
+<br>
 <br>
  
-## ⚠️ One thing before we continue
+ #### Checkout.jsx:  So what we have so far:
 
- 
+```javascript
+//
+const Confirmation = () => <div>Confirmation</div>;
+//
+//
+```
+
+<br>
+
+### Now add the following, this will only be shown if the order is FULFILLED!!
+
+- Add the CircularProgress, CssBaseline, Divider, Button to the import
+
+```javascript
+import {
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Typography,
+  CircularProgress,
+  CssBaseline,
+  Divider,
+  Button,
+} from "@material-ui/core";
+
+//
+import { Link } from "react-router-dom";
+//
+//
+//
+const Confirmation = () => (
+  <>
+    <div>
+      <Typography variant="h5">
+        Thank you for your order, firstName lastName
+      </Typography>
+      // ______________________________________ //
+      <Divider className={classes.divider} />
+      // ______________________________________ //
+      <Typography variant="subtitle2">
+        Order ref: the reference that will go here needs to be dynamic
+      </Typography>
+    </div>
+    <br />
+    // ______________________________________ //
+    <Button component={Link} variant="outlined" type="button" to="/">
+      Back to home
+    </Button>
+  </>
+);
+```
+
+<br>
+
+# 🚧
+
+### So to only show the confirmation we will have to add an if statement, using the <u>ternary operators **? and :**</u>
+
+##### [Make Your Code Cleaner with JavaScript Ternary Operator](https://www.javascripttutorial.net/javascript-ternary-operator/)
+
+<br>
+
+- So we will say if the order exists we will show whatever is after the **?** and inside the **()** parenthesis
+
+<br>
+
+- But if there is no **order/purchase** because for some reason **its taking too much time to load etc**, we will show whatever is after the **:** and again inside the **()** parenthesis
+
+<br>
+
+## So If there is no order 'yet', we will add an spinner, because of course we dont want our client to stare at a blank screen :) 🧱
+
+> So we are going to give him **something to look at**.
+
+- We will have to IMPORT the **spinner from material Ui** (the spinner is a loader indicator)
+
+<br>
+
+#### [What is a spinner](https://www.w3schools.com/bootstrap4/bootstrap_spinners.asp)
+
+> **What is a spinner in react?**
+> Spinner Component provides a way to show the **loading effect**. We can use it to show the loading state, whenever required in our application. We can use the following approach in ReactJS to use the react-bootstrap Spinner Component. Spinner Props: animation: It is used to define the type of animation for the spinner.
+
+<br>
+
+```javascript
+    ) : (
+      <div className={classes.spinner}>
+        <CircularProgress />
+      </div>
+    );
+```
+
+<br>
+
+#### But you have to be conscious that not all can proceed in a correct way, sometimes there are going to be errors and we have to be prepared for it.
+
+<br>
+
+### So lets handle the possible errors
+
+- Lets change the following
+
+```javascript
+// from this
+const Confirmation = () =>
+//
+//
+// to this
+let Confirmation = () =>
+
+```
+
+<br>
+
+### Remember, we already have the error function inside the App.js, so we only need to use them here as they are already passed as props on the top of the Checkout.jsx
+
+```javascript
+const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
+```
+
+<br>
+
+#### Add the error handling under the spinner (not inside the if statement)
+
+```javascript
+// Related to the errors, in case something
+// goes wrong with the order confirmation
+//
+//
+if (error) {
+  Confirmation = () => (
+    <>
+      <Typography variant="h5">Error: {error}</Typography>
+      <br />
+      <Button component={Link} variant="outlined" type="button" to="/">
+        Back to home
+      </Button>
+    </>
+  );
+}
+```
+
+### Now lets replace this:
+
+```javascript
+// REPLACE THIS:
+<Typography variant="h5">
+Thank you for your order, firstName lastName
+</Typography>
+//
+<Typography variant="subtitle2">
+Order ref: the reference that will go here needs to be dynamic
+</Typography>
+//
+//
+//
+// FOR THIS:
+  <Typography variant="h5">Thank you for your purchase, {order.customer.firstname} {order.customer.lastname}!</Typography>
+  //
+  //
+   <Typography variant="subtitle2">Order ref: {order.customer_reference}</Typography>
+```
+
+<br>
+<br>
+
+### The spinner is not visible because my connection is too fast, but we can console.log it to see if it is there.
+
+[<img src="/src/img/confirmation-card__and_spinner___success.gif"/>]()
