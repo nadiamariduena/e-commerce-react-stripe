@@ -1,14 +1,23 @@
-### Commun errors
+# COMMON ERRORS 🍦
 
-##### Most of errors are related to the styles
-
-- I got this error when i just started the Cart,jsx, when passing the **PROPS** cart to create the dynamic button.
+##### In the Beginning errors are related to the styles
 
 <br>
- 
-## 🔴 err 1.
 
-#### At this point we have this error
+# ERROR 1. 🔴
+
+<br>
+<br>
+
+##### I got this error when i just started to populate the Cart.jsx, to be exact, when passing the _PROPS_ cart to create the dynamic button.
+
+```javascript
+Failed to compile.
+
+./src/components/Cart/Cart.jsx
+Module not found: Can't resolve '*.module.css' in '
+
+```
 
 - And its because, before importing the Cart in the App.js **we were using the line we hid**, this line contained **styles**, and from the moment we added the new one, react realized it no longer had styles
 
@@ -42,11 +51,7 @@ Module not found: Can't resolve '*.module.css' in '
 
 ```
 
-<br>
-<br>
-<br>
-
-## SOLUTION
+# SOLUTION
 
 - **CREATE A STYLE FILE** styles.js and fill it with this:
 
@@ -84,7 +89,7 @@ export default makeStyles((theme) => ({
 
 <br>
 
-## Now export the styles data, and REQUIRE them inside the Cart.jsx
+### Now export the styles data, and REQUIRE them inside the Cart.jsx
 
 ```javascript
 // Cart.jsx
@@ -106,7 +111,7 @@ const classes = useStyles();
 <hr>
 <br>
 
-## ERROR 2. 🔴
+# ERROR 2. 🔴
 
 ```javascript
 TypeError: Cannot read property 'length' of undefined
@@ -457,11 +462,15 @@ export default Cart;
 
 <br>
 <br>
+<br>
+<br>
 <hr>
 <br>
-<br>
 
-## 🔴 ERROR 3.
+# ERROR 3. 🔴
+
+<br>
+<br>
 
 1:37:33
 
@@ -722,10 +731,13 @@ export default Cart;
 <br>
 <br>
 <br>
-<br>
+<hr>
 <br>
 
-# 🔴 Error 4.
+# ERROR 4. 🔴
+
+<br>
+<br>
 
 1:57:00
 
@@ -840,12 +852,20 @@ export default FormInput;
 <br>
 <br>
 <br>
+<br>
+<hr>
+<br>
 
-## 🔴 Error 5. "Image issue after deleting product in commercejs"
+# ERROR 5. 🔴
 
-- Problem solved in chrome but persist in firefox
+<br>
+<br>
 
-#### This error appeared when i was trying to solve the _token_ error, in which i was trying to figure out why i couldnt see the country options.
+## "Image issue after deleting product in commercejs"
+
+> This error appeared when i was trying to solve the _token_ error, in which i was trying to figure out why i couldnt see the country options.
+
+<br>
 
 ```javascript
  25 | {/*  */}
@@ -859,11 +879,15 @@ export default FormInput;
 
 <br>
 
-- After reading the solutions (apparently related to shipping options coming from the commercejs), i decided to delete the products and repeat the part of the tutorial **in the beginning**, when we just started adding the products to commercejs.
+- After reading about the possible solutions (apparently related to shipping options coming from the commercejs), i decided to delete the products and repeat the part of the tutorial **in the beginning**, when we just started adding the products to commercejs.
 
 <br>
 
-- **So after deleting and creating new products** to test the shipping issue, i got this new error, **i didnt understand why?** because it has been working really well with the following:
+## It just got worse!!!
+
+<br>
+
+- **So after deleting and creating new products** to test the shipping issue, i got this new error, **i didn't understand why?** because it has been working really well with the following:
 
 ```javascript
 // BEFORE
@@ -890,13 +914,13 @@ export default FormInput;
 <br>
 <br>
 
-#### After testing different things, i remembered that in the beginning i had to play with 3 words to see the image: media, src, and url, but importantly, i need that whatever i put it had to match the 2 files:
+#### After testing different things, i remembered that in the beginning i had to play with 3 words to see the image: media, src, and url, but importantly, i knew that whatever i put, it had to match the 2 files:
 
 > **Product.jsx** and **CartItem.jsx**
 
 <br>
 
-- The Whole issue was strange, because the whole project has been working very well since the beginning, and just when i deleted the products from the commercejs dashboard, it caused the mess, but i am glad it happened now i know something more :)
+- The Whole issue was confusing, because the whole project has been working very well since the beginning, and just when i deleted the products from the commercejs dashboard, it caused the chaos, but i am glad it happened, now i know something new :)
 
 [<img src="/src/img/error-after-delete-products-commercejs-2.gif"/>]()
 
@@ -907,6 +931,8 @@ export default FormInput;
 # 🍌
 
 # SOLUTION
+
+- The reason, its because media is deprecated, [check all the deprecated elements](https://commercejs.com/docs/api/#versioning)
 
 ```javascript
 // BEFORE
@@ -919,7 +945,7 @@ export default FormInput;
 
 <br>
 
-#### and in _Product.jsx_
+## and in _Product.jsx_
 
 <br>
 
@@ -943,11 +969,11 @@ export default FormInput;
 
 ## FIREFOX ISSUE 🔴
 
-##### 3 days after i apparently solved the issue i decided to delete a product again to see if the problem persisted and once again i had the same issue
+### Three days after i apparently solved the issue i decided to delete a product again to see if the problem persisted and once again i had the same issue
 
 <br>
 
-- I am still not 100% sure of what causes it because even if i have the correct data in those 2 files I am always encountering this issue when i delete a product
+- I am still not 100% sure of what causes it, because even if i have the correct data in those 2 files, I am always encountering this issue when i delete a product.
 
 ### Today i realized that the mistake also appears when I dont empty the basket with the product i deleted (Obvious) , after that the images worked again, but i then i decided to test it in firefox and the problems is still there
 
@@ -1470,3 +1496,10 @@ REACT_APP_STRIPE_PUBLIC_KEY = pk_test_;
 > **How I can start processing real payments?**
 
 Once you have tested processing payments using either the test gateway or by using an integrated payment gateway in sandbox mode (if available), you can go live by using your public live keys and disabling the test gateway.
+
+<br>
+<br>
+
+## ALSO:
+
+#### [How to Fix '422 Unprocessable Entity' when sending a POST request to Redmine API?](https://stackoverflow.com/questions/56711503/how-to-fix-422-unprocessable-entity-when-sending-a-post-request-to-redmine-api)

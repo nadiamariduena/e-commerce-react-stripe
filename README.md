@@ -133,6 +133,18 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <hr>
 <br>
 
+### DEBUGGING:
+
+- Interesting links that helped me to debug the last warnings of the project
+
+[Cleanup memory leaks on an Unmounted Component in React Hooks](https://stackoverflow.com/questions/59780268/cleanup-memory-leaks-on-an-unmounted-component-in-react-hooks)
+
+[Can different cleanups be done conditionally in useEffect?](https://stackoverflow.com/questions/59890480/can-different-cleanups-be-done-conditionally-in-useeffect)
+
+<br>
+<hr>
+<br>
+
 ### CREDITS IMAGES
 
 - Oladimeji Oduns
