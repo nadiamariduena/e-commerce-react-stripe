@@ -97,37 +97,46 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <br>
 
 1. [default-project](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/default-project)
-2. navbar-basic-and-default-commercejs-setup []()
-3. fecthing-data-from-commercejs
-4. creating-products-with-commercejs-adding-dynamic-button-add-to-basket
-5. Cart.CartItem-buttons-increase-decrease-remove
-6. buttons-increase-decrease-remove-emptyCart-allready
-7. checkoutTokenId-part1
-8. token-shipping-Countries
-9. token-shipping-Subdivisions
-10. token-shipping-Options
-11. the-next-button-before-payment-form
-12. stripe-1
-13. stripe-2-order-confirmation-done
-14. confirmation-styling-and-spinner-end/README.md
-
-### [All deprecated elements:](https://commercejs.com/docs/api/#versioning)
+2. [navbar-basic-and-default-commercejs-setup](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/navbar-basic-and-default-commercejs-setup)
+3. [fecthing-data-from-commercejs ](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/fecthing-data-from-commercejs)
+4. [creating-products-with-commercejs-adding-dynamic-button-add-to-basket](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/creating-products-with-commercejs-adding-dynamic-button-add-to-basket)
+5. [Cart.CartItem-buttons-increase-decrease-remove](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/Cart.CartItem-buttons-increase-decrease-remove)
+6. [buttons-increase-decrease-remove-emptyCart-allready](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/buttons-increase-decrease-remove-emptyCart-allready)
+7. [checkoutTokenId-part1](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/checkoutTokenId-part1)
+8. [token-shipping-Countries](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/token-shipping-Countries)
+9. [token-shipping-Subdivisions](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/token-shipping-Subdivisions)
+10. [token-shipping-Options](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/token-shipping-Options)
+11. [the-next-button-before-payment-form](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/the-next-button-before-payment-form)
+12. [stripe-1](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/stripe-1)
+13. [stripe-2-order-confirmation-done ](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/stripe-2-order-confirmation-done)
+14. [confirmation-styling-and-spinner-end](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/confirmation-styling-and-spinner-end)
 
 <br>
 <hr>
 <br>
 
-### Notes:
+### 📓 NOTES:
 
-#### [NOTES : interesting](./src/Interesting.md)
+#### [interesting](./src/Interesting.md)
 
- <br>
- <br>
+#### [commun errors](./src/errors.md)
+
+#### [only stripe](./src/onlyStripe.md)
+
+#### [security](./src/security.md)
+
+#### [unrelated](./src/unrelated.md)
+
+#### [All deprecated elements:](https://commercejs.com/docs/api/#versioning)
+
+<br>
+<hr>
+<br>
 
 ### CREDITS IMAGES
 
-Oladimeji Oduns
-Aiony Haust
-Linda Prebreza
-Valeriia Miller
-Venus-HD-Make-up-and-Perfume
+- Oladimeji Oduns
+- Aiony Haust
+- Linda Prebreza
+- Valeriia Miller
+- Venus-HD-Make-up-and-Perfume
