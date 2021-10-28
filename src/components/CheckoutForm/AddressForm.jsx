@@ -13,8 +13,6 @@ import { Link } from "react-router-dom";
 
 //
 import { commerce } from "../../lib/commerce";
-
-//
 import FormInput from "./FormInput";
 //
 //
@@ -120,7 +118,11 @@ const AddressForm = ({ checkoutToken, next }) => {
   // Countries
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
-  }, []);
+    // This worked for me
+    return () => {
+      setShippingCountries({}); // This worked for me
+    };
+  }, [checkoutToken.id]);
 
   //
   //
@@ -138,7 +140,7 @@ const AddressForm = ({ checkoutToken, next }) => {
         shippingCountry,
         shippingSubdivision
       );
-  }, [shippingSubdivision]);
+  }, [shippingSubdivision, checkoutToken.id, shippingCountry]);
 
   //
   //

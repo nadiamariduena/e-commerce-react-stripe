@@ -11,7 +11,7 @@ import {
   Button,
 } from "@material-ui/core";
 //
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 //
 import useStyles from "./styles";
@@ -34,13 +34,59 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   //
   //----------- Here we will create the TOKEN -----
   const [activeStep, setActiveStep] = useState(0);
-  const classes = useStyles();
+
   //----------- Here we will create the TOKEN -----
   //
+
   //
   // All the shipping data(countries,subDivs,options) will pass through this below
   const [shippingData, setShippingData] = useState({});
   //
+  // related to the time out Spinner, which is
+  // connected to the function that nests the 'history'
+  const [isFinished, setIsFinished] = useState(false);
+  //
+  //
+  const classes = useStyles();
+  // related to the cart error at the very end of the project
+  const history = useHistory();
+  /*
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  */
+  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+
+  /*
+  
+    useEffect(() => {
+    if (cart.id) {
+      const generateToken = async () => {
+        try {
+          const token = await commerce.checkout.generateToken(cart.id, {
+            type: "cart",
+          });
+
+          setCheckoutToken(token);
+        } catch {
+          if (activeStep !== steps.length) history.push("/");
+        }
+      };
+
+      generateToken();
+    }
+  }, [cart]);
+  
+  
+  */
+
   useEffect(() => {
     if (cart.id) {
       const generateToken = async () => {
@@ -49,12 +95,17 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
             type: "cart",
           });
           setCheckoutToken(token);
-        } catch {}
+        } catch (error) {
+          // So if there is an error,
+          // we push you back to the home page
+          // https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
+          if (activeStep !== steps.length) history.push("/");
+        }
       };
 
       generateToken();
     }
-  }, [cart]);
+  }, [cart, activeStep, history]);
   //
   //
   /*
@@ -62,8 +113,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   
   
   */
-  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+
   // we are going to pass this function
   //  as PROPS to our AddressForm.jsx
   // Of course the function is going to accept the 'data'
@@ -72,6 +122,17 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     setShippingData(data);
     //
     nextStep();
+  };
+  /*
+  
+  
+  
+  */
+
+  const timeout = () => {
+    setTimeout(() => {
+      setIsFinished(true);
+    }, 3000);
   };
 
   /*
@@ -99,9 +160,20 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
           Back to home
         </Button>
       </>
+    ) : isFinished ? (
+      <>
+        <div>
+          <Typography variant="h5">Thank you for your purchase,</Typography>
+
+          <Divider className={classes.divider} />
+        </div>
+        <br />
+        <Button component={Link} variant="outlined" type="button" to="/">
+          Back to home
+        </Button>
+      </>
     ) : (
       <div className={classes.spinner}>
-
         <CircularProgress />
       </div>
     );
@@ -135,6 +207,8 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
         nextStep={nextStep}
         backStep={backStep}
         onCaptureCheckout={onCaptureCheckout}
+        // spinner props to be send to PaymentForm.jsx
+        timeout={timeout}
       />
     );
   //
@@ -142,6 +216,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   //
   return (
     <>
+      <CssBaseline />
       <div className={classes.toolbar} />
       <main className={classes.layout}>
         <Paper className={classes.paper}>

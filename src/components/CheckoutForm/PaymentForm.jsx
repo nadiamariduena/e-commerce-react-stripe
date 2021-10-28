@@ -25,6 +25,7 @@ const PaymentForm = ({
   backStep,
   shippingData,
   onCaptureCheckout,
+  timeout,
 }) => {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
@@ -48,7 +49,7 @@ const PaymentForm = ({
     //
     // so if we have the error, we are going to console.log it
     if (error) {
-      console.log(error);
+      // console.log(error);
     } else {
       // else, if we dont have the error
       // we are going to create a final object containing all the data
@@ -95,6 +96,16 @@ const PaymentForm = ({
       // The commerce Api is going to be call inside the App.js
       // So inside the App.js we have to create that function to fullfil an order
       onCaptureCheckout(checkoutToken.id, orderData);
+      //
+      //
+      // this is related to the spinner function inside the Checkout.jsx
+      // this spinner function will be called here, and the reason for that
+      // is because 'here we are practically done' with the checkout
+      timeout();
+      // this calling will make
+      //  that the spinner stops after the time is done
+      //
+      //
       //
       //
       //7 so once we conclude the ORDER, we want to move to the next step
