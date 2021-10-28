@@ -39,6 +39,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 - 11. the-next-button-before-payment-form
 - 12. stripe-1
 - 13. stripe-2-order-confirmation-done
+- 14. stripe-2-confirmation-styling-and-spinner
 
 https://commercejs.com/blog/adding-assets-via-the-chec-api/
 
