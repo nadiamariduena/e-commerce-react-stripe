@@ -71,7 +71,7 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 # 🌵
 
-[<img src="/src/img/stripe2ready.gif"/>]()
+ 
 
 <br>
 <br>
