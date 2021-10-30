@@ -122,7 +122,9 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 #### You will not find the .env file with the respective credentials (related to commercejs and stripe) to this repository
 - Read more inside the  [security](./src/security.md)
 
+<br>
 
+ 
 
 <nr>
 <br>
@@ -146,6 +148,10 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 ### DEBUGGING:
 
 - Interesting links that helped me to debug the last warnings of the project
+
+- Read more inside the  [debugging](./src/debugging.md)
+
+<br>
 
 [Cleanup memory leaks on an Unmounted Component in React Hooks](https://stackoverflow.com/questions/59780268/cleanup-memory-leaks-on-an-unmounted-component-in-react-hooks)
 
