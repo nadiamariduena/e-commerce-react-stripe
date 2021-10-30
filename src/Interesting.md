@@ -628,3 +628,86 @@ const a_string = `something`;
 - they allow you to create DSLs with template tags (DSL means domain specific language, and it’s for example **used in React by Styled Components, to define CSS for a component)**
 
 ### Read more: [Introduction to Template Literals](https://flaviocopes.com/javascript-template-literals/)
+
+
+
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+# 🍯
+
+# DangerouslySetInnerHTML
+
+### issue related to the < p > (instead of the actual text) that you see in the image
+
+[<img src="/src/img/img_propertie_issue_solved.jpg"/>]()
+
+- Before i forget, i also had to change this as well
+
+```javascript
+// from this:
+<Typography gutterBottom variant="h5">
+  {product.price}
+</Typography>
+//
+// to this
+<Typography gutterBottom variant="h5">
+{product.price.formatted_with_symbol}
+</Typography>
+
+```
+
+<br>
+
+### Now lets solve the html issue
+
+- REPLACE the following:
+
+```javascript
+// Description in Product.jsx
+//change this
+<Typography variant="body2" color="textSecondary">
+  {product.description}
+</Typography>
+//
+// __html: product you need double underscore
+// For this:
+          <Typography
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            variant="body2"
+            color="textSecondary"
+          />
+
+```
+
+<br>
+
+## ⚠️
+
+## What is DangerouslySetInnerHTML
+
+- Dangerously Set innerHTML,
+
+**Improper use of the innerHTML can open you up to a cross-site scripting (XSS) attack.** Sanitizing user input for display is notoriously error-prone, and failure to properly sanitize is one of the leading causes of web vulnerabilities on the internet.
+
+Our design philosophy is that it should be "easy" to make things safe, and developers should explicitly state their intent when performing “unsafe” operations. <u>The prop name dangerouslySetInnerHTML is intentionally chosen to be frightening, and the prop value (an object instead of a string) can be used to indicate sanitized data.</u>
+
+After fully understanding the security ramifications and properly sanitizing the data, create a new object containing only the key \_\_html and your sanitized data as the value. Here is an example using the JSX syntax:
+
+#### [Read more](https://stackoverflow.com/questions/37337289/react-js-set-innerhtml-vs-dangerouslysetinnerhtml)
+
+<br>
+
+### [Set innerHTML vs dangerouslySetInnerHTML](https://stackoverflow.com/questions/37337289/react-js-set-innerhtml-vs-dangerouslysetinnerhtml)
+
+> The immediate effect of using innerHTML versus dangerouslySetInnerHTML is identical -- the DOM node will update with the injected HTML.
+
+> However, behind the scenes when you use dangerouslySetInnerHTML it lets React know that the HTML inside of that component is not something it cares about.
+
+> Because React uses a virtual DOM, when it goes to compare the diff against the actual DOM, it can straight up bypass checking the children of that node because it knows the HTML is coming from another source. So there's performance gains.
+
+<br>
+<br>
