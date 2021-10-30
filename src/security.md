@@ -1,3 +1,8 @@
+#### I decided to hide the credentials related to (commercejs and stripe) because they are sensitive data. The ones you will find in certain branches are already obsolete, as i replaced them, so don't bother to use them.
+
+<br>
+<br>
+
 # HIDE THE .ENV 🔴
 
 #### You have to do this in the beginning as if you have already pushed in branches etc, you will have to do it one by one, (you can just create a new api key in whatever you are working)
@@ -78,8 +83,6 @@ git push -u origin master or just git push
 <br>
 
 ## READ THE [onlyStripe](../src/onlyStripe.md) section
-
-
 
 #### ⚠️ You should never ever Publish this type of sensitive data (keys) or the data that is inside the .env folder, thats why i decided to make this repository private until the project was ready, so that i could replace the sensitive data that i already "commited to git".
 

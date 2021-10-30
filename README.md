@@ -111,11 +111,21 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 13. [stripe-2-order-confirmation-done ](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/stripe-2-order-confirmation-done)
 14. [confirmation-styling-and-spinner-end](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/confirmation-styling-and-spinner-end)
 
+ 
+
 <br>
 <hr>
 <br>
 
 ### 📓 NOTES:
+
+#### You will not find the .env file with the respective credentials (related to commercejs and stripe) to this repository
+- Read more inside the  [security](./src/security.md)
+
+
+
+<nr>
+<br>
 
 #### [interesting](./src/Interesting.md)
 
