@@ -214,7 +214,7 @@ export default Product;
 
 # 🍊
 
-### ANOTHER interesting thing that i have been wanting to know:
+# ANOTHER interesting thing that i have been wanting to know:
 
 - How to hide certain information depending on the page i am:
 
