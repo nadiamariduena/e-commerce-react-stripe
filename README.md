@@ -77,10 +77,23 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <hr>
 <br>
 
+# NEMU
+
+<br>
+
+#### About
+
+<br>
+
+> **The main raison** for this project was my curiosity and my will to learn new things, but after the corona wiped out so many little shops i used to go, I started to feel like there was maybe something I could do, so I started to find ways to create websites easily, websites that any little merchant could afford, and this was the result, its not yet fully functional as i must to correct one last error before publishing it in the web. Besides that, I wasn't happy with the design so i customized it (**see more below**).
+
+<br>
+
 [<img src="././src/img/nemu_default-design.jpg"/>]()
 
 <br>
-## INDEX
+
+# INDEX
 
 <br>
 
