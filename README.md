@@ -57,6 +57,8 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 # _NEMU_ e-boutique
 
+[<img src="././src/img/NEMU_1.jpg"/>]()
+
 <br>
 
 ### About
@@ -79,9 +81,7 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
-[<img src="././src/img/NEMU_1.jpg"/>]()
-
-[<img src="././src/img/NEMU-PHONE-ecommerce.gif"/>]()
+[<img src="././src/img/NEMU-PHONE-ecommerce copy.gif"/>](https://github.com/nadiamariduena/e-commerce-react-stripe)
 
 <br>
 <br>
@@ -96,9 +96,15 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
+[<img src="././src/img/CHECKOUT_nemuSHOP.gif"/>](https://github.com/nadiamariduena/e-commerce-react-stripe)
+
+<br>
+<br>
+<br>
+
 ## THE DEFAULT
 
-> This repository contains the data related to the default app, the custom app will be revealed soon.
+> **This repository contains** the data related to the default app, the custom app will be revealed soon.
 
 <br>
 
