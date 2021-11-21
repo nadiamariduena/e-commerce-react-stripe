@@ -55,31 +55,35 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
-> **NOTE:** I started this project out of curiosity, I wanted to see the differences between using this type of e-commerce setup (with commercejs and stripe) and a shop build with (Mongodb, Express, React,Nodejs).
-
-<br>
-<hr>
-<br>
-
 # _NEMU_ e-boutique
 
 <br>
 
-#### About
+### About
 
 <br>
 
-> **The main raison** for this project was my curiosity and my will to learn new things, but after the corona wiped out so many little shops i used to go, I started to feel like there was maybe something I could do, so I started to find ways to create websites easily, websites that any little merchant could afford, and this was the result, its not yet fully functional as i must to correct one last error before publishing it in the web. Besides that, I wasn't happy with the design so i customized it (**see more below**).
+> **I started this project out of curiosity**, I wanted to see the **advantages & disadvantages** in building an e-commerce app using React, **Commercejs and stripe** and an app build with (Mongodb, Express, React and Nodejs | **MERN**). <br> <br> **PROS:** Its certainly faster to build, in more of that **commercejs** has some nice tools to communicate with the client. **CONS:** as a beginner I like to have the code in front of me to see from where an issue is coming, **commercejs** doesn't offer that.
 
 <br>
 
 [<img src="././src/img/nemu_default-design.jpg"/>]()
 
+## THE MOTIVATION
+
+<br>
+
+> **The main motivator for this project was my curiosity** as well as my desire to expand my knowledge. Due to the disastrous effect **the pandemic had on the small businesses** I used to visit, I decided I wanted to find a way to create websites and e-commerce stores that any business owner could use to represent their wares online, be it small or big. <br>
+> Although it isn't fully functional yet, as there is a final error I have to correct to publish it on the web, this is the result of my work.
+> **Aside from that I wasn't entirely satisfied with the design so I customized it** as you can see from the preview shown below.
+
+<br>
+
 ## THE CUSTOM VERSION
 
 <br>
 
-> After I finished the default version, I decided to customized it a bit (its still **in process**).
+- After I finished the default version, I decided to customized it a bit (its still **in process**).
 
 <br>
 
@@ -94,7 +98,7 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 <br>
 <br>
 
-# INDEX
+## INDEX
 
 <br>
 
@@ -117,15 +121,12 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 <hr>
 <br>
 
-### 📓 NOTES:
+## 📓 NOTES:
 
-##### You will not find the .env file with the respective credentials (related to commercejs and stripe) to this repository
+<!-- ##### You will not find the .env file with the respective credentials (related to commercejs and stripe) to this repository
 
-- Read more inside the [security](./src/security.md)
+- Read more inside the [security](./src/security.md) -->
 
-<br>
-
-<nr>
 <br>
 
 #### [Instructions](./src/Instructions.md)
