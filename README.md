@@ -108,6 +108,10 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
+- I was tempted to just copy and paste the code, but there is not point in doing that when I am just starting :), so here below you will find each step, from the beginning to the end.
+
+<br>
+
 1. [default-project](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/default-project)
 2. [navbar-basic-and-default-commercejs-setup](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/navbar-basic-and-default-commercejs-setup)
 3. [fecthing-data-from-commercejs ](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/fecthing-data-from-commercejs)
