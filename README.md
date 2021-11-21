@@ -103,6 +103,22 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <hr>
 <br>
 
+### THE CUSTOM VERSION
+
+<br>
+
+> After I finished the default version, I decided to customized it a bit (its still **in process**).
+
+<br>
+
+##### So here is little preview
+
+<br>
+
+[<img src="././src/img/NEMU_1.jpg"/>]()
+
+[<img src="././src/img/NEMU-PHONE-ecommerce.gif"/>]()
+
 ### 📓 NOTES:
 
 ##### You will not find the .env file with the respective credentials (related to commercejs and stripe) to this repository
@@ -150,20 +166,20 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 ### CREDITS IMAGES
 
-- Oladimeji Oduns
-- Aiony Haust
-- Linda Prebreza
-- Valeriia Miller
-- Venus-HD-Make-up-and-Perfume
+- [Oladimeji Oduns](https://unsplash.com/@oladimeg)
+- [ Aiony Haust](https://unsplash.com/@aiony)
+- [Linda Prebreza](https://www.pexels.com/fr-fr/@linda-prebreza-87411)
+- [ Valeriia Miller](https://unsplash.com/@iyamiphotography)
+
+<br>
+
+#### Videos
+
+<br>
+
+- [Cottonbro](https://www.pexels.com/fr-fr/@cottonbro/collections/)
+- [Mikhail Nilov](https://www.pexels.com/fr-fr/collections/bastille-day-iqetquk/)
 
 <br>
 <hr>
 <br>
-
-### THE CUSTOM VERSION
-
-<br>
-
-[<img src="././src/img/NEMU_1.jpg"/>]()
-
-[<img src="././src/img/NEMU-PHONE-ecommerce.gif"/>]()
