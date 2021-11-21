@@ -65,20 +65,6 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 > **I started this project out of curiosity**, I wanted to see the **advantages & disadvantages** in building an e-commerce app using React, **Commercejs and stripe** and an app build with (Mongodb, Express, React and Nodejs | **MERN**). <br> <br> **PROS:** Its certainly faster to build, in more of that **commercejs** has some nice tools to communicate with the client. **CONS:** as a beginner I like to have the code in front of me to see from where an issue is coming, **commercejs** doesn't offer that.
 
-<br>
-
-[<img src="././src/img/nemu_default-design.jpg"/>]()
-
-## THE MOTIVATION
-
-<br>
-
-> **The main motivator for this project was my curiosity** as well as my desire to expand my knowledge. Due to the disastrous effect **the pandemic had on the small businesses** I used to visit, I decided I wanted to find a way to create websites and e-commerce stores that any business owner could use to represent their wares online, be it small or big. <br>
-> Although it isn't fully functional yet, as there is a final error I have to correct to publish it on the web, this is the result of my work.
-> **Aside from that I wasn't entirely satisfied with the design so I customized it** as you can see from the preview shown below.
-
-<br>
-
 ## THE CUSTOM VERSION
 
 <br>
@@ -96,6 +82,26 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 [<img src="././src/img/NEMU-PHONE-ecommerce.gif"/>]()
 
 <br>
+<br>
+
+## THE MOTIVATION
+
+<br>
+
+> **The main motivator for this project was my curiosity** as well as my desire to expand my knowledge. Due to the disastrous effect **the pandemic had on the small businesses** I used to visit, I decided I wanted to find a way to create websites and e-commerce stores that any business owner could use to represent their wares online, be it small or big. <br>
+> Although it isn't fully functional yet, as there is a final error I have to correct to publish it on the web, this is the result of my work.
+> **Aside from that I wasn't entirely satisfied with the design so I customized it** as you can see from the preview shown above.
+
+<br>
+
+## THE DEFAULT
+
+> This repository contains the data related to the default app, the custom app will be revealed soon.
+
+<br>
+
+[<img src="././src/img/nemu_default-design.jpg"/>]()
+
 <br>
 
 ## INDEX
