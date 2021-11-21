@@ -58,26 +58,10 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 > **NOTE:** I started this project out of curiosity, I wanted to see the differences between using this type of e-commerce setup (with commercejs and stripe) and a shop build with (Mongodb, Express, React,Nodejs).
 
 <br>
-
-<br>
-
-# CREDITS > TEACHER:
-
-Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing this **Great tutorial** on how to set up an E-commerce store using: **React | Material UI | Commerce.js and Stripe**.
-
-##### [Official project repository](https://github.com/adrianhajdin/project_e_commerce)
-
-<br>
-
-##### [YOUTUBE | ECommerce Web Shop - Build & Deploy an Amazing App | React.js, Commerce.js, Stripe](https://www.youtube.com/watch?v=377AQ0y6LPA&t=10739s)
-
-<br>
-
-<br>
 <hr>
 <br>
 
-# NEMU
+# _NEMU_ e-boutique
 
 <br>
 
@@ -91,6 +75,23 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 [<img src="././src/img/nemu_default-design.jpg"/>]()
 
+## THE CUSTOM VERSION
+
+<br>
+
+> After I finished the default version, I decided to customized it a bit (its still **in process**).
+
+<br>
+
+##### (Preview)
+
+<br>
+
+[<img src="././src/img/NEMU_1.jpg"/>]()
+
+[<img src="././src/img/NEMU-PHONE-ecommerce.gif"/>]()
+
+<br>
 <br>
 
 # INDEX
@@ -115,22 +116,6 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <br>
 <hr>
 <br>
-
-### THE CUSTOM VERSION
-
-<br>
-
-> After I finished the default version, I decided to customized it a bit (its still **in process**).
-
-<br>
-
-##### So here is little preview
-
-<br>
-
-[<img src="././src/img/NEMU_1.jpg"/>]()
-
-[<img src="././src/img/NEMU-PHONE-ecommerce.gif"/>]()
 
 ### 📓 NOTES:
 
@@ -177,6 +162,20 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 <hr>
 <br>
 
+# CREDITS > TEACHER:
+
+Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing this **Great tutorial** on how to set up an E-commerce store using: **React | Material UI | Commerce.js and Stripe**.
+
+##### [Official project repository](https://github.com/adrianhajdin/project_e_commerce)
+
+<br>
+
+##### [YOUTUBE | ECommerce Web Shop - Build & Deploy an Amazing App | React.js, Commerce.js, Stripe](https://www.youtube.com/watch?v=377AQ0y6LPA&t=10739s)
+
+<br>
+<hr>
+<br>
+
 ### CREDITS IMAGES
 
 - [Oladimeji Oduns](https://unsplash.com/@oladimeg)
@@ -192,7 +191,3 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 - [Cottonbro](https://www.pexels.com/fr-fr/@cottonbro/collections/)
 - [Mikhail Nilov](https://www.pexels.com/fr-fr/collections/bastille-day-iqetquk/)
-
-<br>
-<hr>
-<br>
