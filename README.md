@@ -3,13 +3,6 @@ API
 app prgramming interface
 <br>
 
-#### Small notice:
-
-> After 7 months of teaching myself blender, I am back to code, So this is one of the several projects I am preparing to get back in shape :).
-
-<br>
-[<img src="/src/img/undefined_first_commerceTests_beforeAdding-Products.jpg"/>]()
-<br>
 
 #### [NOTES : interesting](./src/Interesting.md)
 
@@ -51,10 +44,6 @@ https://commercejs.com/docs/api/#versioning
 *-----------------------------------------
 
 
-  // For each country, what we wanna do? we want to return,
-  // a block of JSX, in this case it will be:<MenuItem and its content
-
-
 
 Oladimeji Odunsi_beauty-woman1.jpeg
 Aiony Haust_beauty-woman2.jpeg
@@ -70,28 +59,27 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
-- It took me 13 days and the reason for that is because I commented every step of the tutorial.
-
-- Here you can find my second attempt using: **(Mongodb, Express, React,Nodejs)**
-
 <br>
 
 # CREDITS > TEACHER:
 
 Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing this **Great tutorial** on how to set up an E-commerce store using: **React | Material UI | Commerce.js and Stripe**.
 
-<br>
-
-### [Official project repository](https://github.com/adrianhajdin/project_e_commerce)
+##### [Official project repository](https://github.com/adrianhajdin/project_e_commerce)
 
 <br>
 
-#### [YOUTUBE | ECommerce Web Shop - Build & Deploy an Amazing App | React.js, Commerce.js, Stripe](https://www.youtube.com/watch?v=377AQ0y6LPA&t=10739s)
+##### [YOUTUBE | ECommerce Web Shop - Build & Deploy an Amazing App | React.js, Commerce.js, Stripe](https://www.youtube.com/watch?v=377AQ0y6LPA&t=10739s)
+
+<br>
 
 <br>
 <hr>
 <br>
 
+[<img src="././src/img/nemu_default-design.jpg"/>]()
+
+<br>
 ## INDEX
 
 <br>
@@ -111,31 +99,30 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 13. [stripe-2-order-confirmation-done ](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/stripe-2-order-confirmation-done)
 14. [confirmation-styling-and-spinner-end](https://github.com/nadiamariduena/e-commerce-react-stripe/tree/confirmation-styling-and-spinner-end)
 
- 
-
 <br>
 <hr>
 <br>
 
 ### 📓 NOTES:
 
-#### You will not find the .env file with the respective credentials (related to commercejs and stripe) to this repository
-- Read more inside the  [security](./src/security.md)
+##### You will not find the .env file with the respective credentials (related to commercejs and stripe) to this repository
+
+- Read more inside the [security](./src/security.md)
 
 <br>
-
- 
 
 <nr>
 <br>
 
-#### [interesting](./src/Interesting.md)
+#### [Instructions](./src/Instructions.md)
 
-#### [commun errors](./src/errors.md)
+#### [Commun errors](./src/errors.md)
 
-#### [only stripe](./src/onlyStripe.md)
+#### [Only stripe](./src/onlyStripe.md)
 
-#### [security](./src/security.md)
+#### [Security](./src/security.md)
+
+#### [Interesting](./src/Interesting.md)
 
 #### [unrelated](./src/unrelated.md)
 
@@ -149,7 +136,7 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 
 - Interesting links that helped me to debug the last warnings of the project
 
-- Read more inside the  [debugging](./src/debugging.md)
+- Read more inside the [debugging](./src/debugging.md)
 
 <br>
 
@@ -168,3 +155,15 @@ Big thanks to **[Adrian Hajdin](https://github.com/adrianhajdin)** , for sharing
 - Linda Prebreza
 - Valeriia Miller
 - Venus-HD-Make-up-and-Perfume
+
+<br>
+<hr>
+<br>
+
+### THE CUSTOM VERSION
+
+<br>
+
+[<img src="././src/img/NEMU_1.jpg"/>]()
+
+[<img src="././src/img/NEMU-PHONE-ecommerce.gif"/>]()

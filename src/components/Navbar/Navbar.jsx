@@ -37,7 +37,7 @@ const Navbar = ({ totalItems }) => {
               height="25px"
               className={classes.image}
             />
-            Nadia Mariduena
+            NEMU sandbox
           </Typography>
           {/* 
           
