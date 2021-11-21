@@ -116,7 +116,7 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
-- I was tempted to just copy and paste the code, but there is not point in doing that when I am just starting :), so here below you will find each step, from the beginning to the end.
+- All the Branches containing the process
 
 <br>
 
