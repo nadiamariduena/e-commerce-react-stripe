@@ -65,6 +65,8 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 > **I started this project out of curiosity**, I wanted to see the **advantages & disadvantages** in building an e-commerce app using React, **Commercejs and stripe** and an app build with (Mongodb, Express, React and Nodejs | **MERN**). <br> <br> **PROS:** Its certainly faster to build, in more of that **commercejs** has some nice tools to communicate with the client. **CONS:** as a beginner I like to have the code in front of me to see from where an issue is coming, **commercejs** doesn't offer that.
 
+<br>
+
 ## THE CUSTOM VERSION
 
 <br>
