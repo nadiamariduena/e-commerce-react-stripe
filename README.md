@@ -69,7 +69,7 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 <br>
 
-- After I finished the default version, I decided to customized it a bit (its still **in process**).
+- After I finished the default version, I decided to customized it a bit (still **in process** but already available for recruiters, **upon request**).
 
 <br>
 
