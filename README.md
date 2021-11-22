@@ -104,7 +104,7 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 
 ## I Modified the original Design
 
-> I changed all the original images and design palette for the ones you see on the image below.
+> I changed all the original images and design palette for the ones you see on the image above.
 > I also tested different things that you don't have in the video tutorial, you can find them in my Notes
 
 <br>
