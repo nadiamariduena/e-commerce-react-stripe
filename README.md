@@ -102,9 +102,10 @@ pexpexels-Venus-HD-Make-up-and-Perfume-2587363.jpg
 <br>
 <br>
 
-## THE DEFAULT
+## I Modified the original Design
 
-> **This repository contains** the data related to the default app, the custom app will be revealed soon.
+> I changed all the original images and design palette for the ones you see on the image below.
+> I also tested different things that you don't have in the video tutorial, you can find them in my Notes
 
 <br>
 
