@@ -1,5 +1,21 @@
 # COMMON ERRORS 🍦
 
+<br>
+
+> If you are working in 2 backend apps, be careful with the servers you are using, as your app can show some bahavior when trying to test the orders with stripe for example.
+
+#### SOLUTION
+
+stop or kill all the servers from both apps with
+
+```javascript
+killall;
+```
+
+- Then test one of the apps
+
+<br><br>
+
 ##### In the Beginning errors are related to the styles
 
 <br>
